@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .tableodd{
+        @apply bg-[#184892]/20;
+    }
+
+    .tableeven{
+        @apply bg-[#8d2618]/20;
+    }
+}
