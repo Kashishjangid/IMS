@@ -1,20 +1,19 @@
 "use client";
 import React, { useState, useEffect } from "react";
-// import Link from "next/link";
+import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
-// import { demo, allfildes } from "../product/data";
+import { demo, allfildes } from "./data";
 
 import Select from "react-select";
-import AddCustomer from "@/Components/AddCustomer";
-// import CreatableSelect from 'react-select/creatable';
-// import AddProductNew from "@/Components/AddProductNew";
-// import Demo from "@/Components/Demo"
-// import { Dropdown } from "@mui/base";
-// import AddDropDown from "@/Components/AddDropDown";
+import CreatableSelect from 'react-select/creatable';
+import AddProductNew from "@/Components/AddProductNew";
+import Demo from "@/Components/Demo"
+import { Dropdown } from "@mui/base";
+import AddDropDown from "@/Components/AddDropDown";
 const options = [
     { value: "Dell", label: "Dell" },
     { value: "Asus", label: "Asus" },
@@ -24,8 +23,6 @@ const options = [
     { value: "16 GB", label: "16 GB" },
     { value: "i7", label: "i7" },
 ];
-// const fieldName = ["id" ,"Name", "Contact No"];
-const fieldName = ["Company Name" ,"Contact Persion Name", "Contact No","Address","Action"];
 
 const Page = () => {
     const router = useRouter();
@@ -48,7 +45,7 @@ const Page = () => {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzOTM4MTYyLCJleHAiOjE3MTQwMjQ1NjIsIm5iZiI6MTcxMzkzODE2MiwianRpIjoiNlR6ZXFOWW1UUFBVMVZ0diIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nR2N8zXTZtxMQKODeI_XZCdh41Pz-RK3V308N6Y7R6s"
+                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
                         },
                         cache: "no-store"
                     }
@@ -105,7 +102,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzOTM4MTYyLCJleHAiOjE3MTQwMjQ1NjIsIm5iZiI6MTcxMzkzODE2MiwianRpIjoiNlR6ZXFOWW1UUFBVMVZ0diIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nR2N8zXTZtxMQKODeI_XZCdh41Pz-RK3V308N6Y7R6s"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
                     },
                     cache: "no-store"
 
@@ -123,7 +120,7 @@ const Page = () => {
         productdatafetch();
     }, [])
     // for brand
-    // const [dataforproductbrand, setDataForProductBrand] = useState([])
+    const [dataforproductbrand, setDataForProductBrand] = useState([])
     useEffect(() => {
         const productdatafetch1 = async () => {
             try {
@@ -131,7 +128,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzOTM4MTYyLCJleHAiOjE3MTQwMjQ1NjIsIm5iZiI6MTcxMzkzODE2MiwianRpIjoiNlR6ZXFOWW1UUFBVMVZ0diIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nR2N8zXTZtxMQKODeI_XZCdh41Pz-RK3V308N6Y7R6s"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
                     },
                     cache: "no-store"
                 });
@@ -269,29 +266,29 @@ const Page = () => {
     };
 
     //for add product
-    // const [hiddenforproduct, setHiddenForProduct] = useState(true);
+    const [hiddenforproduct, setHiddenForProduct] = useState(true);
     const [hiddenaddproduct, setHiddenAddProduct] = useState(true);
-    // const [selectedProduct, setSelectedProduct] = useState("");
+    const [selectedProduct, setSelectedProduct] = useState("");
     const [selectedProductData, setSelectedProductData] = useState("");
-    // const [selectedProductDatafornewproduct, setSelectedProductDataForNewProduct] = useState("");
+    const [selectedProductDatafornewproduct, setSelectedProductDataForNewProduct] = useState("");
     const [existst, setExistsT] = useState(false)
     // console.log(existst)
     // console.log(selectedProductDatafornewproduct.length)
     const [productid, setProductId] = useState("");
-    // const [selectedProductBrand, setSelectedProductBrand] = useState("")
-    // const optionHandle = (selectedOptions) => {
+    const [selectedProductBrand, setSelectedProductBrand] = useState("")
+    const optionHandle = (selectedOptions) => {
 
-    //     setSelectedProduct(selectedOptions);
-    //     setSelectedProductData(selectedOptions.value)
+        setSelectedProduct(selectedOptions);
+        setSelectedProductData(selectedOptions.value)
 
 
 
-    //     setProductId(selectedOptions.id)
-    //     setSelectedProductBrand("")
+        setProductId(selectedOptions.id)
+        setSelectedProductBrand("")
 
-    // };
+    };
 
-    // const [handleformhidden, setHandleFormHidden] = useState(true)
+    const [handleformhidden, setHandleFormHidden] = useState(true)
     useEffect(() => {
 
         if (selectedProductData.length !== 0) {
@@ -301,16 +298,23 @@ const Page = () => {
             // console.log(handleformhidden);
         }
     }, [selectedProductData]);
+
+
+
+
+
+
+
     const [selectedProductBrandData, setSelectedProductBrandData] = useState("");
-    // const optionHandleForProductBrand = (selectedOptions) => {
+    const optionHandleForProductBrand = (selectedOptions) => {
 
-    //     setSelectedProductBrand(selectedOptions);
-    //     // console.log(selectedOptions.value)
-    //     setSelectedProductBrandData(selectedOptions.value)
+        setSelectedProductBrand(selectedOptions);
+        // console.log(selectedOptions.value)
+        setSelectedProductBrandData(selectedOptions.value)
 
 
 
-    // }
+    }
     useEffect(() => {
         // alert(selectedProductBrandData)
         // console.log(selectedProductBrandData)
@@ -346,18 +350,18 @@ const Page = () => {
 
         setScrollFun(false);
     };
+    
 
-
-    // const [customfieldsdataactive, setCustomfieldsDataActive] = useState(false);
+    const [customfieldsdataactive, setCustomfieldsDataActive] = useState(false);
     const [scrollfun, setScrollFun] = useState(true);
     const handleAddProductsDiscard = (e) => {
         e.preventDefault();
         setHiddenAddProduct(true);
         setScrollFun(true);
         setSelectedProductData("");
-        // setSelectedProduct("");
-        // setSelectedProductBrand("");
-        // setCustomfieldsDataActive(true)
+        setSelectedProduct("");
+        setSelectedProductBrand("");
+        setCustomfieldsDataActive(true)
     };
 
 
@@ -377,49 +381,35 @@ const Page = () => {
 
 
 
-    // const [formData, setFormData] = useState({});
-    // const handleInputChange2 = (e) => {
-    //     const { name, value } = e.target;
+    const [formData, setFormData] = useState({});
+    const handleInputChange2 = (e) => {
+        const { name, value } = e.target;
 
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value,
-    //     });
-    // };
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+    };
+
     
+    const[optionin,setOptionin]=useState(true)
+    const [receivedData, setReceivedData] = useState('');
+//   const [handleFormHidden2, setHandleFormHidden2] = useState(false);
 
-    const [optionin, setOptionin] = useState(true)
-    // const [receivedData, setReceivedData] = useState('');
-    //   const [handleFormHidden2, setHandleFormHidden2] = useState(false);
-
-    // const handleDataFromChild = (data) => {
-    //     // console.log('Received data from child:', data);
-    //     // setReceivedData(data);
-    //     if (data === "Hello") {
-    //         // alert("HE")
-    //         setHandleFormHidden(true);
-    //     }
-
-    // };
-
-
-    // const handleDataFromChild = (handleAddCustomerDetailstoggle) => {
-    //     // console.log('Received data from child:', data);
-    //     // setReceivedData(data);
-    //     if(handleAddCustomerDetailstoggle)
-    //     {
-    //         // alert("HE")
-    //               setHandleFormHidden(true);
-    //     }
-        
-    //   };
-    const handleDataFromChild = (data) => {
-        if(data)
-        {
-                  setHiddenAddProduct(true);
-        }
-        
-      };
+  const handleDataFromChild = (data) => {
+    // console.log('Received data from child:', data);
+    // setReceivedData(data);
+    if(data==="Hello")
+    {
+        // alert("HE")
+              setHandleFormHidden(true);
+    }
+    
+  };
 
 
 
@@ -430,7 +420,7 @@ const Page = () => {
                     }  w-full`}
             >
                 <div className="sm:flex sm:space-y-0 space-y-2  justify-between m-4">
-                    <h1 className="text-3xl  font-semibold">Customer List </h1>
+                    <h1 className="text-3xl  font-semibold">Product List </h1>
                     <div className=" sm:flex sm:space-x-2 space-x-0 sm:space-y-0 space-y-2">
 
                         <div className="flex  items-center">
@@ -466,25 +456,22 @@ const Page = () => {
                         className="  duration-700 border sm:py-2 sm:px-5 p-2  rounded bg-[#0E5AFE] text-white"
                         onClick={handleAddProducts}
                     >
-                        Add Customer Details
+                        Add Products
                     </button>
                 </div>
                 <div className="w-full overflow-auto md:pb-20">
                     <table className="w-full mt-2">
                         <thead>
                             <tr className="items-center *:p-2 bg-[#d5d7da]">
-                                {fieldName.map((ele,index)=>(
-                                    <th>{ele}</th>
-                                ))}
-                                {/* <th>Id</th>
-                                <th>Name</th>
-                                <th>Contect No</th>
-                                <th>Email</th>
+                                <th>Id</th>
+                                <th>Brand Name</th>
+                                <th>Serial Name</th>
+                                <th>Model Number</th>
                                 <th>Configuration</th>
                                 <th>Ram</th>
                                 <th>HDD</th>
 
-                                <th>Action</th> */}
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -493,10 +480,7 @@ const Page = () => {
                                     className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
                                     key={index}
                                 >
-                                    {Object.keys(element)
-                                    // .filter((ele,index)=>index=>index<3))
-                                    .filter((ele, index) => index <= 3)
-                                    .map((key) => (
+                                    {Object.keys(element).map((key) => (
                                         <td key={key}>
                                             {/* <p>{key}</p> */}
 
@@ -633,13 +617,144 @@ const Page = () => {
                 </div>
 
                 {/* for add product */}
-                
-                <AddCustomer hiddenaddproduct={hiddenaddproduct} fieldName={fieldName} sendDataToParent={handleDataFromChild}/>
-                
+                <div
+                    className={`absolute flex-grow   top-0 left-[50%] -translate-x-[50%]  ${hiddenaddproduct ? "hidden" : "flex"
+                        }    bg-black/30 backdrop-blur-[2px] md:pt-4 pt-24 h-full max-md:pt-20 max-md:pb-0 overflow-auto w-full`}
+                >
+                    <div className="w-full sm:p-0 h-full flex flex-col items-center overflow-auto md:pb-20">
+                        <div className="border bg-white p-4 rounded w-[90%] ">
+                            <div className="space-y-2">
+                                <div className="flex justify-between text-2xl">
+                                    <h1>Add New Product</h1>
+                                    <RxCross2 size={30} onClick={handleAddProductsDiscard}/>
+                                </div>
+                                <div className="space-y-2 ">
+                                    <h2>Product Type</h2>
+
+                                    <div className="flex w-full justify-center items-center gap-3">
 
 
+                                        <CreatableSelect
+                                            className="rounded-3xl w-full"
+                                            options={dataforproduct.map(ele => ({ value: ele.name, label: ele.name, id: ele.id }))}
+                                            // value={selectedProduct}
+                                            // value={selectedProduct[selectedProduct.length - 1]}
+                                            value={selectedProduct}
+
+                                            onChange={optionHandle}
+                                            // isValidNewOption={isValidNewOption}
+                                            // onInputChange={handleInputchange}
+                                            // isMulti={true}
+                                            placeholder="Select type of products"
+
+                                        />
+
+                                        {/* <AddProductNew data={allfildes} /> */}
+                                    </div>
+                                    {/* {
+                                        selectedProductDatafornewproduct.length === 0 ? ("Hello") : (selectedProductDatafornewproduct.length)
+                                    } */}
+                                    {/* <AddProductNew data={allfildes}/> */}
+                                </div>
+                                <div className="space-y-2 ">
+                                    <h2>Brand Name</h2>
+
+                                    <div className="flex w-full justify-center items-center gap-3">
+
+
+                                        <CreatableSelect
+                                            className="rounded-3xl w-full"
+                                            options={dataforproductbrand
+                                                .filter((ele, index) => productid === ele.subcategory_id)
+                                                .map(ele => ({ value: ele.name, label: ele.name }))}
+
+                                            value={selectedProductBrand}
+
+                                            onChange={optionHandleForProductBrand}
+                                            // onInputChange={handleInputchange}
+
+                                            placeholder="Select type of products"
+
+                                        />
+
+                                        {/* <AddProductNew data={allfildes} /> */}
+                                    </div>
+                                    {/* {
+                                        selectedProductDatafornewproduct.length === 0 ? ("Hello") : (selectedProductDatafornewproduct.length)
+                                    } */}
+                                    {/* <AddProductNew data={allfildes}/> */}
+                                </div>
+                            </div>
+                            {/* <form className=" " hidden={false}> */}
+                            <form onSubmit={handleSubmit} className=" space-y-4 ">
+                                <div>
+
+
+                                    {demo
+                                        // .filter((item) => item.title === selectedProduct)
+                                        // .filter((item) =>  selectedProductBrand!="")
+                                        .filter((item) => item.title === selectedProductData && selectedProductBrand != "")
+                                        .map((demoItem, index) => (
+                                            <div key={index} className="grid sm:grid-cols-2 gap-4">
+                                                {demoItem.fildes.map((field, fieldIndex) => (
+                                                    <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
+                                                        <div key={fieldIndex} className="space-y-2">
+                                                            <span>{field.title}</span>
+                                                            {field.option ? (
+                                                                <div>
+                                                                    <select
+                                                                        className="border-2 outline-[#1D4ED8] bg-[#F9FAFB]  p-2 w-full rounded-xl cursor-pointer"
+                                                                        name={field.title}
+                                                                        onChange={handleInputChange2}
+                                                                    >
+                                                                        {field.options.map((option, optionIndex) => (
+                                                                            <option key={optionIndex} value={option.title}>
+                                                                                {option.title}
+                                                                            </option>
+                                                                        ))}
+                                                                    </select>
+                                                                </div>
+                                                            ) : (
+                                                                <input
+                                                                    type="text"
+                                                                    name={field.title}
+                                                                    placeholder={field.title}
+                                                                    className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
+                                                                    onChange={handleInputChange2}
+                                                                />
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ))}
+                                </div>
+                                <div className={`flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 ${handleformhidden?"block":"hidden"}`}>
+                                    <button className="bg-[#1D4ED8] hover:bg-blue-600   text-white">
+                                        Add product
+                                    </button>
+                                    <button
+                                        className="bg-red-400 hover:bg-red-500   text-white"
+                                        onClick={handleAddProductsDiscard}
+                                    >
+                                        Discard
+                                    </button>
+                                </div>
+                            </form>
+                            <div className={`${handleformhidden?"hidden":"block"} mt-6 `}>
+
+                                <AddProductNew data={allfildes} dataActive={customfieldsdataactive} sendDataToParent={handleDataFromChild}/>
+                            </div>
+
+                            {/* <Demo/> */}
+                        </div>
+                    </div>
+                    {/* <AddDropDown/> */}
+                </div>
+                
+                {/* <AddDropDown className="hidden"/> */}
             </div>
-
+            
         </>
     );
 };
