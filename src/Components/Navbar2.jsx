@@ -85,7 +85,7 @@ const Navbar = () => {
                                         <Image src={products} width={30}></Image><Link href='/dashboard/product'>Products</Link>
                                     </li>
                                     <li className="hover:bg-blue-500">
-                                        <Image src={supplier} width={30}></Image>Supplier
+                                        <Image src={supplier} width={30}></Image><Link href='/dashboard/supplier'>Supplier</Link>
                                     </li>
                                     <li className="hover:bg-blue-500">
                                         <Image src={order} width={30}></Image>Order
