@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
+import { RxCross2 } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 import { demo, allfildes } from "./data";
+
 import Select from "react-select";
 import CreatableSelect from 'react-select/creatable';
 import AddProductNew from "@/Components/AddProductNew";
@@ -43,7 +45,7 @@ const Page = () => {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzNzU5NTA5LCJleHAiOjE3MTM4NDU5MDksIm5iZiI6MTcxMzc1OTUwOSwianRpIjoiUzBhSVlXMzVPTDd0WXBxMCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GMJ0jSHpyqBsYF7gBiJiSnRSsQFKrvAxGygZA2lykrk"
+                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
                         },
                         cache: "no-store"
                     }
@@ -100,7 +102,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzNzU5NTA5LCJleHAiOjE3MTM4NDU5MDksIm5iZiI6MTcxMzc1OTUwOSwianRpIjoiUzBhSVlXMzVPTDd0WXBxMCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GMJ0jSHpyqBsYF7gBiJiSnRSsQFKrvAxGygZA2lykrk"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
                     },
                     cache: "no-store"
 
@@ -126,7 +128,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzNzU5NTA5LCJleHAiOjE3MTM4NDU5MDksIm5iZiI6MTcxMzc1OTUwOSwianRpIjoiUzBhSVlXMzVPTDd0WXBxMCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GMJ0jSHpyqBsYF7gBiJiSnRSsQFKrvAxGygZA2lykrk"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
                     },
                     cache: "no-store"
                 });
@@ -348,6 +350,8 @@ const Page = () => {
 
         setScrollFun(false);
     };
+    
+
     const [customfieldsdataactive, setCustomfieldsDataActive] = useState(false);
     const [scrollfun, setScrollFun] = useState(true);
     const handleAddProductsDiscard = (e) => {
@@ -388,21 +392,25 @@ const Page = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here you can do whatever you want with the form data
-        // console.log(formData);
-        // Example: You can send the data to an API
-        // fetch('your-api-url', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(formData),
-        // })
-        // .then(response => response.json())
-        // .then(data => console.log(data))
-        // .catch(error => console.error('Error:', error));
+        
     };
-    // const[optionin,setOptionin]=useState(true)
+
+    
+    const[optionin,setOptionin]=useState(true)
+    const [receivedData, setReceivedData] = useState('');
+//   const [handleFormHidden2, setHandleFormHidden2] = useState(false);
+
+  const handleDataFromChild = (data) => {
+    // console.log('Received data from child:', data);
+    // setReceivedData(data);
+    if(data==="Hello")
+    {
+        // alert("HE")
+              setHandleFormHidden(true);
+    }
+    
+  };
+
 
 
     return (
@@ -616,8 +624,9 @@ const Page = () => {
                     <div className="w-full sm:p-0 h-full flex flex-col items-center overflow-auto md:pb-20">
                         <div className="border bg-white p-4 rounded w-[90%] ">
                             <div className="space-y-2">
-                                <div className="flex justify-start text-2xl">
+                                <div className="flex justify-between text-2xl">
                                     <h1>Add New Product</h1>
+                                    <RxCross2 size={30} onClick={handleAddProductsDiscard}/>
                                 </div>
                                 <div className="space-y-2 ">
                                     <h2>Product Type</h2>
@@ -734,7 +743,7 @@ const Page = () => {
                             </form>
                             <div className={`${handleformhidden?"hidden":"block"} mt-6 `}>
 
-                                <AddProductNew data={allfildes} dataActive={customfieldsdataactive} />
+                                <AddProductNew data={allfildes} dataActive={customfieldsdataactive} sendDataToParent={handleDataFromChild}/>
                             </div>
 
                             {/* <Demo/> */}
