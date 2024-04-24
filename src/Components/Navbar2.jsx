@@ -106,7 +106,7 @@ const Navbar = () => {
                                 <Link href="/dashboard/product"><Image src={products} width={30}></Image></Link>
                             </li>
                             <li>
-                                <Image src={supplier} width={30}></Image>
+                            <Link href="/dashboard/supplier"><Image src={supplier} width={30}></Image></Link>
                             </li>
                             <li>
                                 <Image src={order} width={30}></Image>
