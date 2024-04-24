@@ -43,7 +43,7 @@ const Navbar3 = () => {
     { title: "Dashboard", icon: <MdDashboard />, path: "/dashboard" },
     { title: "Customer", icon: <FaRegIdCard />, path: "/dashboard/customer" },
     { title: "Product", icon: <MdProductionQuantityLimits />, path: "/dashboard/product" },
-    { title: "Supplier", icon: <TbPackageExport />, path: "/dashboard" },
+    { title: "Supplier", icon: <TbPackageExport />, path: "/dashboard/supplier" },
     { title: "Order", icon: <MdOutlineShoppingCartCheckout />, path: "/dashboard" },
     {
       title: "Logout", icon: <TbLogout />
