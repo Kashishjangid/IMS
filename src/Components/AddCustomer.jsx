@@ -2,8 +2,8 @@
 import React, { useState } from 'react'
 import { RxCross2 } from "react-icons/rx";
 
-const AddCustomer = ({hiddenaddproduct,sendDataToParent}) => {
-    const fieldName = ["id" ,"Name", "Contact No"];
+const AddCustomer = ({hiddenaddproduct,sendDataToParent,fieldName}) => {
+    
     const [inputData, setInputData] = useState(Array(fieldName.length).fill(''));
 
     // Function to handle input changes
@@ -46,7 +46,7 @@ const AddCustomer = ({hiddenaddproduct,sendDataToParent}) => {
                     <div className="border bg-white p-4 rounded w-[90%] ">
                         <div className="space-y-2">
                             <div className="flex justify-between text-2xl">
-                                <h1>Add New Product</h1>
+                                <h1>Add Customer Details</h1>
                                 <RxCross2 size={30} 
                                 onClick={handleAddCustomerDetailstoggle} 
                                 className="cursor-pointer" />
@@ -57,7 +57,7 @@ const AddCustomer = ({hiddenaddproduct,sendDataToParent}) => {
 
                         <form className=" space-y-4 ">
                             <div>
-                                <div className="grid sm:grid-cols-3 gap-4">
+                                <div className="grid sm:grid-cols-2 gap-4">
                                     {fieldName.map((ele, index) => (
                                         <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
                                             <div className="space-y-2">
@@ -83,13 +83,13 @@ const AddCustomer = ({hiddenaddproduct,sendDataToParent}) => {
                             </div>
                             <div className={`flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 `}>
                                 <button className="bg-[#1D4ED8] hover:bg-blue-600   text-white" onClick={(e)=>fun(e)}>
-                                    Add product
+                                    Add Customer
                                 </button>
                                 <button
                                     className="bg-red-400 hover:bg-red-500   text-white"
                                     onClick={handleAddCustomerDetailstoggle}
                                 >
-                                    Discard
+                                    Cancel
                                 </button>
                             </div>
                         </form>
