@@ -22,7 +22,7 @@ import AddSupplier from "@/Components/AddSupplier";
 //     { value: "i7", label: "i7" },
 // ];
 
-const fieldName = ["Company Name" ,"Contact Person Name", "Contact No.","Address","Action"];
+const fieldName = ["ID", "Company Name" , "Contact No.", "GST", "Address","Action"];
 
 const Page = () => {
     const router = useRouter();
@@ -35,69 +35,90 @@ const Page = () => {
     const [selectedValues, setSelectedValues] = useState([]);
     const [searchValue, setSearchValue] = useState("");
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const supplierData=[
+    const [supplierData, setSupplierData]=useState([
         {
-            "Company Name": "ABC Inc.",
-            "Contact Person Name": "John Doe",
-            "Contact No.": "+1234567890",
-            "Address": "123 Main St, City A"
-          },
-          {
-            "Company Name": "XYZ Corporation",
-            "Contact Person Name": "Jane Smith",
-            "Contact No.": "+1987654321",
-            "Address": "456 Elm St, City B"
-          },
-          {
-            "Company Name": "Tech Solutions Ltd.",
-            "Contact Person Name": "Michael Johnson",
-            "Contact No.": "+1122334455",
-            "Address": "789 Oak St, City C"
-          },
-          {
-            "Company Name": "Global Ventures Inc.",
-            "Contact Person Name": "Emily Brown",
-            "Contact No.": "+14499887766",
-            "Address": "321 Pine St, City D"
-          },
-          {
-            "Company Name": "Sunshine Enterprises",
-            "Contact Person Name": "David Lee",
-            "Contact No.": "+15556667777",
-            "Address": "555 Maple Ave, City E"
-          },
-          {
-            "Company Name": "Innovate Solutions LLC",
-            "Contact Person Name": "Sarah Johnson",
-            "Contact No.": "+16667778888",
-            "Address": "222 Cedar St, City F"
-          },
-          {
-            "Company Name": "Peak Performance Group",
-            "Contact Person Name": "Alex Turner",
-            "Contact No.": "+17778889999",
-            "Address": "777 Ash St, City G"
-          },
-          {
-            "Company Name": "Data Experts Inc.",
-            "Contact Person Name": "Chris Roberts",
-            "Contact No.": "+18889990000",
-            "Address": "999 Walnut Ave, City H"
-          },
-          {
-            "Company Name": "Blue Sky Innovations",
-            "Contact Person Name": "Lisa Adams",
-            "Contact No.": "+19990001111",
-            "Address": "888 Pine St, City I"
-          },
-          {
-            "Company Name": "EcoTech Solutions",
-            "Contact Person Name": "Kevin White",
-            "Contact No.": "+10011223344",
-            "Address": "333 Birch St, City J"
-          }
+          "ID": 456,
+          "Company Name": "Stokes Inc",
+          "Contact No.": "(527) 134-1234",
+          "GST": "3JF95GQ",
+          "Address": "1234 Oak Street",
+          "Action": "View/Edit/Delete"
+        },
+        {
+          "ID": 789,
+          "Company Name": "Roberts LLC",
+          "Contact No.": "(905) 456-7890",
+          "GST": "8N2TG4H",
+          "Address": "5678 Maple Avenue",
+          "Action": "View/Edit/Delete"
+        },
+        {
+          "ID": 234,
+          "Company Name": "Smith and Sons",
+          "Contact No.": "(234) 567-8901",
+          "GST": "5RYF9T2",
+          "Address": "910 Pine Street",
+          "Action": "View/Edit/Delete"
+        },
+        {
+          "ID": 901,
+          "Company Name": "Johnson Enterprises",
+          "Contact No.": "(789) 012-3456",
+          "GST": "7J4G8NT",
+          "Address": "123 Elm Avenue",
+          "Action": "View/Edit/Delete"
+        },
+        {
+          "ID": 567,
+          "Company Name": "Williams Ltd",
+          "Contact No.": "(345) 678-9012",
+          "GST": "9TH2R5F",
+          "Address": "456 Cedar Road",
+          "Action": "View/Edit/Delete"
+        },
+        {
+          "ID": 123,
+          "Company Name": "Brown and Co.",
+          "Contact No.": "(890) 123-4567",
+          "GST": "2GQ3F95",
+          "Address": "789 Oak Lane",
+          "Action": "View/Edit/Delete"
+        },
+        {
+          "ID": 678,
+          "Company Name": "Anderson Group",
+          "Contact No.": "(012) 345-6789",
+          "GST": "4H8N2TG",
+          "Address": "901 Maple Drive",
+          "Action": "View/Edit/Delete"
+        },
+        {
+          "ID": 345,
+          "Company Name": "Miller Corp",
+          "Contact No.": "(678) 901-2345",
+          "GST": "T25RYF9",
+          "Address": "234 Pine Lane",
+          "Action": "View/Edit/Delete"
+        },
+        {
+          "ID": 890,
+          "Company Name": "Wilson Industries",
+          "Contact No.": "(123) 456-7890",
+          "GST": "NT7J4G8",
+          "Address": "567 Elm Street",
+          "Action": "View/Edit/Delete"
+        },
+        // {
+        //   "ID": 012,
+        //   "Company Name": "Taylor Holdings",
+        //   "Contact No.": "(456) 789-0123",
+        //   "GST": "5F2GQ3F",
+        //   "Address": "890 Cedar Avenue",
+        //   "Action": "View/Edit/Delete"
+        // }
       ]
-
+      
+    )
 
     useEffect(() => {
         const fetchData = async () => {
@@ -156,14 +177,14 @@ const Page = () => {
         setData(newData);
     };
 
-    const dataobject = {
-        brand_id: "1",
-        serial_number: updatedata.Product_Serial_Number,
-        model: updatedata.Product_Model,
-        configuration: updatedata.Product_Configuration,
-        ram: updatedata.Product_Ram,
-        hdd: updatedata.Product_HDD,
-    };
+    // const dataobject = {
+    //     brand_id: "1",
+    //     serial_number: updatedata.Product_Serial_Number,
+    //     model: updatedata.Product_Model,
+    //     configuration: updatedata.Product_Configuration,
+    //     ram: updatedata.Product_Ram,
+    //     hdd: updatedata.Product_HDD,
+    // };
 
     const handleSaveClick = async (e, index) => {
         e.preventDefault();
@@ -200,7 +221,7 @@ const Page = () => {
 
     const [formData1, setFormData1] = useState({});
     const handleHidden = (e, index) => {
-        setFormData1(data[index]);
+        setFormData1(supplierData[index]);
         setHidden(false);
         setScrollFun(false);
     };
@@ -209,21 +230,21 @@ const Page = () => {
         e.preventDefault();
         const { name, value } = e.target;
 
-        setFormData1({
-            ...formData1,
+        setFormData1((prevFormData)=>({
+            ...prevFormData,
             [name]: value,
-        });
+        }));
 
     };
 
-    const dataobjectForm = {
-        brand_id: "1",
-        serial_number: formData1.Product_Serial_Number,
-        model: formData1.Product_Model,
-        configuration: formData1.Product_Configuration,
-        ram: formData1.Product_Ram,
-        hdd: formData1.Product_HDD,
-    };
+    // const dataobjectForm = {
+    //     brand_id: "1",
+    //     serial_number: formData1.Product_Serial_Number,
+    //     model: formData1.Product_Model,
+    //     configuration: formData1.Product_Configuration,
+    //     ram: formData1.Product_Ram,
+    //     hdd: formData1.Product_HDD,
+    // };
 
     const handleSaveEditForm = async (e) => {
         e.preventDefault();
@@ -286,11 +307,15 @@ const Page = () => {
 
 
     const [scrollfun, setScrollFun] = useState(true);
-    
+    const [selectedCompany, setSelectedCompany] = useState(null);
 
     const handleChange = (selectedOption) => {
-        setSearchValue(selectedOption ? selectedOption.label : "");
-    };
+        if (selectedOption) {
+          setSelectedCompany(selectedOption.value);
+        } else {
+          setSelectedCompany(null);
+        }
+      };
 
 
 
@@ -342,7 +367,7 @@ const Page = () => {
                                 <tr className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
                                     key={index}>
                                     {Object.keys(element)
-                                    .filter((ele, index) => index <= 3)
+                                    .filter((ele, index) => index < fieldName.length-1)
                                     .map((key) => (
                                         <td key={key}>
                                             <div onClick={() => handleEditClick(index)}>
@@ -415,61 +440,35 @@ const Page = () => {
                     </table>
                 </div>
 
-                <div className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${Hidden ? "hidden" : "flex"} bg-black/30 backdrop-blur-[2px] overflow-auto `}>
+                <div
+                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${Hidden ? "hidden" : "flex"
+                        } bg-black/30 backdrop-blur-[2px] overflow-auto `}
+                >
+
                     <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
                         <form action="" className="   rounded p-8    bg-white">
                             <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
-                                <div className=" ">
-                                    <span className="  ">Serial Number</span>
+                        
+                            {fieldName
+                                // .filter((ele,index) => ele.length <= 3)
+                                .filter((ele,index)=>index<fieldName.length-1)
+                                .map((ele, index) => (
+                                    <div key={index} className=" ">
+                                    <span className=" ">{ele}</span>
                                     <input
                                         type="text"
-                                        value={formData1.Product_Serial_Number}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Serial_Number"
-                                        className="border-2 outline-red-500  border-[#1D4ED8]   bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Model</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Model}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Model"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Configuration</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Configuration}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Configuration"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Ram</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Ram}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Ram"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Hdd</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_HDD}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_HDD"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
+                                        value={formData1[ele]}
+                                        onChange={handleInputChangeForm}
+                                        name={ele}
+                                        className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
+                                     />
+                                    </div>
+                                ))}
+
+
+
+
                             </div>
 
                             <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
