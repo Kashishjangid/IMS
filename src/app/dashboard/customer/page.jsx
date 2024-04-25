@@ -6,6 +6,7 @@ import { RxCross2 } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 // import { demo, allfildes } from "../product/data";
 
 import Select from "react-select";
@@ -25,8 +26,8 @@ const options = [
     { value: "i7", label: "i7" },
 ];
 // const fieldName = ["id" ,"Name", "Contact No"];
-const fieldName1 = ["Id","Company Name","Contact No", "Address", "Email id","GST No.","Action"];
-const fieldName = ["Company Name", "Contact Person Name", "Contact No","Email id","GST No.","Pan card","Address","City","Pin code","State","Country"];
+const fieldName1 = ["Id", "Company Name", "Contact No", "Address", "Email id", "GST No.", "Action"];
+const fieldName = ["Company Name", "Contact Person Name", "Contact No", "Email id", "GST No.", "Pan card", "Address", "City", "Pin code", "State", "Country"];
 
 const Page = () => {
     const router = useRouter();
@@ -217,31 +218,42 @@ const Page = () => {
         setFormData1(data[index]);
         setHidden(false);
         setScrollFun(false);
-        
+
     };
-    useEffect(()=>{
+    useEffect(() => {
         console.log(formData1)
 
-    },[formData1])
+    }, [formData1])
 
 
-    const handleDeletefun=(e,index)=>{
+    const handleDeletefun = (e, index) => {
         // console.log(data[index])
         alert(index)
 
     }
-    
 
+
+    // const handleInputChangeForm = (e) => {
+    //     e.preventDefault();
+    //     const { name, value } = e.target;
+
+    //     setFormData1({
+    //         ...formData1,
+    //         [name]: value,
+    //     });
+
+    // };
+    // const [formData1, setFormData1] = useState({});
     const handleInputChangeForm = (e) => {
-        e.preventDefault();
         const { name, value } = e.target;
 
-        setFormData1({
-            ...formData1,
+        setFormData1((prevFormData) => ({
+            ...prevFormData,
             [name]: value,
-        });
-
+        }));
     };
+
+
 
     const dataobjectForm = {
         brand_id: "1",
@@ -438,6 +450,23 @@ const Page = () => {
 
 
 
+
+    const [tooltip1, setTooltip1] = useState(false);
+    const [tooltip2, setTooltip2] = useState(false);
+    const [tooltip3, setTooltip3] = useState(false);
+
+
+    const handletooltip1 = (e, index) => {
+        setTooltip1(index);
+    };
+    const handletooltip2 = (e, index) => {
+        setTooltip2(index);
+    };
+    const handletooltip3 = (e, index) => {
+        setTooltip3(index);
+    };
+
+
     return (
         <>
             <div
@@ -504,70 +533,107 @@ const Page = () => {
                         </thead>
                         <tbody>
                             {data
-                           
-                            .map((element, index) => (
-                                <tr
-                                    className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
-                                    key={index}
-                                >
-                                    {Object.keys(element)
-                                        // .filter((ele,index)=>index=>index<3))
-                                        // .filter((ele, index) => index <= 3)
-                                        .filter((ele,index)=>index<fieldName1.length-1)
-                                        .map((key) => (
-                                            <td key={key}>
-                                                {/* <p>{key}</p> */}
 
-                                                <div onClick={() => handleEditClick(index)}>
-                                                    {editableItem === index ? (
-                                                        <input
-                                                            type="text"
-                                                            name={key}
-                                                            value={element[key]}
-                                                            onChange={(e) => handleInputChange(e, index)}
-                                                            className="w-20"
-                                                        />
-                                                    ) : (
-                                                        element[key]
-                                                    )}
+                                .map((element, index) => (
+                                    <tr
+                                        className="!text-center border-1 *:border-b sm:*:p-3 *:p-1 hover:cursor-pointer hover:bg-gray-100"
+                                        key={index}
+                                    >
+                                        {Object.keys(element)
+                                            // .filter((ele,index)=>index=>index<3))
+                                            // .filter((ele, index) => index <= 3)
+                                            .filter((ele, index) => index < fieldName1.length - 1)
+                                            .map((key) => (
+                                                <td key={key}>
+                                                    {/* <p>{key}</p> */}
+
+                                                    <div onClick={() => handleEditClick(index)}>
+                                                        {editableItem === index ? (
+                                                            <input
+                                                                type="text"
+                                                                name={key}
+                                                                value={element[key]}
+                                                                onChange={(e) => handleInputChange(e, index)}
+                                                                className="w-20"
+                                                            />
+                                                        ) : (
+                                                            element[key]
+                                                        )}
+                                                    </div>
+                                                    {/* </div> */}
+                                                </td>
+                                            ))}
+                                        <td className="  justify-center space-x-1    *:*:p-1  flex    flex-wrap items-center    *:*:rounded *:text-white">
+                                            <div>
+
+
+                                                {editableItem === index ? (
+                                                    <div className="flex gap-1 *:rounded  *:p-1 text-[10px]">
+                                                        <button
+                                                            className="hover:opacity-80  bg-[#184892]"
+                                                            onClick={(e) => handleSaveClick(e, index)}
+                                                        >
+                                                            Save
+                                                        </button>
+
+                                                        <button
+                                                            className="hover:opacity-80 bg-[#184892]"
+                                                            onClick={handleCancelClick}
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    <div className="relative *:p-1 *:rounded">
+                                                        <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
+                                                            <h1 className="text-white">Edit</h1>
+                                                        </div>
+
+
+                                                        <button
+                                                            className="hover:opacity-80 bg-[#184892]"
+                                                            onClick={(e) => handleHidden(e, index)}
+                                                            onMouseEnter={(e) => handletooltip1(e, index)}
+                                                            onMouseLeave={() => setTooltip1(null)}
+                                                        >
+                                                            <CiEdit />
+
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="relative ">
+                                                <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white">View</h1>
                                                 </div>
-                                                {/* </div> */}
-                                            </td>
-                                        ))}
-                                    <td className="*:border space-x-3 *:p-1  *:rounded *:text-white">
-                                        {editableItem === index ? (
-                                            <>
-                                                <button
-                                                    className="hover:opacity-80  bg-[#184892]"
-                                                    onClick={(e) => handleSaveClick(e, index)}
-                                                >
-                                                    Save
-                                                </button>
+                                                <button className="hover:opacity-80 bg-[#8d2618] "
+                                                    onClick={(e) => handleHidden(e, index)}
+                                                    onMouseEnter={(e) => handletooltip2(e, index)}
+                                                    onMouseLeave={() => setTooltip2(null)}
 
-                                                <button
-                                                    className="hover:opacity-80 bg-[#184892]"
-                                                    onClick={handleCancelClick}
                                                 >
-                                                    Cancel
+                                                    <MdOutlineRemoveRedEye />
                                                 </button>
-                                            </>
-                                        ) : (
-                                            <button
-                                                className="hover:opacity-80 bg-[#184892]"
-                                                onClick={(e) => handleHidden(e, index)}
-                                            >
-                                                <CiEdit />
+                                            </div>
+                                            <div className="relative">
+                                                <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip3 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white">Delete</h1>
+                                                </div>
 
-                                            </button>
-                                        )}
-                                        <button className="hover:opacity-80 bg-[#8d2618]"
-                                        onClick={(e) => handleDeletefun(e, index)}
-                                        >
-                                            <MdDelete />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
+                                                <button className="hover:opacity-80 bg-[#184892]"
+                                                    onClick={(e) => handleDeletefun(e, index)}
+                                                    onMouseEnter={(e) => handletooltip3(e, index)}
+                                                    onMouseLeave={() => setTooltip3(null)}
+                                                >
+                                                    <MdDelete />
+                                                </button>
+                                            </div>
+
+
+                                        </td>
+                                    </tr>
+                                ))}
                         </tbody>
                     </table>
                 </div>
@@ -592,19 +658,34 @@ const Page = () => {
                                         className="border-2 outline-red-500  border-[#1D4ED8]   bg-[#F9FAFB] w-full  p-2 rounded-xl"
                                     ></input>
                                 </div> */}
-                                {fieldName.map((ele,index)=>(
+                                {/* {fieldName.map((ele,index)=>(
 
-                                    <div className=" ">
+                                    <div className=" " key={index}>
                                     <span className="  ">{ele}</span>
                                     <input
                                         type="text"
                                         value={formData1.Product_Serial_Number}
+                                        // editableItem
                                         onChange={(e) => handleInputChangeForm(e)}
                                         name="Product_Serial_Number"
                                         className="border-2 outline-red-500  border-[#1D4ED8]   bg-[#F9FAFB] w-full  p-2 rounded-xl"
                                         ></input>
                                 </div>
+                                ))} */}
+                                {fieldName.map((ele, index) => (
+                                    <div className="" key={index}>
+                                        <span className="">{ele}</span>
+                                        <input
+                                            type="text"
+                                            value={formData1[ele] || formData1.Product_Serial_Number} // Use formData1 with field name as key
+                                            onChange={handleInputChangeForm} // No need to pass index here
+                                            name={ele} // Use the field name as the input name
+                                            className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
+                                        ></input>
+                                    </div>
                                 ))}
+
+
 
 
 
@@ -629,6 +710,11 @@ const Page = () => {
                         </form>
                     </div>
                 </div>
+
+
+
+
+
 
                 {/* for add product */}
 
