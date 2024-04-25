@@ -18,7 +18,11 @@ const AddSupplier = ({hiddenaddproduct,sendDataToParent,fieldName}) => {
         fieldName.forEach((field, index) => {
             formData[field] = inputData[index];
         });
+        // setInputData("")
         console.log(formData);
+        setInputData(Array(fieldName.length).fill(''))
+        
+        
     }
    
 

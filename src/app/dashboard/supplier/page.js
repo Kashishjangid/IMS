@@ -12,15 +12,15 @@ import Select from "react-select";
 import AddSupplier from "@/Components/AddSupplier";
 
 
-const options = [
-    { value: "Dell", label: "Dell" },
-    { value: "Asus", label: "Asus" },
-    { value: "4 GB", label: "4 GB" },
-    { value: "8 GB", label: "8 GB" },
-    { value: "12 GB", label: "12 GB" },
-    { value: "16 GB", label: "16 GB" },
-    { value: "i7", label: "i7" },
-];
+// const options = [
+//     { value: "Dell", label: "Dell" },
+//     { value: "Asus", label: "Asus" },
+//     { value: "4 GB", label: "4 GB" },
+//     { value: "8 GB", label: "8 GB" },
+//     { value: "12 GB", label: "12 GB" },
+//     { value: "16 GB", label: "16 GB" },
+//     { value: "i7", label: "i7" },
+// ];
 
 const fieldName = ["Company Name" ,"Contact Person Name", "Contact No.","Address","Action"];
 
@@ -33,7 +33,71 @@ const Page = () => {
     const [Hidden, setHidden] = useState(true);
 
     const [selectedValues, setSelectedValues] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const supplierData=[
+        {
+            "Company Name": "ABC Inc.",
+            "Contact Person Name": "John Doe",
+            "Contact No.": "+1234567890",
+            "Address": "123 Main St, City A"
+          },
+          {
+            "Company Name": "XYZ Corporation",
+            "Contact Person Name": "Jane Smith",
+            "Contact No.": "+1987654321",
+            "Address": "456 Elm St, City B"
+          },
+          {
+            "Company Name": "Tech Solutions Ltd.",
+            "Contact Person Name": "Michael Johnson",
+            "Contact No.": "+1122334455",
+            "Address": "789 Oak St, City C"
+          },
+          {
+            "Company Name": "Global Ventures Inc.",
+            "Contact Person Name": "Emily Brown",
+            "Contact No.": "+14499887766",
+            "Address": "321 Pine St, City D"
+          },
+          {
+            "Company Name": "Sunshine Enterprises",
+            "Contact Person Name": "David Lee",
+            "Contact No.": "+15556667777",
+            "Address": "555 Maple Ave, City E"
+          },
+          {
+            "Company Name": "Innovate Solutions LLC",
+            "Contact Person Name": "Sarah Johnson",
+            "Contact No.": "+16667778888",
+            "Address": "222 Cedar St, City F"
+          },
+          {
+            "Company Name": "Peak Performance Group",
+            "Contact Person Name": "Alex Turner",
+            "Contact No.": "+17778889999",
+            "Address": "777 Ash St, City G"
+          },
+          {
+            "Company Name": "Data Experts Inc.",
+            "Contact Person Name": "Chris Roberts",
+            "Contact No.": "+18889990000",
+            "Address": "999 Walnut Ave, City H"
+          },
+          {
+            "Company Name": "Blue Sky Innovations",
+            "Contact Person Name": "Lisa Adams",
+            "Contact No.": "+19990001111",
+            "Address": "888 Pine St, City I"
+          },
+          {
+            "Company Name": "EcoTech Solutions",
+            "Contact Person Name": "Kevin White",
+            "Contact No.": "+10011223344",
+            "Address": "333 Birch St, City J"
+          }
+      ]
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -78,9 +142,7 @@ const Page = () => {
     
 
 
-    const searchHandle = () => {
-        alert("HEllo")
-    }
+  
 
     const handleEditClick = (index) => {
         setEditableItem(index);
@@ -204,20 +266,7 @@ const Page = () => {
     // console.log(existst)
     // console.log(selectedProductDatafornewproduct.length)
     const [productid, setProductId] = useState("");
-    // const [selectedProductBrand, setSelectedProductBrand] = useState("")
-    // const optionHandle = (selectedOptions) => {
-
-    //     setSelectedProduct(selectedOptions);
-    //     setSelectedProductData(selectedOptions.value)
-
-
-
-    //     setProductId(selectedOptions.id)
-    //     setSelectedProductBrand("")
-
-    // };
-
-    // const [handleformhidden, setHandleFormHidden] = useState(true)
+   
     useEffect(() => {
 
         if (selectedProductData.length !== 0) {
@@ -240,14 +289,16 @@ const Page = () => {
     
 
     const handleChange = (selectedOption) => {
-        setSelectedOptions(selectedOption);
+        setSearchValue(selectedOption ? selectedOption.label : "");
     };
+
 
 
     const handleDataFromChild = (data) => {
         if(data)
         {
                   setHiddenAddProduct(true);
+                  setScrollFun(true);
         }
         
       };
@@ -256,47 +307,24 @@ const Page = () => {
 
     return (
         <>
-            <div
-                className={`h-screen relative max-md:pt-20 max-md:pb-0    ${scrollfun ? "overflow-auto" : "overflow-hidden"
-                    }  w-full`}
-            >
+            <div className={`h-screen relative max-md:pt-20 max-md:pb-0    ${scrollfun ? "overflow-auto" : "overflow-hidden"}  w-full`}>
                 <div className="sm:flex sm:space-y-0 space-y-2  justify-between m-4">
                     <h1 className="text-3xl  font-semibold">Suppliers</h1>
                     <div className=" sm:flex sm:space-x-2 space-x-0 sm:space-y-0 space-y-2">
-
                         <div className="flex  items-center">
-
-                            <Select
-                                className="min-w-[300px] rounded-3xl"
-                                options={options}
-                                value={selectedOptions}
-                                onChange={handleChange}
-                                isMulti={true}
-                                placeholder="Search"
-                                styles={{
-                                    control: (provided) => ({
-                                        ...provided,
-                                        borderTopLeftRadius: '4px',
-                                        borderBottomLeftRadius: '4px',
-                                        borderTopRightRadius: '0px',
-                                        borderBottomRightRadius: '0px',
-
-                                    }),
-                                    dropdownIndicator: () => ({ display: 'none' }),
-                                    indicatorSeparator: () => ({ display: 'none' }),
-
-
-                                }}
-                            />
-
-
-                            <CiSearch className=" text-[#0E5AFE] border border-[#CCCCCC] border-l-0 hover:cursor-pointer rounded-tr rounded-br p-1 h-[38px]" size={33} onClick={searchHandle} />
+                        <Select
+                            className="min-w-[300px] rounded-3xl"
+                            options={supplierData.map((option) => ({ value: option["Company Name"], label: option["Company Name"] }))}
+                            onChange={handleChange}
+                            placeholder="Search by Company Name"
+                            isClearable
+                        />
+                            {/* <CiSearch className=" text-[#0E5AFE] border border-[#CCCCCC] border-l-0 hover:cursor-pointer rounded-tr rounded-br p-1 h-[38px]" size={33} onClick={searchHandle} /> */}
                         </div>
                     </div>
                     <button
                         className="  duration-700 border sm:py-2 sm:px-5 p-2  rounded bg-[#0E5AFE] text-white"
-                        onClick={handleAddProducts}
-                    >
+                        onClick={handleAddProducts}>
                         Add Supplier Details
                     </button>
                 </div>
@@ -310,18 +338,36 @@ const Page = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((element, index) => (
-                                <tr
-                                    className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
-                                    key={index}
-                                >
+                            {supplierData.map((element, index) => (
+                                <tr className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
+                                    key={index}>
                                     {Object.keys(element)
-                                    // .filter((ele,index)=>index=>index<3))
                                     .filter((ele, index) => index <= 3)
                                     .map((key) => (
                                         <td key={key}>
-                                            {/* <p>{key}</p> */}
-
+                                            <div onClick={() => handleEditClick(index)}>
+                                                {editableItem === index ? (
+                                                    <input
+                                                        type="text"
+                                                        name={key}
+                                                        value={element[key]}
+                                                        // value={value}
+                                                        onChange={(e) => handleInputChange(e, index)}
+                                                        className="w-20"
+                                                    />
+                                                ) : (
+                                                    element[key]
+                                                )}
+                                            </div>
+                                        </td>
+                                    ))}
+                            {/* {data.map((element, index) => (
+                                <tr className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
+                                    key={index}>
+                                    {Object.keys(element)
+                                    .filter((ele, index) => index <= 3)
+                                    .map((key) => (
+                                        <td key={key}>
                                             <div onClick={() => handleEditClick(index)}>
                                                 {editableItem === index ? (
                                                     <input
@@ -335,31 +381,27 @@ const Page = () => {
                                                     element[key]
                                                 )}
                                             </div>
-                                            {/* </div> */}
                                         </td>
-                                    ))}
+                                    ))} */}
                                     <td className="*:border space-x-3 *:p-1  *:rounded *:text-white">
                                         {editableItem === index ? (
                                             <>
                                                 <button
                                                     className="hover:opacity-80  bg-[#184892]"
-                                                    onClick={(e) => handleSaveClick(e, index)}
-                                                >
+                                                    onClick={(e) => handleSaveClick(e, index)}>
                                                     Save
                                                 </button>
 
                                                 <button
                                                     className="hover:opacity-80 bg-[#184892]"
-                                                    onClick={handleCancelClick}
-                                                >
+                                                    onClick={handleCancelClick}>
                                                     Cancel
                                                 </button>
                                             </>
                                         ) : (
                                             <button
                                                 className="hover:opacity-80 bg-[#184892]"
-                                                onClick={(e) => handleHidden(e, index)}
-                                            >
+                                                onClick={(e) => handleHidden(e, index)}>
                                                 <CiEdit />
                                             </button>
                                         )}
@@ -373,12 +415,7 @@ const Page = () => {
                     </table>
                 </div>
 
-                {/* for Edit section */}
-                <div
-                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${Hidden ? "hidden" : "flex"
-                        } bg-black/30 backdrop-blur-[2px] overflow-auto `}
-                >
-
+                <div className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${Hidden ? "hidden" : "flex"} bg-black/30 backdrop-blur-[2px] overflow-auto `}>
                     <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
                         <form action="" className="   rounded p-8    bg-white">
                             <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
@@ -454,14 +491,10 @@ const Page = () => {
                     </div>
                 </div>
 
-                {/* for add product */}
+                {/* for adding supplier */}
                 
                 <AddSupplier hiddenaddproduct={hiddenaddproduct} fieldName={fieldName} sendDataToParent={handleDataFromChild}/>
-                
-
-
             </div>
-
         </>
     );
 };

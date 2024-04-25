@@ -235,6 +235,7 @@ const Page = () => {
         configuration: formData1.Product_Configuration,
         ram: formData1.Product_Ram,
         hdd: formData1.Product_HDD,
+        
     };
 
     const handleSaveEditForm = async (e) => {
