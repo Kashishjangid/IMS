@@ -22,11 +22,7 @@ const AddCustomer = ({hiddenaddproduct,sendDataToParent,fieldName}) => {
         });
         console.log(formData);
     }
-    // const[handleAddCustomerDetailstoggle, sethandleAddCustomerDetailstoggle]=useState(false);
-    // const handleAddCustomerDetails=()=>{
-    //     // handleAddCustomerDetailstoggle("HEllo");
-    //     alert("Hello")
-    // }
+   
 
     const handleAddCustomerDetailstoggle = (e) => {
         e.preventDefault();
@@ -58,7 +54,9 @@ const AddCustomer = ({hiddenaddproduct,sendDataToParent,fieldName}) => {
                         <form className=" space-y-4 ">
                             <div>
                                 <div className="grid sm:grid-cols-2 gap-4">
-                                    {fieldName.map((ele, index) => (
+                                    {fieldName
+                                    .filter((ele,index)=>index<fieldName.length-1)
+                                    .map((ele, index) => (
                                         <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
                                             <div className="space-y-2">
                                                 <span>{ele}</span>
