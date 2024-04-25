@@ -25,7 +25,8 @@ const options = [
     { value: "i7", label: "i7" },
 ];
 // const fieldName = ["id" ,"Name", "Contact No"];
-const fieldName = ["Company Name" ,"Contact Persion Name", "Contact No","Address","Action"];
+const fieldName1 = ["Id","Company Name","Contact No", "Address", "Email id","GST No.","Action"];
+const fieldName = ["Company Name", "Contact Person Name", "Contact No","Email id","GST No.","Pan card","Address","City","Pin code","State","Country"];
 
 const Page = () => {
     const router = useRouter();
@@ -48,7 +49,7 @@ const Page = () => {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzOTM4MTYyLCJleHAiOjE3MTQwMjQ1NjIsIm5iZiI6MTcxMzkzODE2MiwianRpIjoiNlR6ZXFOWW1UUFBVMVZ0diIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nR2N8zXTZtxMQKODeI_XZCdh41Pz-RK3V308N6Y7R6s"
+                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MDE5Mzg2LCJleHAiOjE3MTQxMDU3ODYsIm5iZiI6MTcxNDAxOTM4NiwianRpIjoiMG04cmpYcUVWV1kyVmdBZyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.X1SIRm87-LEfiPvqEL28WPtnnAQpXM3o2w5JpxGHV50"
                         },
                         cache: "no-store"
                     }
@@ -105,7 +106,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzOTM4MTYyLCJleHAiOjE3MTQwMjQ1NjIsIm5iZiI6MTcxMzkzODE2MiwianRpIjoiNlR6ZXFOWW1UUFBVMVZ0diIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nR2N8zXTZtxMQKODeI_XZCdh41Pz-RK3V308N6Y7R6s"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MDE5Mzg2LCJleHAiOjE3MTQxMDU3ODYsIm5iZiI6MTcxNDAxOTM4NiwianRpIjoiMG04cmpYcUVWV1kyVmdBZyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.X1SIRm87-LEfiPvqEL28WPtnnAQpXM3o2w5JpxGHV50"
                     },
                     cache: "no-store"
 
@@ -131,7 +132,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzOTM4MTYyLCJleHAiOjE3MTQwMjQ1NjIsIm5iZiI6MTcxMzkzODE2MiwianRpIjoiNlR6ZXFOWW1UUFBVMVZ0diIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nR2N8zXTZtxMQKODeI_XZCdh41Pz-RK3V308N6Y7R6s"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MDE5Mzg2LCJleHAiOjE3MTQxMDU3ODYsIm5iZiI6MTcxNDAxOTM4NiwianRpIjoiMG04cmpYcUVWV1kyVmdBZyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.X1SIRm87-LEfiPvqEL28WPtnnAQpXM3o2w5JpxGHV50"
                     },
                     cache: "no-store"
                 });
@@ -212,10 +213,24 @@ const Page = () => {
 
     const [formData1, setFormData1] = useState({});
     const handleHidden = (e, index) => {
+        // alert(index)
         setFormData1(data[index]);
         setHidden(false);
         setScrollFun(false);
+        
     };
+    useEffect(()=>{
+        console.log(formData1)
+
+    },[formData1])
+
+
+    const handleDeletefun=(e,index)=>{
+        // console.log(data[index])
+        alert(index)
+
+    }
+    
 
     const handleInputChangeForm = (e) => {
         e.preventDefault();
@@ -387,7 +402,7 @@ const Page = () => {
     //         [name]: value,
     //     });
     // };
-    
+
 
     const [optionin, setOptionin] = useState(true)
     // const [receivedData, setReceivedData] = useState('');
@@ -412,15 +427,15 @@ const Page = () => {
     //         // alert("HE")
     //               setHandleFormHidden(true);
     //     }
-        
+
     //   };
     const handleDataFromChild = (data) => {
-        if(data)
-        {
-                  setHiddenAddProduct(true);
+        if (data) {
+            setHiddenAddProduct(true);
+            setScrollFun(true);
         }
-        
-      };
+
+    };
 
 
 
@@ -474,7 +489,7 @@ const Page = () => {
                     <table className="w-full mt-2">
                         <thead>
                             <tr className="items-center *:p-2 bg-[#d5d7da]">
-                                {fieldName.map((ele,index)=>(
+                                {fieldName1.map((ele, index) => (
                                     <th>{ele}</th>
                                 ))}
                                 {/* <th>Id</th>
@@ -489,34 +504,37 @@ const Page = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((element, index) => (
+                            {data
+                           
+                            .map((element, index) => (
                                 <tr
                                     className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
                                     key={index}
                                 >
                                     {Object.keys(element)
-                                    // .filter((ele,index)=>index=>index<3))
-                                    .filter((ele, index) => index <= 3)
-                                    .map((key) => (
-                                        <td key={key}>
-                                            {/* <p>{key}</p> */}
+                                        // .filter((ele,index)=>index=>index<3))
+                                        // .filter((ele, index) => index <= 3)
+                                        .filter((ele,index)=>index<fieldName1.length-1)
+                                        .map((key) => (
+                                            <td key={key}>
+                                                {/* <p>{key}</p> */}
 
-                                            <div onClick={() => handleEditClick(index)}>
-                                                {editableItem === index ? (
-                                                    <input
-                                                        type="text"
-                                                        name={key}
-                                                        value={element[key]}
-                                                        onChange={(e) => handleInputChange(e, index)}
-                                                        className="w-20"
-                                                    />
-                                                ) : (
-                                                    element[key]
-                                                )}
-                                            </div>
-                                            {/* </div> */}
-                                        </td>
-                                    ))}
+                                                <div onClick={() => handleEditClick(index)}>
+                                                    {editableItem === index ? (
+                                                        <input
+                                                            type="text"
+                                                            name={key}
+                                                            value={element[key]}
+                                                            onChange={(e) => handleInputChange(e, index)}
+                                                            className="w-20"
+                                                        />
+                                                    ) : (
+                                                        element[key]
+                                                    )}
+                                                </div>
+                                                {/* </div> */}
+                                            </td>
+                                        ))}
                                     <td className="*:border space-x-3 *:p-1  *:rounded *:text-white">
                                         {editableItem === index ? (
                                             <>
@@ -540,9 +558,12 @@ const Page = () => {
                                                 onClick={(e) => handleHidden(e, index)}
                                             >
                                                 <CiEdit />
+
                                             </button>
                                         )}
-                                        <button className="hover:opacity-80 bg-[#8d2618]">
+                                        <button className="hover:opacity-80 bg-[#8d2618]"
+                                        onClick={(e) => handleDeletefun(e, index)}
+                                        >
                                             <MdDelete />
                                         </button>
                                     </td>
@@ -562,7 +583,7 @@ const Page = () => {
                         <form action="" className="   rounded p-8    bg-white">
                             <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
-                                <div className=" ">
+                                {/* <div className=" ">
                                     <span className="  ">Serial Number</span>
                                     <input
                                         type="text"
@@ -571,47 +592,24 @@ const Page = () => {
                                         name="Product_Serial_Number"
                                         className="border-2 outline-red-500  border-[#1D4ED8]   bg-[#F9FAFB] w-full  p-2 rounded-xl"
                                     ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Model</span>
+                                </div> */}
+                                {fieldName.map((ele,index)=>(
+
+                                    <div className=" ">
+                                    <span className="  ">{ele}</span>
                                     <input
                                         type="text"
-                                        value={formData1.Product_Model}
+                                        value={formData1.Product_Serial_Number}
                                         onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Model"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
+                                        name="Product_Serial_Number"
+                                        className="border-2 outline-red-500  border-[#1D4ED8]   bg-[#F9FAFB] w-full  p-2 rounded-xl"
+                                        ></input>
                                 </div>
-                                <div className=" ">
-                                    <span className=" ">Configuration</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Configuration}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Configuration"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Ram</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Ram}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Ram"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Hdd</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_HDD}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_HDD"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
+                                ))}
+
+
+
+
                             </div>
 
                             <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
@@ -634,9 +632,9 @@ const Page = () => {
                 </div>
 
                 {/* for add product */}
-                
-                <AddCustomer hiddenaddproduct={hiddenaddproduct} fieldName={fieldName} sendDataToParent={handleDataFromChild}/>
-                
+
+                <AddCustomer hiddenaddproduct={hiddenaddproduct} fieldName={fieldName} sendDataToParent={handleDataFromChild} />
+
 
 
             </div>
