@@ -6,6 +6,7 @@ import { RxCross2 } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 
 import Select from "react-select";
@@ -277,6 +278,18 @@ const Page = () => {
         setScrollFun(true);
     };
 
+    const [handleview, setHandleview] = useState(true)
+    const handleCancelViewForm = (e) => {
+        e.preventDefault();
+        setHandleview(true);
+        setScrollFun(true);
+    };
+
+    const handleViewFun= (e)=>{
+        setHandleview(false);
+        setScrollFun(false);
+    }
+
     //for add product
     // const [hiddenforproduct, setHiddenForProduct] = useState(true);
     const [hiddenaddproduct, setHiddenAddProduct] = useState(true);
@@ -327,6 +340,21 @@ const Page = () => {
         }
         
       };
+
+    const [tooltip1, setTooltip1] = useState(false);
+    const [tooltip2, setTooltip2] = useState(false);
+    const [tooltip3, setTooltip3] = useState(false);
+
+
+    const handletooltip1 = (e, index) => {
+        setTooltip1(index);
+    };
+    const handletooltip2 = (e, index) => {
+        setTooltip2(index);
+    };
+    const handletooltip3 = (e, index) => {
+        setTooltip3(index);
+    };
 
 
 
@@ -386,54 +414,73 @@ const Page = () => {
                                             </div>
                                         </td>
                                     ))}
-                            {/* {data.map((element, index) => (
-                                <tr className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
-                                    key={index}>
-                                    {Object.keys(element)
-                                    .filter((ele, index) => index <= 3)
-                                    .map((key) => (
-                                        <td key={key}>
-                                            <div onClick={() => handleEditClick(index)}>
+                            
+                                        <td className="  justify-center space-x-1    *:*:p-1  flex    flex-wrap items-center    *:*:rounded *:text-white">
+                                            <div>
                                                 {editableItem === index ? (
-                                                    <input
-                                                        type="text"
-                                                        name={key}
-                                                        value={element[key]}
-                                                        onChange={(e) => handleInputChange(e, index)}
-                                                        className="w-20"
-                                                    />
-                                                ) : (
-                                                    element[key]
-                                                )}
-                                            </div>
-                                        </td>
-                                    ))} */}
-                                    <td className="*:border space-x-3 *:p-1  *:rounded *:text-white">
-                                        {editableItem === index ? (
-                                            <>
-                                                <button
-                                                    className="hover:opacity-80  bg-[#184892]"
-                                                    onClick={(e) => handleSaveClick(e, index)}>
-                                                    Save
-                                                </button>
+                                                    <div className="flex gap-1 *:rounded  *:p-1 text-[10px]">
+                                                        <button
+                                                            className="hover:opacity-80  bg-[#184892]"
+                                                            onClick={(e) => handleSaveClick(e, index)}
+                                                        >
+                                                            Save
+                                                        </button>
 
-                                                <button
-                                                    className="hover:opacity-80 bg-[#184892]"
-                                                    onClick={handleCancelClick}>
-                                                    Cancel
+                                                        <button
+                                                            className="hover:opacity-80 bg-[#184892]"
+                                                            onClick={handleCancelClick}
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    <div className="relative *:p-1 *:rounded">
+                                                        <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
+                                                            <h1 className="text-white">Edit</h1>
+                                                        </div>
+                                                        <button className="hover:opacity-80 bg-[#8d2618] "
+                                                    onClick={(e) => handleViewFun(e, index)}
+                                                    onMouseEnter={(e) => handletooltip2(e, index)}
+                                                    onMouseLeave={() => setTooltip2(null)}
+
+                                                >
+                                                    <MdOutlineRemoveRedEye />
                                                 </button>
-                                            </>
-                                        ) : (
-                                            <button
-                                                className="hover:opacity-80 bg-[#184892]"
-                                                onClick={(e) => handleHidden(e, index)}>
-                                                <CiEdit />
-                                            </button>
-                                        )}
-                                        <button className="hover:opacity-80 bg-[#8d2618]">
-                                            <MdDelete />
-                                        </button>
-                                    </td>
+                                                    </div>
+                                                    )}
+                                                </div>
+
+                                            <div className="relative ">
+                                                <div className={`absolute -top-10 overflow-hidden bg-green-500 !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white">View</h1>
+                                                </div>
+                                                <button
+                                                            className="hover:opacity-80 bg-[#184892]"
+                                                            onClick={(e) => handleHidden(e, index)}
+                                                            onMouseEnter={(e) => handletooltip1(e, index)}
+                                                            onMouseLeave={() => setTooltip1(null)}
+                                                        >
+                                                            <CiEdit />
+
+                                                        </button>
+                                                
+                                            </div>
+                                            <div className="relative">
+                                                <div className={`absolute -top-10 overflow-hidden bg-red-500 !px-2 -left-[50%] ${tooltip3 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white">Delete</h1>
+                                                </div>
+
+                                                <button className="hover:opacity-80 bg-[#184892]"
+                                                    onClick={(e) => handleDeletefun(e, index)}
+                                                    onMouseEnter={(e) => handletooltip3(e, index)}
+                                                    onMouseLeave={() => setTooltip3(null)}
+                                                >
+                                                    <MdDelete />
+                                                </button>
+                                            </div>
+
+
+                                        </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -482,6 +529,52 @@ const Page = () => {
                                 <button
                                     className="bg-red-400 hover:bg-red-500   text-white"
                                     onClick={handleCancelEditForm}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {/* for view */}
+                <div
+                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${handleview ? "hidden" : "flex"
+                        } bg-black/30 backdrop-blur-[2px] overflow-auto `}
+                >
+
+                    <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
+                        <form action="" className="   rounded p-8    bg-white">
+                            <h1 className="text-4xl text-red-400 font-semibold">Supplier Details</h1>
+                            <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
+                        
+                            {fieldName
+                                // .filter((ele,index) => ele.length <= 3)
+                                .filter((ele,index)=>index<fieldName.length-1)
+                                .map((ele, index) => (
+                                    <div key={index} className=" ">
+                                    <span className=" ">{ele}</span>
+                                    <div className="border-2  bg-white w-full p-2 rounded-xl">
+                                    {formData1[ele]}
+                                    </div>
+                                    {/* <input
+                                        type="text"
+                                        value={formData1[ele]}
+                                        // onChange={handleInputChangeForm}
+                                        name={ele}
+                                        className="border-2  bg-white w-full p-2 rounded-xl"
+                                     /> */}
+                                    </div>
+                                ))}
+
+
+
+
+                            </div>
+
+                            <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
+                                <button
+                                    className="bg-red-400 hover:bg-red-500   text-white"
+                                    onClick={handleCancelViewForm}
                                 >
                                     Cancel
                                 </button>

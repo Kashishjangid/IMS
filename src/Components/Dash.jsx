@@ -56,7 +56,8 @@ const page = () => {
                         </div>
                     </div>
                 </div>
-                <div className='h-fit'>
+               <Link href="/dashboard/inward">
+               <div className='h-fit cursor-pointer'>
                     <div className=" space-y-4 bg-[#6B89E7] rounded-lg h-full p-5  text-white">
                         <FaDatabase size={60} className='' />
 
@@ -72,8 +73,9 @@ const page = () => {
                         </div>
                     </div>
                 </div>
-                {/* <link href='/dashboard/product'> */}
-                <div className='h-fit'>
+               </Link>
+                <Link href='/dashboard/outward'>
+                <div className='h-fit cursor-pointer'>
                     <div className=" space-y-4 bg-[#FF9E8D] rounded-lg h-full p-5  text-white">
                         <FaFlag size={60} className='' />
 
@@ -89,7 +91,7 @@ const page = () => {
                         </div>
                     </div>
                 </div>
-                {/* </link> */}
+                </Link>
 
 
             </div>

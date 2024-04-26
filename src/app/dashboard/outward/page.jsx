@@ -7,13 +7,13 @@ import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 import { demo, allfildes } from "./data";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+
 
 import Select from "react-select";
 import CreatableSelect from 'react-select/creatable';
 import AddProductNew from "@/Components/AddProductNew";
-import Demo from "@/Components/Demo"
-import { Dropdown } from "@mui/base";
-import AddDropDown from "@/Components/AddDropDown";
+
 const options = [
     { value: "Dell", label: "Dell" },
     { value: "Asus", label: "Asus" },
@@ -25,8 +25,141 @@ const options = [
 ];
 
 const Page = () => {
+
+    const data =[
+        {
+          "ID":1,
+          "Company Name": "ABC Inc.",
+          "Ch. No.": "CH001",
+          "Description": "Business laptop",
+          "Laptop Model": "Dell Latitude",
+          "Laptop Serial No.": ["SN001", "SN002", "SN003", "SN004", "SN005", "SN006", "SN007", "SN008", "SN009", "SN010"],
+          "GCV No.": "GCV123",
+          "Contact Person": "John Doe",
+          "Contact Number": "(123) 456-7890",
+          "Delivery Address": "123 Main St, Anytown",
+          "Laptop Start Date": "2024-04-01",
+          "EMPLOYEE ID": "E001",
+          "Configuration": "Standard",
+          "RAM": "8GB",
+          "HDD": "512GB SSD",
+          "Qty.": 1,
+          "NEW Req or Against Replace": "New Requirement",
+          "Old laptop serial number If against Replacement": "",
+          "If against Replacement than Return Status": "",
+          "Employee Code If Req.": "EMP001",
+          "DOCKET NO": "DOC001"
+        },
+        {
+          "ID":2,
+          "Company Name": "XYZ Corporation",
+          "Ch. No.": "CH002",
+          "Description": "Developer laptop",
+          "Laptop Model": "HP Spectre",
+          "Laptop Serial No.": ["SN011", "SN012", "SN013", "SN014", "SN015", "SN016", "SN017", "SN018", "SN019", "SN020"],
+          "GCV No.": "GCV456",
+          "Contact Person": "Jane Smith",
+          "Contact Number": "(234) 567-8901",
+          "Delivery Address": "456 Elm St, Somewhere",
+          "Laptop Start Date": "2024-04-05",
+          "EMPLOYEE ID": "E002",
+          "Configuration": "Developer Edition",
+          "RAM": "16GB",
+          "HDD": "1TB SSD",
+          "Qty.": 1,
+          "NEW Req or Against Replace": "New Requirement",
+          "Old laptop serial number If against Replacement": "",
+          "If against Replacement than Return Status": "",
+          "Employee Code If Req.": "EMP002",
+          "DOCKET NO": "DOC002"
+        },
+        {
+          "ID":3,  
+          "Company Name": "Tech Solutions Ltd.",
+          "Ch. No.": "CH003",
+          "Description": "Executive laptop",
+          "Laptop Model": "Lenovo ThinkPad",
+          "Laptop Serial No.": ["SN021", "SN022", "SN023", "SN024", "SN025", "SN026", "SN027", "SN028", "SN029", "SN030"],
+          "GCV No.": "GCV789",
+          "Contact Person": "Michael Johnson",
+          "Contact Number": "(345) 678-9012",
+          "Delivery Address": "789 Oak St, Techville",
+          "Laptop Start Date": "2024-04-10",
+          "EMPLOYEE ID": "E003",
+          "Configuration": "Executive Package",
+          "RAM": "16GB",
+          "HDD": "1TB SSD",
+          "Qty.": 1,
+          "NEW Req or Against Replace": "New Requirement",
+          "Old laptop serial number If against Replacement": "",
+          "If against Replacement than Return Status": "",
+          "Employee Code If Req.": "EMP003",
+          "DOCKET NO": "DOC003"
+        },
+        {
+          "ID":4,    
+          "Company Name": "Global Innovations Inc.",
+          "Ch. No.": "CH004",
+          "Description": "High-performance laptop",
+          "Laptop Model": "Apple MacBook Pro",
+          "Laptop Serial No.": ["SN031", "SN032", "SN033", "SN034", "SN035", "SN036", "SN037", "SN038", "SN039", "SN040"],
+          "GCV No.": "GCV234",
+          "Contact Person": "Emily Rogers",
+          "Contact Number": "(456) 789-0123",
+          "Delivery Address": "567 Maple Ave, Innovations City",
+          "Laptop Start Date": "2024-04-15",
+          "EMPLOYEE ID": "E004",
+          "Configuration": "High Performance Edition",
+          "RAM": "32GB",
+          "HDD": "2TB SSD",
+          "Qty.": 1,
+          "NEW Req or Against Replace": "New Requirement",
+          "Old laptop serial number If against Replacement": "",
+          "If against Replacement than Return Status": "",
+          "Employee Code If Req.": "EMP004",
+          "DOCKET NO": "DOC004"
+        },
+        {
+          "ID":5,  
+          "Company Name": "Visionary Enterprises",
+          "Ch. No.": "CH005",
+          "Description": "Designer laptop",
+          "Laptop Model": "Microsoft Surface Book",
+          "Laptop Serial No.": ["SN041", "SN042", "SN043", "SN044", "SN045", "SN046", "SN047", "SN048", "SN049", "SN050"],
+          "GCV No.": "GCV567",
+          "Contact Person": "David Anderson",
+          "Contact Number": "(567) 890-1234",
+          "Delivery Address": "910 Cedar St, Vision City",
+          "Laptop Start Date": "2024-04-20",
+          "EMPLOYEE ID": "E005",
+          "Configuration": "Designer Package",
+          "RAM": "16GB",
+          "HDD": "1TB SSD",
+          "Qty.": 1,
+          "NEW Req or Against Replace": "New Requirement",
+          "Old laptop serial number If against Replacement": "",
+          "If against Replacement than Return Status": "",
+          "Employee Code If Req.": "EMP005",
+          "DOCKET NO": "DOC005"
+        }
+      ]
+      const fieldSet = new Set();
+
+// Iterate through each object in the data array and collect keys
+data.forEach((obj) => {
+  Object.keys(obj).forEach((key) => {
+    fieldSet.add(key); // Add each key to the Set (which automatically ensures uniqueness)
+  });
+});
+
+// Convert the Set back to an array of field names
+const fieldName = Array.from(fieldSet);
+
+console.log(fieldName);
+      
+
     const router = useRouter();
-    const [data, setData] = useState([]);
+    // const [data, setData] = useState([]);
     const [updatedata, setUpdateData] = useState([]);
 
     const [editableItem, setEditableItem] = useState(null);
@@ -35,118 +168,38 @@ const Page = () => {
     const [selectedValues, setSelectedValues] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
 
-                const res = await fetch(
-                    "http://localhost/ims/public/product",
-                    {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
-                        },
-                        cache: "no-store"
-                    }
-                );
-                const jsonData = await res.json();
+    //             const res = await fetch(
+    //                 "http://localhost/ims/public/product",
+    //                 {
+    //                     method: "GET",
+    //                     headers: {
+    //                         "Content-Type": "application/json",
+    //                         "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
+    //                     },
+    //                     cache: "no-store"
+    //                 }
+    //             );
+    //             const jsonData = await res.json();
 
-
-                if (selectedValues.length === 0) {
-                    setData(jsonData)
+    //                 setData(jsonData)
 
 
-                }
-                else {
+    //             }    
 
 
-                    setData(
-                        jsonData.filter(item => {
-                            // For All selected value, check if it exists in the item
-                            // return selectedValues.some(filterItem => {
-                            // For each selected value, check if it exists in the item
-                            return selectedValues.every(filterItem => {
-                                // Check if any of the item properties contain the filter value
-                                return Object.values(item).some(val => {
-                                    // Check if the value is a string before calling .toLowerCase()
-                                    if (typeof val === 'string') {
-                                        return val.toLowerCase().includes(filterItem.toLowerCase());
-                                    }
-                                    return false;
-                                });
-                            });
-                        })
-                    );
+    //          catch (error) {
+    //             console.error("Error fetching data:", error);
+    //         }
+    //     };
 
+    //     fetchData();
+    // }, [Hidden, selectedValues]);
+ 
 
-
-
-                }
-
-
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, [Hidden, selectedValues]);
-    // for product
-    const [dataforproduct, setDataForProduct] = useState([])
-    useEffect(() => {
-        const productdatafetch = async () => {
-
-            try {
-                const response = await fetch("http://localhost/ims/public/subcategory", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
-                    },
-                    cache: "no-store"
-
-                });
-                const jsonproductdata = await response.json();
-                // console.log(prodata)
-                setDataForProduct(jsonproductdata)
-            } catch (error) {
-
-                console.error(error)
-
-            }
-
-        }
-        productdatafetch();
-    }, [])
-    // for brand
-    const [dataforproductbrand, setDataForProductBrand] = useState([])
-    useEffect(() => {
-        const productdatafetch1 = async () => {
-            try {
-                const response = await fetch("http://localhost/ims/public/brand", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
-                    },
-                    cache: "no-store"
-                });
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const jsonproductdata = await response.json();
-                // console.log(jsonproductdata);
-                setDataForProductBrand(jsonproductdata);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                // You can handle the error here, for example:
-                // setError("An error occurred while fetching data");
-            }
-        };
-
-        productdatafetch1();
-    }, []);
 
 
     const searchHandle = () => {
@@ -208,7 +261,7 @@ const Page = () => {
     };
 
     const [formData1, setFormData1] = useState({});
-    const handleHidden = (e, index) => {
+    const handleHidden = (index) => {
         setFormData1(data[index]);
         setHidden(false);
         setScrollFun(false);
@@ -320,31 +373,15 @@ const Page = () => {
         // console.log(selectedProductBrandData)
     }, [selectedProductBrandData])
 
-    useEffect(() => {
-        const existsInDataForProduct = dataforproduct.some(option => option === selectedProductData);
-        setExistsT(existsInDataForProduct);
-        // console.log(existst);
+    // useEffect(() => {
+    //     const existsInDataForProduct = dataforproduct.some(option => option === selectedProductData);
+    //     setExistsT(existsInDataForProduct);
+    //     // console.log(existst);
 
-    }, [selectedProductData]);
-    // console.log(selectedProductDatafornewproduct.length)
-    // useEffect(()=>{
-    //     if(!options.includes(selectedProductData)){
-    //         // console.log(selectedProductData)
-    //         setSelectedProductDataForNewProduct(selectedProductData)
-    //     }
-    //     else{
-    //         setSelectedProductDataForNewProduct("")
-    //     }
-    // },[selectedProductData])
-    // console.log(selectedProductDatafornewproduct)
+    // }, [selectedProductData]);
+    
 
-
-    // console.log(selectedProductData)
-
-
-
-
-    const handleAddProducts = (e) => {
+    const handleAddOutward = (e) => {
         e.preventDefault();
         setHiddenAddProduct(false);
 
@@ -378,8 +415,27 @@ const Page = () => {
         }
     }, [selectedOptions]);
 
+    const [tooltip1, setTooltip1] = useState(false);
+    const [tooltip2, setTooltip2] = useState(false);
 
+    const handletooltip1 = (e, index) => {
+        setTooltip1(index);
+    };
+    const handletooltip2 = (e, index) => {
+        setTooltip2(index);
+    };
 
+    const [handleview, setHandleview] = useState(true)
+    const handleCancelViewForm = (e) => {
+        e.preventDefault();
+        setHandleview(true);
+        setScrollFun(true);
+    };
+
+    const handleViewFun= (e)=>{
+        setHandleview(false);
+        setScrollFun(false);
+    }
 
     const [formData, setFormData] = useState({});
     const handleInputChange2 = (e) => {
@@ -420,7 +476,7 @@ const Page = () => {
                     }  w-full`}
             >
                 <div className="sm:flex sm:space-y-0 space-y-2  justify-between m-4">
-                    <h1 className="text-3xl  font-semibold">Product List </h1>
+                    <h1 className="text-3xl  font-semibold">Outward List</h1>
                     <div className=" sm:flex sm:space-x-2 space-x-0 sm:space-y-0 space-y-2">
 
                         <div className="flex  items-center">
@@ -454,9 +510,9 @@ const Page = () => {
                     </div>
                     <button
                         className="  duration-700 border sm:py-2 sm:px-5 p-2  rounded bg-[#0E5AFE] text-white"
-                        onClick={handleAddProducts}
+                        onClick={handleAddOutward}
                     >
-                        Add Products
+                        Add Outward
                     </button>
                 </div>
                 <div className="w-full overflow-auto md:pb-20">
@@ -464,74 +520,99 @@ const Page = () => {
                         <thead>
                             <tr className="items-center *:p-2 bg-[#d5d7da]">
                                 <th>Id</th>
-                                <th>Brand Name</th>
-                                <th>Serial Name</th>
-                                <th>Model Number</th>
-                                <th>Configuration</th>
-                                <th>Ram</th>
-                                <th>HDD</th>
-
+                                <th>Company Name</th>
+                                <th>Contact Person</th>
+                                <th>Contact Number</th>
+                                <th>Address</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data.map((element, index) => (
-                                <tr
-                                    className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
-                                    key={index}
-                                >
-                                    {Object.keys(element).map((key) => (
-                                        <td key={key}>
-                                            {/* <p>{key}</p> */}
-
-                                            <div onClick={() => handleEditClick(index)}>
-                                                {editableItem === index ? (
-                                                    <input
-                                                        type="text"
-                                                        name={key}
-                                                        value={element[key]}
-                                                        onChange={(e) => handleInputChange(e, index)}
-                                                        className="w-20"
-                                                    />
-                                                ) : (
-                                                    element[key]
-                                                )}
-                                            </div>
-                                            {/* </div> */}
-                                        </td>
-                                    ))}
-                                    <td className="*:border space-x-3 *:p-1  *:rounded *:text-white">
+                            <tr
+                                className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
+                                key={index}
+                            >
+                                {/* Render specific fields: ID, Company Name, Contact Person, Address */}
+                                <td>{element["ID"]}</td>
+                                <td>
+                                    <div onClick={() => handleEditClick(index)}>
                                         {editableItem === index ? (
-                                            <>
-                                                <button
-                                                    className="hover:opacity-80  bg-[#184892]"
-                                                    onClick={(e) => handleSaveClick(e, index)}
-                                                >
-                                                    Save
-                                                </button>
-
-                                                <button
-                                                    className="hover:opacity-80 bg-[#184892]"
-                                                    onClick={handleCancelClick}
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </>
+                                            <input
+                                                type="text"
+                                                name="Company Name"
+                                                value={element["Company Name"]}
+                                                onChange={(e) => handleInputChange(e, index)}
+                                                className="w-20"
+                                            />
                                         ) : (
-                                            <button
-                                                className="hover:opacity-80 bg-[#184892]"
-                                                onClick={(e) => handleHidden(e, index)}
-                                            >
-                                                <CiEdit />
-                                            </button>
+                                            element["Company Name"]
                                         )}
-                                        <button className="hover:opacity-80 bg-[#8d2618]">
-                                            <MdDelete />
-                                        </button>
-                                    </td>
+                                    </div>
+                                </td>
+                                <td>{element["Contact Person"]}</td>
+                                <td>{element["Contact Number"]}</td>
+            
+                                <td>{element["Delivery Address"]}</td>
+            
+                                {/* Actions column */}
+                                <td className="  justify-center space-x-1    *:*:p-1  flex    flex-wrap items-center    *:*:rounded *:text-white">
+                                            <div>
+                                                {editableItem === index ? (
+                                                    <div className="flex gap-1 *:rounded  *:p-1 text-[10px]">
+                                                        <button
+                                                            className="hover:opacity-80  bg-[#184892]"
+                                                            onClick={(e) => handleSaveClick(e, index)}
+                                                        >
+                                                            Save
+                                                        </button>
+
+                                                        <button
+                                                            className="hover:opacity-80 bg-[#184892]"
+                                                            onClick={handleCancelClick}
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    <div className="relative *:p-1 *:rounded">
+                                                        <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
+                                                            <h1 className="text-white">Edit</h1>
+                                                        </div>
+                                                        <button className="hover:opacity-80 bg-[#8d2618] "
+                                                    onClick={(e) => handleViewFun(e, index)}
+                                                    onMouseEnter={(e) => handletooltip2(e, index)}
+                                                    onMouseLeave={() => setTooltip2(null)}
+
+                                                >
+                                                    <MdOutlineRemoveRedEye />
+                                                </button>
+                                                    </div>
+                                                    )}
+                                                </div>
+
+                                            <div className="relative ">
+                                                <div className={`absolute -top-10 overflow-hidden bg-green-500 !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white">View</h1>
+                                                </div>
+                                                <button
+                                                            className="hover:opacity-80 bg-[#184892]"
+                                                            onClick={(e) => handleHidden(e, index)}
+                                                            onMouseEnter={(e) => handletooltip1(e, index)}
+                                                            onMouseLeave={() => setTooltip1(null)}
+                                                        >
+                                                            <CiEdit />
+
+                                                        </button>
+                                                
+                                            </div>
+                                            
+
+                                        </td>
                                 </tr>
-                            ))}
-                        </tbody>
+                            ))}                    
+                            </tbody>
+
                     </table>
                 </div>
 
@@ -616,144 +697,47 @@ const Page = () => {
                     </div>
                 </div>
 
-                {/* for add product */}
+                {/* For Viewing data */}
+
                 <div
-                    className={`absolute flex-grow   top-0 left-[50%] -translate-x-[50%]  ${hiddenaddproduct ? "hidden" : "flex"
-                        }    bg-black/30 backdrop-blur-[2px] md:pt-4 pt-24 h-full max-md:pt-20 max-md:pb-0 overflow-auto w-full`}
+                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${handleview ? "hidden" : "flex"
+                        } bg-black/30 backdrop-blur-[2px] overflow-auto `}
                 >
-                    <div className="w-full sm:p-0 h-full flex flex-col items-center overflow-auto md:pb-20">
-                        <div className="border bg-white p-4 rounded w-[90%] ">
-                            <div className="space-y-2">
-                                <div className="flex justify-between text-2xl">
-                                    <h1>Add New Product</h1>
-                                    <RxCross2 size={30} onClick={handleAddProductsDiscard}/>
-                                </div>
-                                <div className="space-y-2 ">
-                                    <h2>Product Type</h2>
 
-                                    <div className="flex w-full justify-center items-center gap-3">
-
-
-                                        <CreatableSelect
-                                            className="rounded-3xl w-full"
-                                            options={dataforproduct.map(ele => ({ value: ele.name, label: ele.name, id: ele.id }))}
-                                            // value={selectedProduct}
-                                            // value={selectedProduct[selectedProduct.length - 1]}
-                                            value={selectedProduct}
-
-                                            onChange={optionHandle}
-                                            // isValidNewOption={isValidNewOption}
-                                            // onInputChange={handleInputchange}
-                                            // isMulti={true}
-                                            placeholder="Select type of products"
-
-                                        />
-
-                                        {/* <AddProductNew data={allfildes} /> */}
-                                    </div>
-                                    {/* {
-                                        selectedProductDatafornewproduct.length === 0 ? ("Hello") : (selectedProductDatafornewproduct.length)
-                                    } */}
-                                    {/* <AddProductNew data={allfildes}/> */}
-                                </div>
-                                <div className="space-y-2 ">
-                                    <h2>Brand Name</h2>
-
-                                    <div className="flex w-full justify-center items-center gap-3">
+                    <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
+                        <form action="" className="   rounded p-8    bg-white">
+                            <h1 className="text-4xl text-red-400 font-semibold">Supplier Details</h1>
+                            <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
+                        
+                            {fieldName.map((fieldName, index) => (
+              <div key={index}>
+                <span>{fieldName}</span>
+                <div className="border-2 bg-white w-full p-2 rounded-xl">
+                  {formData1[fieldName]}
+                </div>
+              </div>
+            ))}
 
 
-                                        <CreatableSelect
-                                            className="rounded-3xl w-full"
-                                            options={dataforproductbrand
-                                                .filter((ele, index) => productid === ele.subcategory_id)
-                                                .map(ele => ({ value: ele.name, label: ele.name }))}
-
-                                            value={selectedProductBrand}
-
-                                            onChange={optionHandleForProductBrand}
-                                            // onInputChange={handleInputchange}
-
-                                            placeholder="Select type of products"
-
-                                        />
-
-                                        {/* <AddProductNew data={allfildes} /> */}
-                                    </div>
-                                    {/* {
-                                        selectedProductDatafornewproduct.length === 0 ? ("Hello") : (selectedProductDatafornewproduct.length)
-                                    } */}
-                                    {/* <AddProductNew data={allfildes}/> */}
-                                </div>
-                            </div>
-                            {/* <form className=" " hidden={false}> */}
-                            <form onSubmit={handleSubmit} className=" space-y-4 ">
-                                <div>
 
 
-                                    {demo
-                                        // .filter((item) => item.title === selectedProduct)
-                                        // .filter((item) =>  selectedProductBrand!="")
-                                        .filter((item) => item.title === selectedProductData && selectedProductBrand != "")
-                                        .map((demoItem, index) => (
-                                            <div key={index} className="grid sm:grid-cols-2 gap-4">
-                                                {demoItem.fildes.map((field, fieldIndex) => (
-                                                    <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
-                                                        <div key={fieldIndex} className="space-y-2">
-                                                            <span>{field.title}</span>
-                                                            {field.option ? (
-                                                                <div>
-                                                                    <select
-                                                                        className="border-2 outline-[#1D4ED8] bg-[#F9FAFB]  p-2 w-full rounded-xl cursor-pointer"
-                                                                        name={field.title}
-                                                                        onChange={handleInputChange2}
-                                                                    >
-                                                                        {field.options.map((option, optionIndex) => (
-                                                                            <option key={optionIndex} value={option.title}>
-                                                                                {option.title}
-                                                                            </option>
-                                                                        ))}
-                                                                    </select>
-                                                                </div>
-                                                            ) : (
-                                                                <input
-                                                                    type="text"
-                                                                    name={field.title}
-                                                                    placeholder={field.title}
-                                                                    className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                                                    onChange={handleInputChange2}
-                                                                />
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        ))}
-                                </div>
-                                <div className={`flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 ${handleformhidden?"block":"hidden"}`}>
-                                    <button className="bg-[#1D4ED8] hover:bg-blue-600   text-white">
-                                        Add product
-                                    </button>
-                                    <button
-                                        className="bg-red-400 hover:bg-red-500   text-white"
-                                        onClick={handleAddProductsDiscard}
-                                    >
-                                        Discard
-                                    </button>
-                                </div>
-                            </form>
-                            <div className={`${handleformhidden?"hidden":"block"} mt-6 `}>
-
-                                <AddProductNew data={allfildes} dataActive={customfieldsdataactive} sendDataToParent={handleDataFromChild}/>
                             </div>
 
-                            {/* <Demo/> */}
-                        </div>
+                            <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
+                                <button
+                                    className="bg-red-400 hover:bg-red-500   text-white"
+                                    onClick={handleCancelViewForm}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
                     </div>
                     {/* <AddDropDown/> */}
-                </div>
-                
-                {/* <AddDropDown className="hidden"/> */}
-            </div>
+               
             
         </>
     );
