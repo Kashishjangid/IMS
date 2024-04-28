@@ -45,7 +45,7 @@ const Page = () => {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MDE5Mzg2LCJleHAiOjE3MTQxMDU3ODYsIm5iZiI6MTcxNDAxOTM4NiwianRpIjoiMG04cmpYcUVWV1kyVmdBZyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.X1SIRm87-LEfiPvqEL28WPtnnAQpXM3o2w5JpxGHV50"
+                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MzE3MDcwLCJleHAiOjE3MTQ0MDM0NzAsIm5iZiI6MTcxNDMxNzA3MCwianRpIjoiQ3U1bzNQV1JmTm4xRDNoQyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8PaE81Pbunyq4TmhP5LuWC-jeZX3xHyGP0e7TmNwML4"
                         },
                         cache: "no-store"
                     }
@@ -102,7 +102,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MDE5Mzg2LCJleHAiOjE3MTQxMDU3ODYsIm5iZiI6MTcxNDAxOTM4NiwianRpIjoiMG04cmpYcUVWV1kyVmdBZyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.X1SIRm87-LEfiPvqEL28WPtnnAQpXM3o2w5JpxGHV50"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MzE3MDcwLCJleHAiOjE3MTQ0MDM0NzAsIm5iZiI6MTcxNDMxNzA3MCwianRpIjoiQ3U1bzNQV1JmTm4xRDNoQyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8PaE81Pbunyq4TmhP5LuWC-jeZX3xHyGP0e7TmNwML4"
                     },
                     cache: "no-store"
 
@@ -128,7 +128,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MDE5Mzg2LCJleHAiOjE3MTQxMDU3ODYsIm5iZiI6MTcxNDAxOTM4NiwianRpIjoiMG04cmpYcUVWV1kyVmdBZyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.X1SIRm87-LEfiPvqEL28WPtnnAQpXM3o2w5JpxGHV50"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MzE3MDcwLCJleHAiOjE3MTQ0MDM0NzAsIm5iZiI6MTcxNDMxNzA3MCwianRpIjoiQ3U1bzNQV1JmTm4xRDNoQyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8PaE81Pbunyq4TmhP5LuWC-jeZX3xHyGP0e7TmNwML4"
                     },
                     cache: "no-store"
                 });
@@ -427,6 +427,7 @@ const Page = () => {
 
                             <Select
                                 className="min-w-[300px] rounded-3xl"
+                                // options={options}
                                 options={options}
                                 value={selectedOptions}
                                 onChange={handleChange}
@@ -658,7 +659,7 @@ const Page = () => {
                                     } */}
                                     {/* <AddProductNew data={allfildes}/> */}
                                 </div>
-                                <div className="space-y-2 ">
+                                <div className={`space-y-2 ${handleformhidden?"block":"hidden"} `}>
                                     <h2>Brand Name</h2>
 
                                     <div className="flex w-full justify-center items-center gap-3">
@@ -745,7 +746,7 @@ const Page = () => {
                             </form>
                             <div className={`${handleformhidden?"hidden":"block"} mt-6 `}>
 
-                                <AddProductNew data={allfildes} dataActive={customfieldsdataactive} sendDataToParent={handleDataFromChild}/>
+                                <AddProductNew data={allfildes} dataActive={customfieldsdataactive} sendDataToParent={handleDataFromChild} selectedProductData={selectedProductData}/>
                             </div>
 
                             {/* <Demo/> */}

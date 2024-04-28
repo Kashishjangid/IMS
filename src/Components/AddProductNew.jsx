@@ -5,7 +5,8 @@ import { RxCrossCircled } from "react-icons/rx";
 import AddDropDown from "./AddDropDown";
 import Link from "next/link";
 
-const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
+const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData }) => {
+    // console.log("Hello",selectedProductData)
     const [handlehidden, setHandleHidden] = useState(true);
     const [optioncolor, setOptionColor] = useState("blue-500");
 
@@ -20,7 +21,7 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
     const [optiondata, setOptionData] = useState("");
 
     const fun = (ele) => {
-        if (!selectedOptions.includes(ele) ) {
+        if (!selectedOptions.includes(ele)) {
             setSelectedOptions((prevSelectedOptions) => [
                 ...prevSelectedOptions,
                 ele,
@@ -37,8 +38,11 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
         const updatedFields = selectedOptions.filter(
             (item) => itemToRemove != item
         );
+
         setSelectedOptions(updatedFields);
     };
+
+
     const removeFieldsOptions = (itemToRemove) => {
         const updatedFields = selectedOptionsValue.filter(
             (item) => itemToRemove != item
@@ -49,12 +53,12 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
     const handlecancel = (e) => {
         e.preventDefault();
         setFormCreation(true);
-        
+
     };
     const handlecustomfieldcancel = (e) => {
         e.preventDefault();
         setSelectedOptions([])
-        
+
         sendDataToParent("Hello");
     };
 
@@ -114,7 +118,7 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
             setOptionsnull(false);
         }
     }, [selectedOptionsValue]);
-    
+
 
     // const [fieldtypeValue1,setFieldTypeValue1]=useState([]);
 
@@ -124,7 +128,7 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
     //     e.preventDefault();
     //     if ( !selectedOptions.includes(enterfieldsnamedata) && !data.some((ele) => ele === enterfieldsnamedata) 
     //     // && enterfieldsnamedata.length > 0 
-            
+
     //     ) {
     //         // let fieldtypeValue;
 
@@ -149,29 +153,29 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
     //             // ]);
 
     //         }
-               
+
 
     //             setAllData((prevSelectedOptions) => [
     //                 ...prevSelectedOptions,
     //                 fieldtypeValue1,
     //             ]);
-        
-            
+
+
     //     }
     // };
 
-
+    // const[fieldtypeValue]
     const fun2 = (e) => {
-        console.log(handlefielddata);
+        // console.log(handlefielddata);
 
         e.preventDefault();
-        if ( !selectedOptions.includes(enterfieldsnamedata) && !data.some((ele) => ele === enterfieldsnamedata) 
-        // && enterfieldsnamedata.length > 0 
-            
+        if (!selectedOptions.includes(enterfieldsnamedata) && !data.some((ele) => ele === enterfieldsnamedata)
+            // && enterfieldsnamedata.length > 0 
+
         ) {
             let fieldtypeValue;
 
-            if (handlefielddata !== "Dropdown" && enterfieldsnamedata.length > 0 ) {
+            if (handlefielddata !== "Dropdown" && enterfieldsnamedata.length > 0) {
                 fieldtypeValue = {
                     title: enterfieldsnamedata,
                     fieldtype: handlefielddata,
@@ -180,7 +184,7 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
                     ...prevSelectedOptions,
                     enterfieldsnamedata,
                 ]);
-            } else if(handlefielddata === "Dropdown"  && dropdownfieldname.length>0) {
+            } else if (handlefielddata === "Dropdown" && dropdownfieldname.length > 0) {
                 fieldtypeValue = {
                     title: dropdownfieldname,
                     fieldtype: handlefielddata,
@@ -192,30 +196,34 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
                 // ]);
 
             }
-               
 
-                setAllData((prevSelectedOptions) => [
-                    ...prevSelectedOptions,
-                    fieldtypeValue,
-                ]);
-        
-            
+
+            setAllData((prevSelectedOptions) => [
+                ...prevSelectedOptions,
+                fieldtypeValue,
+            ]);
+
+
         }
     };
 
+    // useEffect(() => {
+    //     // Call fun2 to update allData whenever selectedOptions or selectedOptionsValue change
+    //     fun2();
+    // }, [selectedOptions, selectedOptionsValue]);
 
 
 
 
 
-    
 
     const formcreationfun = (e) => {
-        
+
         if (selectedOptions.length !== 0) {
             setFormCreation(false);
         }
-        console.log(alldata);
+
+        // console.log(alldata);
     };
 
     const handleSubmit = (e) => {
@@ -241,6 +249,51 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
         // console.log(formData)
     };
 
+
+
+    const [enterbrandfieldsnamedata, setEnterbrandfieldsnamedata] = useState("");
+    const enterbrandfieldsnamedatafun = (e) => {
+        setEnterbrandfieldsnamedata(e.target.value)
+
+    }
+    const [brandvalue, setBrandValue] = useState([]);
+    const handleenterbrandfieldsnamedatafun = (e) => {
+        e.preventDefault();
+        if (!brandvalue.includes(enterbrandfieldsnamedata) && enterbrandfieldsnamedata.length > 0) {
+
+            setBrandValue((prevalue) => [
+                ...prevalue, enterbrandfieldsnamedata
+            ])
+        }
+
+
+
+    }
+
+    const removeBrand = (remove_item) => {
+        const newbrandvalue = brandvalue.filter((ele) => ele != remove_item);
+        setBrandValue(newbrandvalue)
+
+    }
+
+    useEffect(() => {
+        setEnterbrandfieldsnamedata("")
+    }, [brandvalue])
+
+
+    const handledatasubmit = (e) => {
+        e.preventDefault();
+        let newdata = {
+            "subcategory_name": selectedProductData,
+            brand_name: brandvalue,
+            form: alldata
+
+        }
+        console.log(newdata)
+    }
+
+
+
     return (
         <div className="relative">
             <div
@@ -248,9 +301,63 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
                        bg-black/30 backdrop-blur-[2px]   h-full     w-full`}
             >
                 <div className="  h-full flex flex-col ">
+
                     <div className=" bg-white  w-full   ">
+                        <div className="space-y-2 *:space-y-2">
+                            <div>
+                                <p>Enter Brands Name</p>
+                                <div className="w-full flex gap-2">
+                                    <input
+                                        type="text"
+                                        value={enterbrandfieldsnamedata}
+                                        onChange={enterbrandfieldsnamedatafun}
+                                        placeholder="Enter Brand Name"
+
+
+                                        className="border-2  outline-[#1D4ED8] w-1/2  bg-[#F9FAFB]   p-2 rounded-xl"
+                                    />
+                                    <div className="*:rounded-xl  *:py-2 *:px-5">
+                                        <button
+                                            className={`bg-red-400 hover:bg-red-500 ${enterbrandfieldsnamedata.length != 0 ? "cursor-pointer" : "cursor-not-allowed"}   text-white`}
+                                            onClick={handleenterbrandfieldsnamedatafun}
+                                        >
+                                            Done
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+
+                                <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2   gap-2    ">
+                                    {brandvalue.map((ele, index) => (
+                                        <div className="relative">
+                                            <div
+                                                key={index}
+                                                className={`bg-red-400 hover:cursor-pointer hover:bg-red-500 text-white rounded-xl p-2 flex items-center justify-center overflow-x-auto`}
+                                                style={{
+                                                    scrollbarWidth: "none",
+                                                    "-ms-overflow-style": "none",
+                                                }}
+                                            >
+                                                {ele}
+                                            </div>
+
+                                            <div className="absolute top-1 right-1 ">
+                                                <RxCrossCircled
+                                                    size={12}
+                                                    className="text-white scale-150 cursor-pointer"
+                                                    onClick={() => removeBrand(ele)}
+                                                />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                         {formcreation ? (
                             <div className="space-y-2">
+
                                 <div className="space-y-2">
                                     <p>Enter Fildes Types</p>
                                     <ul className="flex gap-4 *:cursor-pointer">
@@ -403,7 +510,7 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
                                 </div>
 
                                 <div>
-                                    
+
                                     <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2   gap-2    ">
                                         {selectedOptions.map((ele, index) => (
                                             <div className="relative">
@@ -430,7 +537,7 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
                                     </div>
                                 </div>
                                 <hr />
-                                <div>
+                                {/* <div>
                                     <h1>Choose Fields</h1>
                                 </div>
 
@@ -449,7 +556,7 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
                                                 {ele}
                                             </div>
                                         ))}
-                                </div>
+                                </div> */}
                                 <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5">
                                     {/* <div className=" "> */}
                                     <button
@@ -461,64 +568,71 @@ const AddProductNew = ({ data, dataActive,sendDataToParent }) => {
                                     >
                                         Create Form
                                     </button>
-                                    
+
                                     <button
                                         className="bg-red-400 hover:bg-red-500   text-white"
                                         onClick={handlecustomfieldcancel}
-                                        >
+                                    >
                                         Cancel
                                     </button>
-                                        
+
                                 </div>
                             </div>
                         ) : (
                             <form className=" space-y-4 ">
                                 <div className="grid sm:grid-cols-2 gap-4">
                                     {alldata.length > 0 &&
-                                        alldata.map((demoItem, index) => (
-                                            <div key={index}>
-                                                <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
-                                                    <div className="space-y-2">
-                                                        <span>{demoItem.title}</span>
-                                                        {
-                                                            demoItem.fieldtype!="Dropdown"?(
-                                                            <input
-                                                            type={demoItem.fieldtype}
-                                                            name={demoItem.title}
-                                                            placeholder={demoItem.title}
-                                                            className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                                        />
-                                                        ):(
-                                                        <>
-                                                        <select className="border-2    bg-[#F9FAFB] w-full  p-2 rounded-xl">
-                                                        {demoItem.options.map((element, optionIndex) => (
-                                                                            <option key={optionIndex}>
-                                                                                {/* {option.title} */}
-                                                                                {element.option}
-                                                                                {/* hello */}
-                                                                            </option>
-                                                                        ))}
-                                                        </select>
-                                                        </>
-                                                        )
-                                                        }
-                                                        
+                                        alldata
+                                            .filter(demoItem => selectedOptions.includes(demoItem.title))
+                                            // .filter((demoItem,index)=>demoItem.title===selectedOptions.some((ele,index)=>ele))
+                                            .map((demoItem, index) => (
+                                                <div key={index}>
+                                                    <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
+                                                        <div className="space-y-2">
+                                                            <span>{demoItem.title}</span>
+                                                            {
+                                                                demoItem.fieldtype != "Dropdown" ? (
+                                                                    <input
+                                                                        type={demoItem.fieldtype}
+                                                                        name={demoItem.title}
+                                                                        placeholder={demoItem.title}
+                                                                        className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
+                                                                    />
+                                                                ) : (
+                                                                    <>
+                                                                        <select className="border-2    bg-[#F9FAFB] w-full  p-2 rounded-xl">
+                                                                            {demoItem.options.map((element, optionIndex) => (
+                                                                                <option key={optionIndex}>
+                                                                                    {/* {option.title} */}
+                                                                                    {element.option}
+                                                                                    {/* hello */}
+                                                                                </option>
+                                                                            ))}
+                                                                        </select>
+                                                                    </>
+                                                                )
+                                                            }
+
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            ))}
                                 </div>
-                                <button
-                                    className={`bg-[#1D4ED8] hover:bg-blue-600 rounded-xl      py-2 px-5  text-white`}
-                                >
-                                    Submit
-                                </button>
-                                <button
-                                    className={`bg-red-400 hover:bg-red-500  rounded-xl     py-2 px-5  text-white`}
-                                    onClick={handlecancel}
-                                >
-                                    Cancel
-                                </button>
+                                <div className="flex justify-end items-center gap-2">
+
+                                    <button
+                                        className={`bg-[#1D4ED8] hover:bg-blue-600 rounded-xl      py-2 px-5  text-white`}
+                                        onClick={handledatasubmit}
+                                    >
+                                        Submit
+                                    </button>
+                                    <button
+                                        className={`bg-red-400 hover:bg-red-500  rounded-xl     py-2 px-5  text-white`}
+                                        onClick={handlecancel}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
                             </form>
                         )}
                     </div>

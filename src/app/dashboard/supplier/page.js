@@ -307,6 +307,7 @@ const Page = () => {
                                 {fieldName.map((ele,index)=>(
                                     <th>{ele}</th>
                                 ))}
+                                
                             </tr>
                         </thead>
                         <tbody>
