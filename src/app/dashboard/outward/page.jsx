@@ -12,7 +12,8 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 import Select from "react-select";
 import CreatableSelect from 'react-select/creatable';
-import AddProductNew from "@/Components/AddProductNew";
+// import AddProductNew from "@/Components/AddProductNew";
+import AddOutward from "@/Components/AddOutward";
 
 const options = [
     { value: "Dell", label: "Dell" },
@@ -26,7 +27,7 @@ const options = [
 
 const Page = () => {
 
-    const data =[
+    const [outward, setOutward] =useState([
         {
           "ID":1,
           "Company Name": "ABC Inc.",
@@ -142,11 +143,12 @@ const Page = () => {
           "Employee Code If Req.": "EMP005",
           "DOCKET NO": "DOC005"
         }
-      ]
+      ])
+
       const fieldSet = new Set();
 
 // Iterate through each object in the data array and collect keys
-data.forEach((obj) => {
+outward.forEach((obj) => {
   Object.keys(obj).forEach((key) => {
     fieldSet.add(key); // Add each key to the Set (which automatically ensures uniqueness)
   });
@@ -155,7 +157,7 @@ data.forEach((obj) => {
 // Convert the Set back to an array of field names
 const fieldName = Array.from(fieldSet);
 
-console.log(fieldName);
+// console.log(fieldName);
       
 
     const router = useRouter();
@@ -262,10 +264,12 @@ console.log(fieldName);
 
     const [formData1, setFormData1] = useState({});
     const handleHidden = (index) => {
-        setFormData1(data[index]);
+        setFormData1(outward[index]);
         setHidden(false);
         setScrollFun(false);
     };
+
+    // console.log(formData1);
 
     const handleInputChangeForm = (e) => {
         e.preventDefault();
@@ -320,7 +324,7 @@ console.log(fieldName);
 
     //for add product
     const [hiddenforproduct, setHiddenForProduct] = useState(true);
-    const [hiddenaddproduct, setHiddenAddProduct] = useState(true);
+    const [hiddenaddoutward, setHiddenAddOutward] = useState(true);
     const [selectedProduct, setSelectedProduct] = useState("");
     const [selectedProductData, setSelectedProductData] = useState("");
     const [selectedProductDatafornewproduct, setSelectedProductDataForNewProduct] = useState("");
@@ -383,7 +387,7 @@ console.log(fieldName);
 
     const handleAddOutward = (e) => {
         e.preventDefault();
-        setHiddenAddProduct(false);
+        setHiddenAddOutward(false);
 
         setScrollFun(false);
     };
@@ -393,7 +397,7 @@ console.log(fieldName);
     const [scrollfun, setScrollFun] = useState(true);
     const handleAddProductsDiscard = (e) => {
         e.preventDefault();
-        setHiddenAddProduct(true);
+        setHiddenAddOutward(true);
         setScrollFun(true);
         setSelectedProductData("");
         setSelectedProduct("");
@@ -456,17 +460,15 @@ console.log(fieldName);
     const [receivedData, setReceivedData] = useState('');
 //   const [handleFormHidden2, setHandleFormHidden2] = useState(false);
 
+ 
   const handleDataFromChild = (data) => {
-    // console.log('Received data from child:', data);
-    // setReceivedData(data);
-    if(data==="Hello")
+    if(data)
     {
-        // alert("HE")
-              setHandleFormHidden(true);
+              setHiddenAddOutward(true);
+              setScrollFun(true);
     }
     
   };
-
 
 
     return (
@@ -528,7 +530,7 @@ console.log(fieldName);
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((element, index) => (
+                            {outward.map((element, index) => (
                             <tr
                                 className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
                                 key={index}
@@ -709,34 +711,30 @@ console.log(fieldName);
                             <h1 className="text-4xl text-red-400 font-semibold">Supplier Details</h1>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
                         
-                            {fieldName.map((fieldName, index) => (
-              <div key={index}>
-                <span>{fieldName}</span>
-                <div className="border-2 bg-white w-full p-2 rounded-xl">
-                  {formData1[fieldName]}
-                </div>
-              </div>
-            ))}
-
-
-
-
-                            </div>
-
-                            <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
-                                <button
-                                    className="bg-red-400 hover:bg-red-500   text-white"
-                                    onClick={handleCancelViewForm}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
+                            {fieldName.map((ele, index) => (
+                                <div key={index}>
+                                    <span>{ele}</span>
+                                    <div className="border-2 bg-white w-full p-2 rounded-xl">
+                                        {formData1[ele]}
+                                    </div>
+                                </div>
+                            ))}
                     </div>
+
+                    <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
+                        <button
+                            className="bg-red-400 hover:bg-red-500   text-white"
+                            onClick={handleCancelViewForm}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+            </form>
+        </div>
                 </div>
 
                     </div>
-                    {/* <AddDropDown/> */}
+                    <AddOutward hiddenaddoutward={hiddenaddoutward} fieldName={fieldName} sendDataToParent={handleDataFromChild}/>
                
             
         </>
