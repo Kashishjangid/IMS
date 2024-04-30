@@ -19,6 +19,8 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
     const [formcreation, setFormCreation] = useState(true);
     const [optionsnull, setOptionsnull] = useState(true);
     const [optiondata, setOptionData] = useState("");
+    const [enterbrandfieldsnamedata, setEnterbrandfieldsnamedata] = useState("");
+    const [brandvalue, setBrandValue] = useState([]);
 
     const fun = (ele) => {
         if (!selectedOptions.includes(ele)) {
@@ -38,9 +40,15 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
         const updatedFields = selectedOptions.filter(
             (item) => itemToRemove != item
         );
+        // .filter(demoItem => selectedOptions.includes(demoItem.label))
+        
 
         setSelectedOptions(updatedFields);
     };
+    useEffect(()=>{
+        const update=alldata.filter(demoItem => selectedOptions.includes(demoItem.label))
+        setAllData(update)
+    },[selectedOptions])
 
 
     const removeFieldsOptions = (itemToRemove) => {
@@ -58,6 +66,8 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
     const handlecustomfieldcancel = (e) => {
         e.preventDefault();
         setSelectedOptions([])
+        setBrandValue([]);
+        setAllData([])
 
         sendDataToParent("Hello");
     };
@@ -177,8 +187,9 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
 
             if (handlefielddata !== "Dropdown" && enterfieldsnamedata.length > 0) {
                 fieldtypeValue = {
-                    title: enterfieldsnamedata,
-                    fieldtype: handlefielddata,
+                    name: enterfieldsnamedata.toLowerCase().replace(/\s+/g, "_"),
+                    label: enterfieldsnamedata,
+                    type: handlefielddata,
                 };
                 setSelectedOptions((prevSelectedOptions) => [
                     ...prevSelectedOptions,
@@ -186,9 +197,10 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
                 ]);
             } else if (handlefielddata === "Dropdown" && dropdownfieldname.length > 0) {
                 fieldtypeValue = {
-                    title: dropdownfieldname,
-                    fieldtype: handlefielddata,
-                    options: selectedOptionsValue.map((ele) => ({ option: ele })),
+                    name: dropdownfieldname.toLowerCase().replace(/\s+/g, "_"),
+                    label: dropdownfieldname,
+                    type: handlefielddata,
+                    option: selectedOptionsValue.map((ele) => ({ label: ele,value: ele.toLowerCase().replace(/\s+/g, "_") })),
                 };
                 // setSelectedOptions((prevSelectedOptions) => [
                 //     ...prevSelectedOptions,
@@ -196,7 +208,7 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
                 // ]);
 
             }
-
+                console.log(fieldtypeValue)
 
             setAllData((prevSelectedOptions) => [
                 ...prevSelectedOptions,
@@ -212,19 +224,12 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
     //     fun2();
     // }, [selectedOptions, selectedOptionsValue]);
 
+   
 
 
 
 
-
-    const formcreationfun = (e) => {
-
-        if (selectedOptions.length !== 0) {
-            setFormCreation(false);
-        }
-
-        // console.log(alldata);
-    };
+    
 
     const handleSubmit = (e) => {
         // e.preventDefault();
@@ -251,12 +256,11 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
 
 
 
-    const [enterbrandfieldsnamedata, setEnterbrandfieldsnamedata] = useState("");
+    
     const enterbrandfieldsnamedatafun = (e) => {
         setEnterbrandfieldsnamedata(e.target.value)
 
     }
-    const [brandvalue, setBrandValue] = useState([]);
     const handleenterbrandfieldsnamedatafun = (e) => {
         e.preventDefault();
         if (!brandvalue.includes(enterbrandfieldsnamedata) && enterbrandfieldsnamedata.length > 0) {
@@ -281,16 +285,59 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
     }, [brandvalue])
 
 
-    const handledatasubmit = (e) => {
+    // const handledatasubmit = (e) => {
+    //     e.preventDefault();
+    //     let newdata = {
+    //         "subcategory_name": selectedProductData,
+    //         brand_name: brandvalue,
+    //         form: alldata
+
+    //     }
+    //     console.log(newdata)
+    // }
+    const formcreationfun = async(e) => {
         e.preventDefault();
+
+        if (selectedOptions.length !== 0) {
+            setFormCreation(false);
+        }
         let newdata = {
             "subcategory_name": selectedProductData,
             brand_name: brandvalue,
             form: alldata
 
         }
-        console.log(newdata)
-    }
+        // console.log(newdata)
+        // console.log(alldata)
+
+        // try {
+        //         const res=await fetch("http://localhost/ims/public/form",{
+        //             method:"POST",
+        //             headers:{
+        //                 "Content-Type":"application/json",
+        //                 "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDUyMDk4LCJleHAiOjE3MTUzMTYwOTgsIm5iZiI6MTcxNDQ1MjA5OCwianRpIjoiTU1KMkE1akFtckNtZTB1bSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.OXWd-TKEXkAX7FSCAlLUvm3WLYo4R3jSb5LAzU6cK2I"
+        //             },
+        //             body:JSON.stringify(newdata),
+        //         });
+        //         if(res.ok){
+        //             alert("Data Post")
+        //         }
+        //         else{
+        //             throw new Error("Some Error");
+        //         }
+        // } catch (error) {
+        //     console.log(error)
+        // }
+
+
+
+        
+    };
+
+
+    
+
+
 
 
 
@@ -579,32 +626,34 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
                                 </div>
                             </div>
                         ) : (
+
                             <form className=" space-y-4 ">
+                                
                                 <div className="grid sm:grid-cols-2 gap-4">
                                     {alldata.length > 0 &&
                                         alldata
-                                            .filter(demoItem => selectedOptions.includes(demoItem.title))
+                                            // .filter(demoItem => selectedOptions.includes(demoItem.label))
                                             // .filter((demoItem,index)=>demoItem.title===selectedOptions.some((ele,index)=>ele))
                                             .map((demoItem, index) => (
                                                 <div key={index}>
                                                     <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
                                                         <div className="space-y-2">
-                                                            <span>{demoItem.title}</span>
+                                                            <span>{demoItem.label}</span>
                                                             {
-                                                                demoItem.fieldtype != "Dropdown" ? (
+                                                                demoItem.type != "Dropdown" ? (
                                                                     <input
-                                                                        type={demoItem.fieldtype}
-                                                                        name={demoItem.title}
-                                                                        placeholder={demoItem.title}
+                                                                        type={demoItem.type}
+                                                                        name={demoItem.name}
+                                                                        placeholder={demoItem.label}
                                                                         className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
                                                                     />
                                                                 ) : (
                                                                     <>
                                                                         <select className="border-2    bg-[#F9FAFB] w-full  p-2 rounded-xl">
-                                                                            {demoItem.options.map((element, optionIndex) => (
+                                                                            {demoItem.option.map((element, optionIndex) => (
                                                                                 <option key={optionIndex}>
                                                                                     {/* {option.title} */}
-                                                                                    {element.option}
+                                                                                    {element.label}
                                                                                     {/* hello */}
                                                                                 </option>
                                                                             ))}
@@ -622,7 +671,7 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
 
                                     <button
                                         className={`bg-[#1D4ED8] hover:bg-blue-600 rounded-xl      py-2 px-5  text-white`}
-                                        onClick={handledatasubmit}
+                                        // onClick={handledatasubmit}
                                     >
                                         Submit
                                     </button>

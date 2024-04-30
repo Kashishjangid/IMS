@@ -52,7 +52,7 @@ const Page = () => {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MzE3MDcwLCJleHAiOjE3MTQ0MDM0NzAsIm5iZiI6MTcxNDMxNzA3MCwianRpIjoiQ3U1bzNQV1JmTm4xRDNoQyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8PaE81Pbunyq4TmhP5LuWC-jeZX3xHyGP0e7TmNwML4"
+                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MzY0OTAwLCJleHAiOjE3MTQ0NTEzMDAsIm5iZiI6MTcxNDM2NDkwMCwianRpIjoicEpCek9xUTdOWHpveXcwRiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Slnk78I6s1E_acmT-26CvHaD_zgmluNz2B1xHrSdj44"
                         },
                         cache: "no-store"
                     }
@@ -109,7 +109,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MzE3MDcwLCJleHAiOjE3MTQ0MDM0NzAsIm5iZiI6MTcxNDMxNzA3MCwianRpIjoiQ3U1bzNQV1JmTm4xRDNoQyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8PaE81Pbunyq4TmhP5LuWC-jeZX3xHyGP0e7TmNwML4"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MzY0OTAwLCJleHAiOjE3MTQ0NTEzMDAsIm5iZiI6MTcxNDM2NDkwMCwianRpIjoicEpCek9xUTdOWHpveXcwRiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Slnk78I6s1E_acmT-26CvHaD_zgmluNz2B1xHrSdj44"
                     },
                     cache: "no-store"
 
@@ -135,7 +135,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MzE3MDcwLCJleHAiOjE3MTQ0MDM0NzAsIm5iZiI6MTcxNDMxNzA3MCwianRpIjoiQ3U1bzNQV1JmTm4xRDNoQyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8PaE81Pbunyq4TmhP5LuWC-jeZX3xHyGP0e7TmNwML4"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MzY0OTAwLCJleHAiOjE3MTQ0NTEzMDAsIm5iZiI6MTcxNDM2NDkwMCwianRpIjoicEpCek9xUTdOWHpveXcwRiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Slnk78I6s1E_acmT-26CvHaD_zgmluNz2B1xHrSdj44"
                     },
                     cache: "no-store"
                 });
