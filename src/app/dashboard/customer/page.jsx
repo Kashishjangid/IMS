@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from "react";
 // import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
-import { RxCross2 } from "react-icons/rx";
+
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 // import { demo, allfildes } from "../product/data";
 
 import Select from "react-select";
@@ -27,6 +28,7 @@ const options = [
 ];
 // const fieldName = ["id" ,"Name", "Contact No"];
 const fieldName1 = ["Id", "Company Name", "Contact No", "Address", "Email id", "GST No.", "Action"];
+// const fieldName2 = ["Id", "Company Name", "Contact No", "Address", "Email id", "GST No.", "Action",""];
 const fieldName = ["Company Name", "Contact Person Name", "Contact No", "Email id", "GST No.", "Pan card", "Address", "City", "Pin code", "State", "Country"];
 
 const Page = () => {
@@ -50,7 +52,7 @@ const Page = () => {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MDE5Mzg2LCJleHAiOjE3MTQxMDU3ODYsIm5iZiI6MTcxNDAxOTM4NiwianRpIjoiMG04cmpYcUVWV1kyVmdBZyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.X1SIRm87-LEfiPvqEL28WPtnnAQpXM3o2w5JpxGHV50"
+                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                         },
                         cache: "no-store"
                     }
@@ -107,7 +109,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MDE5Mzg2LCJleHAiOjE3MTQxMDU3ODYsIm5iZiI6MTcxNDAxOTM4NiwianRpIjoiMG04cmpYcUVWV1kyVmdBZyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.X1SIRm87-LEfiPvqEL28WPtnnAQpXM3o2w5JpxGHV50"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                     },
                     cache: "no-store"
 
@@ -133,7 +135,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0MDE5Mzg2LCJleHAiOjE3MTQxMDU3ODYsIm5iZiI6MTcxNDAxOTM4NiwianRpIjoiMG04cmpYcUVWV1kyVmdBZyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.X1SIRm87-LEfiPvqEL28WPtnnAQpXM3o2w5JpxGHV50"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                     },
                     cache: "no-store"
                 });
@@ -220,6 +222,15 @@ const Page = () => {
         setScrollFun(false);
 
     };
+    const [handleview, setHandleview] = useState(true)
+    const handleViewfun = (e, index) => {
+        // alert(index)
+        // setFormData1(data[index]);
+        // setHidden(false);
+        setHandleview(false)
+        setScrollFun(false);
+
+    };
     useEffect(() => {
         console.log(formData1)
 
@@ -293,6 +304,11 @@ const Page = () => {
     const handleCancelEditForm = (e) => {
         e.preventDefault();
         setHidden(true);
+        setScrollFun(true);
+    };
+    const handleCancelViewForm = (e) => {
+        e.preventDefault();
+        setHandleview(true);
         setScrollFun(true);
     };
 
@@ -519,16 +535,16 @@ const Page = () => {
                         <thead>
                             <tr className="items-center *:p-2 bg-[#d5d7da]">
                                 {fieldName1.map((ele, index) => (
+                                    <>
                                     <th>{ele}</th>
+                                    </>
                                 ))}
                                 {/* <th>Id</th>
-                                <th>Name</th>
+                                <th>Company Name</th>
                                 <th>Contect No</th>
-                                <th>Email</th>
-                                <th>Configuration</th>
-                                <th>Ram</th>
-                                <th>HDD</th>
-
+                                <th>Address</th>
+                                <th>Email id</th>
+                                <th>GST No</th>
                                 <th>Action</th> */}
                             </tr>
                         </thead>
@@ -586,8 +602,8 @@ const Page = () => {
                                                     </div>
                                                 ) : (
                                                     <div className="relative *:p-1 *:rounded">
-                                                        <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
-                                                            <h1 className="text-white">Edit</h1>
+                                                        <div className={`absolute -top-6 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
+                                                            <h1 className="text-white text-[10px]">Edit</h1>
                                                         </div>
 
 
@@ -605,11 +621,11 @@ const Page = () => {
                                             </div>
 
                                             <div className="relative ">
-                                                <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
-                                                    <h1 className="text-white">View</h1>
+                                                <div className={`absolute -top-7 overflow-hidden bg-[green] !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white text-[10px]">View</h1>
                                                 </div>
-                                                <button className="hover:opacity-80 bg-[#8d2618] "
-                                                    onClick={(e) => handleHidden(e, index)}
+                                                <button className="hover:opacity-80 bg-[green] "
+                                                    onClick={(e) => handleViewfun(e, index)}
                                                     onMouseEnter={(e) => handletooltip2(e, index)}
                                                     onMouseLeave={() => setTooltip2(null)}
 
@@ -618,11 +634,11 @@ const Page = () => {
                                                 </button>
                                             </div>
                                             <div className="relative">
-                                                <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip3 === index ? '' : 'hidden'}`}>
-                                                    <h1 className="text-white">Delete</h1>
+                                                <div className={`absolute -top-7 overflow-hidden bg-[red] !px-2 -left-[50%] ${tooltip3 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white text-[10px]">Delete</h1>
                                                 </div>
 
-                                                <button className="hover:opacity-80 bg-[#184892]"
+                                                <button className="hover:opacity-80 bg-[red]"
                                                     onClick={(e) => handleDeletefun(e, index)}
                                                     onMouseEnter={(e) => handletooltip3(e, index)}
                                                     onMouseLeave={() => setTooltip3(null)}
@@ -647,32 +663,15 @@ const Page = () => {
 
                     <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
                         <form action="" className="   rounded p-8    bg-white">
-                            <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
-                            <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
-                                {/* <div className=" ">
-                                    <span className="  ">Serial Number</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Serial_Number}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Serial_Number"
-                                        className="border-2 outline-red-500  border-[#1D4ED8]   bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div> */}
-                                {/* {fieldName.map((ele,index)=>(
+                            <div className=" flex justify-between items-center">
 
-                                    <div className=" " key={index}>
-                                    <span className="  ">{ele}</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Serial_Number}
-                                        // editableItem
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Serial_Number"
-                                        className="border-2 outline-red-500  border-[#1D4ED8]   bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                        ></input>
-                                </div>
-                                ))} */}
+
+                                <h1 className="text-3xl text-red-400 font-semibold">Edit</h1>
+                                <RxCross2 size={30} onClick={handleCancelEditForm} className="cursor-pointer" />
+                            </div>
+                            <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
+
+
                                 {fieldName.map((ele, index) => (
                                     <div className="" key={index}>
                                         <span className="">{ele}</span>
@@ -711,6 +710,63 @@ const Page = () => {
                         </form>
                     </div>
                 </div>
+
+                {/* for View section */}
+
+                <div
+                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${handleview ? "hidden" : "flex"
+                        } bg-black/30 backdrop-blur-[2px] overflow-auto `}
+                >
+
+                    <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
+                        <form action="" className="   rounded p-8    bg-white">
+                            <div className=" flex justify-between items-center">
+
+
+                                <h1 className="text-3xl text-red-400 font-semibold">Edit</h1>
+                                <RxCross2 size={30} onClick={handleCancelViewForm} className="cursor-pointer" />
+                            </div>
+                            {/* <h1 className="text-3xl text-red-400 font-semibold">Customer Details</h1> */}
+                            <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
+
+
+                                {fieldName.map((ele, index) => (
+                                    <div className="" key={index}>
+                                        <span className="font-semibold">{ele} :-</span>
+                                        <div className="border-2 bg-[#F9FAFB] w-full p-2 rounded-xl">
+                                            {ele}
+                                        </div>
+                                        {/* <input
+                                            type="text"
+                                            value={formData1[ele] || "hello"} 
+                                           
+                                            name={ele} 
+                                            className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
+                                        ></input> */}
+                                    </div>
+                                ))}
+
+
+
+
+
+
+                            </div>
+
+                            <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
+
+                                <button
+                                    className="bg-red-400 hover:bg-red-500   text-white"
+                                    onClick={handleCancelViewForm}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
 
 
 

@@ -27,113 +27,113 @@ const options = [
 
 const Page = () => {
 
-    const [inward, setInward] =useState([
-      {
-        "ID":"1",
-        "Date": "2024-04-01",
-        "Description": "Business laptop",
-        "Model": "Dell Latitude",
-        "Serial.No.": ["SN001", "SN002", "SN003", "SN004", "SN005", "SN006", "SN007", "SN008", "SN009", "SN010"],
-        "GCV No.": "GCV123",
-        "Contact Person": "Michael Johnson",
-        "Contact Number": "(345) 678-9012",
-        "Configuration": "Standard",
-        "RAM": "8GB",
-        "HDD": "512GB SSD",
-        "Qty.": 1,
-        "Laptop Condition": "New",
-        "Company Name": "ABC Inc.",
-        "Delivery Address": "123 Main St, Anytown",
-        "replace/return": "Replace"
-      },
-      {
-        "ID":"2",
-        "Date": "2024-04-05",
-        "Description": "Developer laptop",
-        "Model": "HP Spectre",
-        "Serial.No.": ["SN011", "SN012", "SN013", "SN014", "SN015", "SN016", "SN017", "SN018", "SN019", "SN020"],
-        "GCV No.": "GCV456",
-        "Contact Person": "Michael Johnson",
-        "Contact Number": "(345) 678-9012",
-        "Configuration": "Developer Edition",
-        "RAM": "16GB",
-        "HDD": "1TB SSD",
-        "Qty.": 1,
-        "Laptop Condition": "New",
-        "Company Name": "XYZ Corporation",
-        "Delivery Address": "456 Elm St, Somewhere",
-        "replace/return": "Replace"
-      },
-      {
-        "ID":"3",
-        "Date": "2024-04-10",
-        "Description": "Executive laptop",
-        "Model": "Lenovo ThinkPad",
-        "Serial.No.": ["SN021", "SN022", "SN023", "SN024", "SN025", "SN026", "SN027", "SN028", "SN029", "SN030"],
-        "GCV No.": "GCV789",
-        "Contact Person": "Michael Johnson",
-        "Contact Number": "(345) 678-9012",
-        "Configuration": "Executive Package",
-        "RAM": "16GB",
-        "HDD": "1TB SSD",
-        "Qty.": 1,
-        "Laptop Condition": "New",
-        "Company Name": "Tech Solutions Ltd.",
-        "Delivery Address": "789 Oak St, Techville",
-        "replace/return": "Replace"
-      },
-      {
-        "ID":"4",
-        "Date": "2024-04-15",
-        "Description": "High-performance laptop",
-        "Model": "Apple MacBook Pro",
-        "Serial.No.": ["SN031", "SN032", "SN033", "SN034", "SN035", "SN036", "SN037", "SN038", "SN039", "SN040"],
-        "GCV No.": "GCV234",
-        "Contact Person": "Michael Johnson",
-        "Contact Number": "(345) 678-9012",
-        "Configuration": "High Performance Edition",
-        "RAM": "32GB",
-        "HDD": "2TB SSD",
-        "Qty.": 1,
-        "Laptop Condition": "New",
-        "Company Name": "Global Innovations Inc.",
-        "Delivery Address": "567 Maple Ave, Innovations City",
-        "replace/return": "Replace"
-      },
-      {
-        "ID":"5",
-        "Date": "2024-04-20",
-        "Description": "Designer laptop",
-        "Model": "Microsoft Surface Book",
-        "Serial.No.": ["SN041", "SN042", "SN043", "SN044", "SN045", "SN046", "SN047", "SN048", "SN049", "SN050"],
-        "GCV No.": "GCV567",
-        "Contact Person": "Michael Johnson",
-        "Contact Number": "(345) 678-9012",
-        "Configuration": "Designer Package",
-        "RAM": "16GB",
-        "HDD": "1TB SSD",
-        "Qty.": 1,
-        "Laptop Condition": "New",
-        "Company Name": "Visionary Enterprises",
-        "Delivery Address": "910 Cedar St, Vision City",                                                                               
-        "replace/return": "Replace"
-      }
+    const [inward, setInward] = useState([
+        {
+            "ID": "1",
+            "Date": "2024-04-01",
+            "Description": "Business laptop",
+            "Model": "Dell Latitude",
+            "Serial.No.": ["SN001", "SN002", "SN003"],
+            "GCV No.": "GCV123",
+            "Contact Person": "Michael Johnson",
+            "Contact Number": "(345) 678-9012",
+            "Configuration": "Standard",
+            "RAM": "8GB",
+            "HDD": "512GB SSD",
+            "Qty.": 1,
+            "Laptop Condition": "New",
+            "Company Name": "ABC Inc.",
+            "Delivery Address": "123 Main St, Anytown",
+            "replace/return": "Replace"
+        },
+        {
+            "ID": "2",
+            "Date": "2024-04-05",
+            "Description": "Developer laptop",
+            "Model": "HP Spectre",
+            "Serial.No.": ["SN011", "SN012", "SN013", "SN014", "SN015", "SN016", "SN017", "SN018", "SN019", "SN020"],
+            "GCV No.": "GCV456",
+            "Contact Person": "Michael Johnson",
+            "Contact Number": "(345) 678-9012",
+            "Configuration": "Developer Edition",
+            "RAM": "16GB",
+            "HDD": "1TB SSD",
+            "Qty.": 1,
+            "Laptop Condition": "New",
+            "Company Name": "XYZ Corporation",
+            "Delivery Address": "456 Elm St, Somewhere",
+            "replace/return": "Replace"
+        },
+        {
+            "ID": "3",
+            "Date": "2024-04-10",
+            "Description": "Executive laptop",
+            "Model": "Lenovo ThinkPad",
+            "Serial.No.": ["SN021", "SN022", "SN023", "SN024", "SN025", "SN026", "SN027", "SN028", "SN029", "SN030"],
+            "GCV No.": "GCV789",
+            "Contact Person": "Michael Johnson",
+            "Contact Number": "(345) 678-9012",
+            "Configuration": "Executive Package",
+            "RAM": "16GB",
+            "HDD": "1TB SSD",
+            "Qty.": 1,
+            "Laptop Condition": "New",
+            "Company Name": "Tech Solutions Ltd.",
+            "Delivery Address": "789 Oak St, Techville",
+            "replace/return": "Replace"
+        },
+        {
+            "ID": "4",
+            "Date": "2024-04-15",
+            "Description": "High-performance laptop",
+            "Model": "Apple MacBook Pro",
+            "Serial.No.": ["SN031", "SN032", "SN033", "SN034", "SN035", "SN036", "SN037", "SN038", "SN039", "SN040"],
+            "GCV No.": "GCV234",
+            "Contact Person": "Michael Johnson",
+            "Contact Number": "(345) 678-9012",
+            "Configuration": "High Performance Edition",
+            "RAM": "32GB",
+            "HDD": "2TB SSD",
+            "Qty.": 1,
+            "Laptop Condition": "New",
+            "Company Name": "Global Innovations Inc.",
+            "Delivery Address": "567 Maple Ave, Innovations City",
+            "replace/return": "Replace"
+        },
+        {
+            "ID": "5",
+            "Date": "2024-04-20",
+            "Description": "Designer laptop",
+            "Model": "Microsoft Surface Book",
+            "Serial.No.": ["SN041", "SN042", "SN043", "SN044", "SN045", "SN046", "SN047", "SN048", "SN049", "SN050"],
+            "GCV No.": "GCV567",
+            "Contact Person": "Michael Johnson",
+            "Contact Number": "(345) 678-9012",
+            "Configuration": "Designer Package",
+            "RAM": "16GB",
+            "HDD": "1TB SSD",
+            "Qty.": 1,
+            "Laptop Condition": "New",
+            "Company Name": "Visionary Enterprises",
+            "Delivery Address": "910 Cedar St, Vision City",
+            "replace/return": "Replace"
+        }
     ])
 
-      const fieldSet = new Set();
+    const fieldSet = new Set();
 
-// Iterate through each object in the data array and collect keys
-inward.forEach((obj) => {
-  Object.keys(obj).forEach((key) => {
-    fieldSet.add(key); // Add each key to the Set (which automatically ensures uniqueness)
-  });
-});
+    // Iterate through each object in the data array and collect keys
+    inward.forEach((obj) => {
+        Object.keys(obj).forEach((key) => {
+            fieldSet.add(key); // Add each key to the Set (which automatically ensures uniqueness)
+        });
+    });
 
-// Convert the Set back to an array of field names
-const fieldName = Array.from(fieldSet);
+    // Convert the Set back to an array of field names
+    const fieldName = Array.from(fieldSet);
 
-// console.log(fieldName);
-      
+    // console.log(fieldName);
+
 
     const router = useRouter();
     // const [data, setData] = useState([]);
@@ -175,7 +175,7 @@ const fieldName = Array.from(fieldSet);
 
     //     fetchData();
     // }, [Hidden, selectedValues]);
- 
+
 
 
 
@@ -358,7 +358,7 @@ const fieldName = Array.from(fieldSet);
     //     // console.log(existst);
 
     // }, [selectedProductData]);
-    
+
 
     const handleAddInward = (e) => {
         e.preventDefault();
@@ -366,7 +366,7 @@ const fieldName = Array.from(fieldSet);
 
         setScrollFun(false);
     };
-    
+
 
     const [customfieldsdataactive, setCustomfieldsDataActive] = useState(false);
     const [scrollfun, setScrollFun] = useState(true);
@@ -410,8 +410,9 @@ const fieldName = Array.from(fieldSet);
         setHandleview(true);
         setScrollFun(true);
     };
-
-    const handleViewFun= (e)=>{
+    const [formData2, setFormData2] = useState({});
+    const handleViewFun = (e,index) => {
+        setFormData2(inward[index])
         setHandleview(false);
         setScrollFun(false);
     }
@@ -427,23 +428,22 @@ const fieldName = Array.from(fieldSet);
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
     };
 
-    
-    const[optionin,setOptionin]=useState(true)
-    const [receivedData, setReceivedData] = useState('');
-//   const [handleFormHidden2, setHandleFormHidden2] = useState(false);
 
- 
-  const handleDataFromChild = (data) => {
-    if(data)
-    {
-              setHiddenAddInward(true);
-              setScrollFun(true);
-    }
-    
-  };
+    const [optionin, setOptionin] = useState(true)
+    const [receivedData, setReceivedData] = useState('');
+    //   const [handleFormHidden2, setHandleFormHidden2] = useState(false);
+
+
+    const handleDataFromChild = (data) => {
+        if (data) {
+            setHiddenAddInward(true);
+            setScrollFun(true);
+        }
+
+    };
 
 
     return (
@@ -506,89 +506,89 @@ const fieldName = Array.from(fieldSet);
                         </thead>
                         <tbody>
                             {inward.map((element, index) => (
-                            <tr
-                                className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
-                                key={index}
-                            >
-                                {/* Render specific fields: ID, Company Name, Contact Person, Address */}
-                                <td>{element["ID"]}</td>
-                                <td>
-                                    <div onClick={() => handleEditClick(index)}>
-                                        {editableItem === index ? (
-                                            <input
-                                                type="text"
-                                                name="Company Name"
-                                                value={element["Company Name"]}
-                                                onChange={(e) => handleInputChange(e, index)}
-                                                className="w-20"
-                                            />
-                                        ) : (
-                                            element["Company Name"]
-                                        )}
-                                    </div>
-                                </td>
-                                <td>{element["Contact Person"]}</td>
-                                <td>{element["Contact Number"]}</td>
-            
-                                <td>{element["Delivery Address"]}</td>
-            
-                                {/* Actions column */}
-                                <td className="  justify-center space-x-1    *:*:p-1  flex    flex-wrap items-center    *:*:rounded *:text-white">
-                                            <div>
-                                                {editableItem === index ? (
-                                                    <div className="flex gap-1 *:rounded  *:p-1 text-[10px]">
-                                                        <button
-                                                            className="hover:opacity-80  bg-[#184892]"
-                                                            onClick={(e) => handleSaveClick(e, index)}
-                                                        >
-                                                            Save
-                                                        </button>
+                                <tr
+                                    className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
+                                    key={index}
+                                >
+                                    {/* Render specific fields: ID, Company Name, Contact Person, Address */}
+                                    <td>{element["ID"]}</td>
+                                    <td>
+                                        <div onClick={() => handleEditClick(index)}>
+                                            {editableItem === index ? (
+                                                <input
+                                                    type="text"
+                                                    name="Company Name"
+                                                    value={element["Company Name"]}
+                                                    onChange={(e) => handleInputChange(e, index)}
+                                                    className="w-20"
+                                                />
+                                            ) : (
+                                                element["Company Name"]
+                                            )}
+                                        </div>
+                                    </td>
+                                    <td>{element["Contact Person"]}</td>
+                                    <td>{element["Contact Number"]}</td>
 
-                                                        <button
-                                                            className="hover:opacity-80 bg-[#184892]"
-                                                            onClick={handleCancelClick}
-                                                        >
-                                                            Cancel
-                                                        </button>
-                                                    </div>
-                                                ) : (
-                                                    <div className="relative *:p-1 *:rounded">
-                                                        <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
-                                                            <h1 className="text-white">Edit</h1>
-                                                        </div>
-                                                        <button className="hover:opacity-80 bg-[#8d2618] "
-                                                    onClick={(e) => handleViewFun(e, index)}
-                                                    onMouseEnter={(e) => handletooltip2(e, index)}
-                                                    onMouseLeave={() => setTooltip2(null)}
+                                    <td>{element["Delivery Address"]}</td>
 
-                                                >
-                                                    <MdOutlineRemoveRedEye />
-                                                </button>
-                                                    </div>
-                                                    )}
+                                    {/* Actions column */}
+                                    <td className="  justify-center space-x-1    *:*:p-1  flex    flex-wrap items-center    *:*:rounded *:text-white">
+                                        <div>
+                                            {editableItem === index ? (
+                                                <div className="flex gap-1 *:rounded  *:p-1 text-[10px]">
+                                                    <button
+                                                        className="hover:opacity-80  bg-[#184892]"
+                                                        onClick={(e) => handleSaveClick(e, index)}
+                                                    >
+                                                        Save
+                                                    </button>
+
+                                                    <button
+                                                        className="hover:opacity-80 bg-[#184892]"
+                                                        onClick={handleCancelClick}
+                                                    >
+                                                        Cancel
+                                                    </button>
                                                 </div>
+                                            ) : (
+                                                <div className="relative *:p-1 *:rounded">
+                                                    <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
+                                                        <h1 className="text-white">Edit</h1>
+                                                    </div>
+                                                    <button className="hover:opacity-80 bg-[#8d2618] "
+                                                        onClick={(e) => handleViewFun(e, index)}
+                                                        onMouseEnter={(e) => handletooltip2(e, index)}
+                                                        onMouseLeave={() => setTooltip2(null)}
 
-                                            <div className="relative ">
-                                                <div className={`absolute -top-10 overflow-hidden bg-green-500 !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
-                                                    <h1 className="text-white">View</h1>
+                                                    >
+                                                        <MdOutlineRemoveRedEye />
+                                                    </button>
                                                 </div>
-                                                <button
-                                                            className="hover:opacity-80 bg-[#184892]"
-                                                            onClick={(e) => handleHidden(e, index)}
-                                                            onMouseEnter={(e) => handletooltip1(e, index)}
-                                                            onMouseLeave={() => setTooltip1(null)}
-                                                        >
-                                                            <CiEdit />
+                                            )}
+                                        </div>
 
-                                                        </button>
-                                                
+                                        <div className="relative ">
+                                            <div className={`absolute -top-10 overflow-hidden bg-green-500 !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
+                                                <h1 className="text-white">View</h1>
                                             </div>
-                                            
+                                            <button
+                                                className="hover:opacity-80 bg-[#184892]"
+                                                onClick={(e) => handleHidden(e, index)}
+                                                onMouseEnter={(e) => handletooltip1(e, index)}
+                                                onMouseLeave={() => setTooltip1(null)}
+                                            >
+                                                <CiEdit />
 
-                                        </td>
+                                            </button>
+
+                                        </div>
+
+
+                                    </td>
                                 </tr>
-                            ))}                    
-                            </tbody>
+                            ))}
+                        </tbody>
 
                     </table>
                 </div>
@@ -685,33 +685,33 @@ const fieldName = Array.from(fieldSet);
                         <form action="" className="   rounded p-8    bg-white">
                             <h1 className="text-4xl text-red-400 font-semibold">Inward Details</h1>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
-                        
-                            {fieldName.map((ele, index) => (
-                                <div key={index}>
-                                    <span>{ele}</span>
-                                    <div className="border-2 bg-white w-full p-2 rounded-xl">
-                                        {formData1[ele]}
-                                    </div>
-                                </div>
-                            ))}
-                    </div>
 
-                    <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
-                        <button
-                            className="bg-red-400 hover:bg-red-500   text-white"
-                            onClick={handleCancelViewForm}
-                        >
-                            Cancel
-                        </button>
+                                {fieldName.map((ele, index) => (
+                                    <div key={index}>
+                                        <span>{ele}</span>
+                                        <div className="border-2 bg-white w-full p-2 rounded-xl">
+                                            {formData2[ele]?formData2[ele]:"Default Value"}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
+                                <button
+                                    className="bg-red-400 hover:bg-red-500   text-white"
+                                    onClick={handleCancelViewForm}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
                     </div>
-            </form>
-        </div>
                 </div>
 
-                    </div>
-                    <AddInward hiddenaddinward={hiddenaddinward} fieldName={fieldName} sendDataToParent={handleDataFromChild}/>
-               
-            
+            <AddInward hiddenaddinward={hiddenaddinward} fieldName={fieldName} sendDataToParent={handleDataFromChild} />
+            </div>
+
+
         </>
     );
 };

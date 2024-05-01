@@ -50,6 +50,7 @@ const page = () => {
                             <p className="text-2xl font-bold ">Stock Total</p>
                             <p className="text-xl font-semibold">500</p>
                             <p className="text-xl font-semibold">Increased by 60%</p>
+                            
 
 
 
