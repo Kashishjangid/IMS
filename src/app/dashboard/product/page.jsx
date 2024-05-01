@@ -36,6 +36,7 @@ const Page = () => {
 
     const [selectedValues, setSelectedValues] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const [handleDelete, setHandleDelete] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -48,7 +49,7 @@ const Page = () => {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDUyMDk4LCJleHAiOjE3MTUzMTYwOTgsIm5iZiI6MTcxNDQ1MjA5OCwianRpIjoiTU1KMkE1akFtckNtZTB1bSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.OXWd-TKEXkAX7FSCAlLUvm3WLYo4R3jSb5LAzU6cK2I"
+                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                         },
                         cache: "no-store"
                     }
@@ -94,7 +95,7 @@ const Page = () => {
         };
 
         fetchData();
-    }, [Hidden, selectedValues]);
+    }, [Hidden, selectedValues, handleDelete]);
     // for product
     const [dataforproduct, setDataForProduct] = useState([])
     useEffect(() => {
@@ -105,7 +106,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDUyMDk4LCJleHAiOjE3MTUzMTYwOTgsIm5iZiI6MTcxNDQ1MjA5OCwianRpIjoiTU1KMkE1akFtckNtZTB1bSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.OXWd-TKEXkAX7FSCAlLUvm3WLYo4R3jSb5LAzU6cK2I"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                     },
                     cache: "no-store"
 
@@ -137,7 +138,7 @@ const Page = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDUyMDk4LCJleHAiOjE3MTUzMTYwOTgsIm5iZiI6MTcxNDQ1MjA5OCwianRpIjoiTU1KMkE1akFtckNtZTB1bSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.OXWd-TKEXkAX7FSCAlLUvm3WLYo4R3jSb5LAzU6cK2I"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                     },
                     cache: "no-store"
                 });
@@ -199,7 +200,7 @@ const Page = () => {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDA1MzgyLCJleHAiOjE3MTUyNjkzODIsIm5iZiI6MTcxNDQwNTM4MiwianRpIjoibDRpZks4cUVibDFlcnZaSyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.U3Y7RYI37RTrBCzlaDTvagbTvc6A4Y3LlP3X82b9WGk"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                     },
                     body: JSON.stringify(dataobject),
                 }
@@ -256,7 +257,7 @@ const Page = () => {
     const handleSaveEditForm = async (e) => {
         e.preventDefault();
         // console.log(dataobjectForm)
-        console.log(formData1)
+        // console.log(formData1)
         // console.log( `http://192.168.1.82/lumentest/public/product/${formData1.product_id}`)
 
         try {
@@ -267,7 +268,7 @@ const Page = () => {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDA1MzgyLCJleHAiOjE3MTUyNjkzODIsIm5iZiI6MTcxNDQwNTM4MiwianRpIjoibDRpZks4cUVibDFlcnZaSyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.U3Y7RYI37RTrBCzlaDTvagbTvc6A4Y3LlP3X82b9WGk"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                     },
                     body: JSON.stringify(formData1),
                 }
@@ -314,11 +315,13 @@ const Page = () => {
         setSelectedProduct(selectedOptions);
         setSelectedProductData(selectedOptions.value)
         setSelectedProductDatabyid(selectedOptions.id)
+        
 
 
 
 
         setProductId(selectedOptions.id)
+        // alert(selectedOptions.id)
         setSelectedProductBrand("")
 
     };
@@ -361,7 +364,7 @@ const Page = () => {
         // console.log(existst);
 
     }, [selectedProductData]);
-    
+
 
 
 
@@ -415,6 +418,7 @@ const Page = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+
     };
 
 
@@ -431,12 +435,60 @@ const Page = () => {
         }
 
     };
+    // try {
+    //     const res = await fetch(
+    //         // `http://192.168.1.82/lumentest/public/product/${formData1.product_id}`,
+    //         `http://localhost/ims/public/product/${formData1.product_id}`,
+    //         {
+    //             method: "PUT",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
+    //             },
+    //             body: JSON.stringify(formData1),
+    //         }
+    //     );
+    //     if (res.ok) {
+    //         // router.refresh();
+    //         // alert("Hello")
+    //         setHidden(true);
+    //     } else {
+    //         throw new Error("Some Error");
+    //     }
+    // } catch (error) {
+    //     console.log("Error", error);
+    // }
+    const handleDeletefun = async (e, index) => {
+        // console.log(data[index].product_id)
+        // console.log(`http://localhost/ims/public/product/${data[index].product_id}`)
+        if (confirm("Are You Sure You Want to delete this product") == true) {
 
-    const handleDeletefun = (e, index) => {
-        // console.log(data[index])
-        alert(index)
 
-    }
+            try {
+                const res = await fetch(`http://localhost/ims/public/product/${data[index].product_id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
+                    },
+                });
+
+                if (res.ok) {
+                    // Deletion successful, update your UI or trigger any necessary actions
+                    // alert("Product deleted successfully");
+                    setHandleDelete(data[index].product_id)
+                    alert("Product deleted successfully")
+                } else {
+                    // Server returned an error status, handle it accordingly
+                    throw new Error("Failed to delete product");
+                }
+            } catch (error) {
+                // An error occurred during the fetch request or processing the response
+                console.error("Error deleting product:", error);
+            }
+        }
+    };
+
 
 
     const [tooltip1, setTooltip1] = useState(false);
@@ -457,15 +509,16 @@ const Page = () => {
 
 
 
-    const[formfield,setFormfield]=useState([]);
+    const [formfield, setFormfield] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
+            // alert(`http://localhost/ims/public/form/${productid}`)
             try {
-                const response = await fetch("http://localhost/ims/public/form", {
+                const response = await fetch(`http://localhost/ims/public/form/${productid}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDUyMDk4LCJleHAiOjE3MTUzMTYwOTgsIm5iZiI6MTcxNDQ1MjA5OCwianRpIjoiTU1KMkE1akFtckNtZTB1bSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.OXWd-TKEXkAX7FSCAlLUvm3WLYo4R3jSb5LAzU6cK2I"
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                     },
                     cache: "no-store"
                 });
@@ -473,18 +526,31 @@ const Page = () => {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const data = await response.json();
-                // console.log(jsonproductdata);
+              
                 setFormfield(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
-                // You can handle the error here, for example:
-                // setError("An error occurred while fetching data");
             }
         };
-
+    
         fetchData();
-    }, []);
-    // console.log(formfield[0].subcategory.id)
+    }, [productid]);
+    // console.log(formfield.length)
+    
+    
+
+
+    const handlesaveaddproduct = (e) => {
+        e.preventDefault();
+
+        console.log(formData);
+        setFormData({})
+
+    }
+
+
+
+
 
     return (
         <>
@@ -661,8 +727,8 @@ const Page = () => {
                         <form action="" className="   rounded p-8    bg-white">
                             <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
-                                
-                               
+
+
 
                                 {Object.entries(formData1).map(([key, value], index) => (
                                     <div className="" key={index}>
@@ -713,8 +779,8 @@ const Page = () => {
                         <form action="" className="   rounded p-8    bg-white">
                             <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
-                                
-                               
+
+
 
                                 {Object.entries(formData1).map(([key, value], index) => (
                                     <div className="" key={index}>
@@ -730,7 +796,7 @@ const Page = () => {
                                             className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
                                         /> */}
                                     </div>
-                                ))} 
+                                ))}
 
 
 
@@ -738,7 +804,7 @@ const Page = () => {
                             </div>
 
                             <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
-                                
+
                                 <button
                                     className="bg-red-400 hover:bg-red-500   text-white"
                                     onClick={handleCancelViewForm}
@@ -798,8 +864,10 @@ const Page = () => {
 
                                         <CreatableSelect
                                             className="rounded-3xl w-full"
-                                            options={dataforproductbrand
-                                                .filter((ele, index) => productid === ele.subcategory_id)
+                                            // options={dataforproductbrand
+                                            // .filter((ele, index) => productid === ele.subcategory_id)
+                                            // console.log(formfield[0].brand)
+                                            options={formfield[0]?.brand
                                                 .map(ele => ({ value: ele.name, label: ele.name }))}
 
                                             value={selectedProductBrand}
@@ -820,31 +888,31 @@ const Page = () => {
                                 </div>
                             </div>
                             {/* <form className=" " hidden={false}> */}
-                            <form onSubmit={handleSubmit} className=" space-y-4 ">
+                            <form className=" space-y-4 ">
                                 <div>
 
 
-                                    {formfield
-                                        // .filter((item) => item.title === selectedProduct)
-                                        // console.log(formfield[0].subcategory.id)
-                                        // .filter((item) =>  selectedProductBrand!="")
-                                        .filter((item,index) => formfield[index].subcategory.id === selectedProductDatabyid && selectedProductBrand != "")
-                                        // .filter((item,index) => item.title === selectedProductDatabyid && selectedProductBrand != "")
+                                { formfield.length>0&&formfield
+                                        
+                                        // .filter((item, index) => formfield[index].subcategory.id === selectedProductDatabyid && selectedProductBrand != "")
+                                        .filter((item, index) => selectedProductBrand != "")
+                                       
                                         .map((demoItem, index) => (
                                             <div key={index} className="grid sm:grid-cols-2 gap-4">
                                                 {demoItem.form.map((field, fieldIndex) => (
                                                     <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
                                                         <div key={fieldIndex} className="space-y-2">
                                                             <span>{field.label}</span>
-                                                            {field.type !="select" ? (
+                                                            {field.type != "Dropdown" ? (
                                                                 <input
-                                                                type={field.type}
-                                                                name={field.name}
-                                                                placeholder={field.label}
-                                                                className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                                                onChange={handleInputChange2}
-                                                            />
-                                                                
+                                                                    type={field.type}
+                                                                    name={field.name}
+
+                                                                    placeholder={field.label}
+                                                                    className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
+                                                                    onChange={handleInputChange2}
+                                                                />
+
                                                             ) : (
                                                                 <div>
                                                                     <select
@@ -865,10 +933,10 @@ const Page = () => {
                                                 ))}
                                             </div>
                                         ))}
-                                        
+
                                 </div>
                                 <div className={`flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 ${handleformhidden ? "block" : "hidden"}`}>
-                                    <button className="bg-[#1D4ED8] hover:bg-blue-600   text-white">
+                                    <button className="bg-[#1D4ED8] hover:bg-blue-600   text-white" onClick={handlesaveaddproduct}>
                                         Add product
                                     </button>
                                     <button

@@ -310,24 +310,24 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
         // console.log(newdata)
         // console.log(alldata)
 
-        // try {
-        //         const res=await fetch("http://localhost/ims/public/form",{
-        //             method:"POST",
-        //             headers:{
-        //                 "Content-Type":"application/json",
-        //                 "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDUyMDk4LCJleHAiOjE3MTUzMTYwOTgsIm5iZiI6MTcxNDQ1MjA5OCwianRpIjoiTU1KMkE1akFtckNtZTB1bSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.OXWd-TKEXkAX7FSCAlLUvm3WLYo4R3jSb5LAzU6cK2I"
-        //             },
-        //             body:JSON.stringify(newdata),
-        //         });
-        //         if(res.ok){
-        //             alert("Data Post")
-        //         }
-        //         else{
-        //             throw new Error("Some Error");
-        //         }
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        try {
+                const res=await fetch("http://localhost/ims/public/form",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDUyMDk4LCJleHAiOjE3MTUzMTYwOTgsIm5iZiI6MTcxNDQ1MjA5OCwianRpIjoiTU1KMkE1akFtckNtZTB1bSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.OXWd-TKEXkAX7FSCAlLUvm3WLYo4R3jSb5LAzU6cK2I"
+                    },
+                    body:JSON.stringify(newdata),
+                });
+                if(res.ok){
+                    alert("Data Post")
+                }
+                else{
+                    throw new Error("Some Error");
+                }
+        } catch (error) {
+            console.log(error)
+        }
 
 
 
@@ -402,7 +402,7 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
                                 </div>
                             </div>
                         </div>
-                        {formcreation ? (
+                        {/* {formcreation ? ( */}
                             <div className="space-y-2">
 
                                 <div className="space-y-2">
@@ -625,65 +625,9 @@ const AddProductNew = ({ data, dataActive, sendDataToParent, selectedProductData
 
                                 </div>
                             </div>
-                        ) : (
+                        {/* ) : ( */}
 
-                            <form className=" space-y-4 ">
-                                
-                                <div className="grid sm:grid-cols-2 gap-4">
-                                    {alldata.length > 0 &&
-                                        alldata
-                                            // .filter(demoItem => selectedOptions.includes(demoItem.label))
-                                            // .filter((demoItem,index)=>demoItem.title===selectedOptions.some((ele,index)=>ele))
-                                            .map((demoItem, index) => (
-                                                <div key={index}>
-                                                    <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
-                                                        <div className="space-y-2">
-                                                            <span>{demoItem.label}</span>
-                                                            {
-                                                                demoItem.type != "Dropdown" ? (
-                                                                    <input
-                                                                        type={demoItem.type}
-                                                                        name={demoItem.name}
-                                                                        placeholder={demoItem.label}
-                                                                        className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                                                    />
-                                                                ) : (
-                                                                    <>
-                                                                        <select className="border-2    bg-[#F9FAFB] w-full  p-2 rounded-xl">
-                                                                            {demoItem.option.map((element, optionIndex) => (
-                                                                                <option key={optionIndex}>
-                                                                                    {/* {option.title} */}
-                                                                                    {element.label}
-                                                                                    {/* hello */}
-                                                                                </option>
-                                                                            ))}
-                                                                        </select>
-                                                                    </>
-                                                                )
-                                                            }
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                </div>
-                                <div className="flex justify-end items-center gap-2">
-
-                                    <button
-                                        className={`bg-[#1D4ED8] hover:bg-blue-600 rounded-xl      py-2 px-5  text-white`}
-                                        // onClick={handledatasubmit}
-                                    >
-                                        Submit
-                                    </button>
-                                    <button
-                                        className={`bg-red-400 hover:bg-red-500  rounded-xl     py-2 px-5  text-white`}
-                                        onClick={handlecancel}
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                            </form>
-                        )}
+                       
                     </div>
                 </div>
             </div>
