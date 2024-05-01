@@ -285,7 +285,8 @@ const Page = () => {
         setScrollFun(true);
     };
 
-    const handleViewFun= (e)=>{
+    const handleViewFun= (e,index)=>{
+        setFormData1(supplierData[index]);
         setHandleview(false);
         setScrollFun(false);
     }
