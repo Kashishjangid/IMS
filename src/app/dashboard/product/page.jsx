@@ -1,12 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { CiEdit } from "react-icons/ci";
+import { CiEdit, CiLogin } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 import { demo, allfildes } from "./data";
+// import { useRouter } from "next/navigation";
+
 
 import Select from "react-select";
 import CreatableSelect from 'react-select/creatable';
@@ -37,6 +39,9 @@ const Page = () => {
     const [selectedValues, setSelectedValues] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [handleDelete, setHandleDelete] = useState("");
+    const [handleproductserialnumber, setHandleproductserialnumber] = useState("");
+    const [formData, setFormData] = useState({});
+    const [formDataupdateapi, setFormDataupdateapi] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -59,11 +64,13 @@ const Page = () => {
 
                 if (selectedValues.length === 0) {
                     setData(jsonData)
-
-
+                    // router.push("/dashbddoard/product")
+                    
+                    
                 }
                 else {
-
+                    
+                    
 
                     setData(
                         jsonData.filter(item => {
@@ -90,73 +97,53 @@ const Page = () => {
 
 
             } catch (error) {
+                // router.push("/dashboard")   
                 console.error("Error fetching data:", error);
             }
         };
 
         fetchData();
-    }, [Hidden, selectedValues, handleDelete]);
+    }, [Hidden, selectedValues, handleDelete,formDataupdateapi]);
     // for product
     const [dataforproduct, setDataForProduct] = useState([])
-    useEffect(() => {
-        const productdatafetch = async () => {
+    const handleAddProducts = async (e) => {
+        e.preventDefault();
+        setHiddenAddProduct(false);
+        setFormDataupdateapi(true);
 
-            try {
-                const response = await fetch("http://localhost/ims/public/subcategory", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
-                    },
-                    cache: "no-store"
+        setScrollFun(false);
+        try {
+            const response = await fetch("http://localhost/ims/public/subcategory", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
+                },
+                cache: "no-store"
 
-                });
-                if (!response.ok) {
-                    // If response is not ok, throw an error
-                    throw new Error('Failed to fetch product data');
-                }
-                const jsonproductdata = await response.json();
+            });
+            const jsonproductdata = await response.json();
+            if (response.ok) {
+                // If response is not ok, throw an error
                 setDataForProduct(jsonproductdata);
-                // const jsonproductdata = await response.json();
-                // // console.log(prodata)
-                // setDataForProduct(jsonproductdata)
-            } catch (error) {
-
-                console.error(error)
+            }
+            else {
+                throw new Error('Failed to fetch product data');
 
             }
+            // const jsonproductdata = await response.json();
+            // // console.log(prodata)
+            // setDataForProduct(jsonproductdata)
+        } catch (error) {
 
-        };
-        productdatafetch();
-    }, [])
-    // for brand
-    const [dataforproductbrand, setDataForProductBrand] = useState([])
-    useEffect(() => {
-        const productdatafetch1 = async () => {
-            try {
-                const response = await fetch("http://localhost/ims/public/brand", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
-                    },
-                    cache: "no-store"
-                });
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const jsonproductdata = await response.json();
-                // console.log(jsonproductdata);
-                setDataForProductBrand(jsonproductdata);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                // You can handle the error here, for example:
-                // setError("An error occurred while fetching data");
-            }
-        };
+            console.error(error)
 
-        productdatafetch1();
-    }, []);
+        }
+
+
+    };
+
+
 
 
 
@@ -191,21 +178,25 @@ const Page = () => {
 
         setEditableItem(null);
 
+        
+        // console.log(updatedata);
+        // console.log(`http://localhost/ims/public/product/${updatedata.product_id}`);
 
 
         try {
             const res = await fetch(
-                `http://192.168.1.82/lumentest/public/product/${updatedata.Product_Id}`,
+                `http://localhost/ims/public/product/${updatedata.product_id}`,
                 {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                     },
-                    body: JSON.stringify(dataobject),
+                    body: JSON.stringify(updatedata),
                 }
             );
             if (res.ok) {
+                alert("Updates successfully ")
 
             } else {
                 throw new Error("Some Error");
@@ -217,13 +208,16 @@ const Page = () => {
 
     const handleCancelClick = () => {
         setEditableItem(null);
+        
+        // setUpdateData([]);
 
     };
 
     const [formData1, setFormData1] = useState({});
     const handleHidden = (e, index) => {
-        // alert(index)
+        // console.log(data)
         setFormData1(data[index]);
+        // console.log(formData1.product_id)
         setHidden(false);
         setScrollFun(false);
     };
@@ -277,6 +271,8 @@ const Page = () => {
                 // router.refresh();
                 // alert("Hello")
                 setHidden(true);
+                // setHidden(true);
+                setScrollFun(true);
             } else {
                 throw new Error("Some Error");
             }
@@ -315,7 +311,7 @@ const Page = () => {
         setSelectedProduct(selectedOptions);
         setSelectedProductData(selectedOptions.value)
         setSelectedProductDatabyid(selectedOptions.id)
-        
+
 
 
 
@@ -344,11 +340,13 @@ const Page = () => {
 
 
     const [selectedProductBrandData, setSelectedProductBrandData] = useState("");
+    const [selectedProductBrandid, setSelectedProductBrandid] = useState("ss");
     const optionHandleForProductBrand = (selectedOptions) => {
 
         setSelectedProductBrand(selectedOptions);
         // console.log(selectedOptions.value)
         setSelectedProductBrandData(selectedOptions.value)
+        setSelectedProductBrandid(selectedOptions.id)
 
 
 
@@ -369,12 +367,7 @@ const Page = () => {
 
 
 
-    const handleAddProducts = (e) => {
-        e.preventDefault();
-        setHiddenAddProduct(false);
 
-        setScrollFun(false);
-    };
 
 
     const [customfieldsdataactive, setCustomfieldsDataActive] = useState(false);
@@ -406,13 +399,18 @@ const Page = () => {
 
 
 
-    const [formData, setFormData] = useState({});
+   
     const handleInputChange2 = (e) => {
         const { name, value } = e.target;
+        // const newValue = e.target.type === 'select-one' ? e.target.value : value;
+        // const newValue = e.target.type === 'select-one' ? e.target.selectedOptions[0].value : value;
 
         setFormData({
+            "subcategory_id": productid,
+            "brand_id": selectedProductBrandid,
+            "serial_number": handleproductserialnumber,
             ...formData,
-            [name]: value,
+            [name.toLowerCase().replace(/\s+/g, "_")]: value,
         });
     };
     const handleSubmit = (e) => {
@@ -461,7 +459,7 @@ const Page = () => {
     const handleDeletefun = async (e, index) => {
         // console.log(data[index].product_id)
         // console.log(`http://localhost/ims/public/product/${data[index].product_id}`)
-        if (confirm("Are You Sure You Want to delete this product") == true) {
+        if (confirm(`Are You Sure You Want to delete this Product ${data[index].product_id}`) == true) {
 
 
             try {
@@ -477,7 +475,7 @@ const Page = () => {
                     // Deletion successful, update your UI or trigger any necessary actions
                     // alert("Product deleted successfully");
                     setHandleDelete(data[index].product_id)
-                    alert("Product deleted successfully")
+                    // alert("Product deleted successfully")
                 } else {
                     // Server returned an error status, handle it accordingly
                     throw new Error("Failed to delete product");
@@ -511,6 +509,7 @@ const Page = () => {
 
     const [formfield, setFormfield] = useState([]);
     useEffect(() => {
+
         const fetchData = async () => {
             // alert(`http://localhost/ims/public/form/${productid}`)
             try {
@@ -526,31 +525,84 @@ const Page = () => {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const data = await response.json();
-              
+
                 setFormfield(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
-    
+        // if(productid.length>0){
+
         fetchData();
+        // }
+
     }, [productid]);
     // console.log(formfield.length)
-    
-    
 
 
-    const handlesaveaddproduct = (e) => {
+
+    const handleproductserialnumberfun = (e) => {
+        setHandleproductserialnumber(e.target.value)
+    }
+
+
+    useEffect(() => {
+
+        setHandleproductserialnumber("")
+    }, [selectedProductBrand])
+
+    const handlesaveaddproduct = async (e) => {
         e.preventDefault();
 
-        console.log(formData);
-        setFormData({})
+
+        // console.log(newdata);
+        // console.log(formData);
+        // setFormData({})
+
+        // console.log(handleproductserialnumber);
+
+
+        try {
+            const res = await fetch(
+                `http://localhost/ims/public/product`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
+                    },
+                    body: JSON.stringify(formData),
+                }
+            );
+            if (res.ok) {
+                setFormData({})
+                setHiddenAddProduct(true);
+                setScrollFun(true);
+                setSelectedProductData("");
+                setSelectedProduct("");
+                setSelectedProductBrand("");
+                setCustomfieldsDataActive(true)
+                // alert("DOne")
+                setFormDataupdateapi(false);
+
+            } else {
+                // alert("j")
+                alert("Please Fill The Required filled")
+
+                throw new Error("Some Error");
+            }
+        } catch (error) {
+            console.log("Error", error);
+        }
+
 
     }
 
 
 
 
+
+    // const tableHead=[Id,Product,Brand,Serial]
 
     return (
         <>
@@ -610,7 +662,7 @@ const Page = () => {
                                 <th>Model</th>
                                 {/* <th>Configuration</th> */}
                                 {/* <th>Ram</th> */}
-                                <th>HDD</th>
+                                {/* <th>HDD</th> */}
 
                                 <th>Action</th>
 
@@ -618,101 +670,182 @@ const Page = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((element, index) => (
-                                <tr
-                                    className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
-                                    key={index}
-                                >
-                                    {Object.keys(element).map((key) => (
-                                        <td key={key}>
-                                            {/* <p>{key}</p> */}
+                            {data
+                                // .filter((ele,index)=>index<)
+                                .map((element, index) => (
+                                    <tr
+                                        className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
+                                        key={index}
+                                    >
+                                        {/* {Object.keys(element).map((key) => ( */}
+
+
+                                        <td>
+
 
                                             <div onClick={() => handleEditClick(index)}>
                                                 {editableItem === index ? (
                                                     <input
                                                         type="text"
-                                                        name={key}
-                                                        value={element[key]}
+                                                        name="id"
+                                                        value={element["product_id"]}
                                                         onChange={(e) => handleInputChange(e, index)}
                                                         className="w-20"
                                                     />
                                                 ) : (
-                                                    element[key]
+
+                                                    element["product_id"]
                                                 )}
                                             </div>
-                                            {/* </div> */}
-                                        </td>
-                                    ))}
-                                    <td className=" justify-center space-x-1    *:*:p-1  flex    flex-wrap items-center    *:*:rounded *:text-white">
-                                        {editableItem === index ? (
-                                            <div className="flex gap-1 *:rounded  *:p-1 text-[10px]">
-                                                <button
-                                                    className="hover:opacity-80  bg-[#184892]"
-                                                    onClick={(e) => handleSaveClick(e, index)}
-                                                >
-                                                    Save
-                                                </button>
 
-                                                <button
-                                                    className="hover:opacity-80 bg-[#184892]"
-                                                    onClick={handleCancelClick}
+                                        </td>
+                                        <td>
+
+
+                                            <div onClick={() => handleEditClick(index)}>
+                                                {editableItem === index ? (
+                                                    <input
+                                                        type="text"
+                                                        name="product_subcategory"
+                                                        value={element["product_subcategory"]}
+                                                        onChange={(e) => handleInputChange(e, index)}
+                                                        className="w-20"
+                                                    />
+                                                ) : (
+
+                                                    element["product_subcategory"]
+                                                )}
+                                            </div>
+
+                                        </td>
+                                        <td>
+
+
+                                            <div onClick={() => handleEditClick(index)}>
+                                                {editableItem === index ? (
+                                                    <input
+                                                        type="text"
+                                                        name="product_brand"
+                                                        value={element["product_brand"]}
+                                                        onChange={(e) => handleInputChange(e, index)}
+                                                        className="w-20"
+                                                    />
+                                                ) : (
+
+                                                    element["product_brand"]
+                                                )}
+                                            </div>
+
+                                        </td>
+                                        <td>
+
+
+                                            <div onClick={() => handleEditClick(index)}>
+                                                {editableItem === index ? (
+                                                    <input
+                                                        type="text"
+                                                        name="product_serial_number"
+                                                        value={element["product_serial_number"]}
+                                                        onChange={(e) => handleInputChange(e, index)}
+                                                        className="w-20"
+                                                    />
+                                                ) : (
+
+                                                    element["product_serial_number"] ? element["product_serial_number"] : "------"
+                                                )}
+                                            </div>
+
+                                        </td>
+                                        <td>
+
+
+                                            <div onClick={() => handleEditClick(index)}>
+                                                {editableItem === index ? (
+                                                    <input
+                                                        type="text"
+                                                        name="model"
+                                                        value={element["model"]}
+                                                        onChange={(e) => handleInputChange(e, index)}
+                                                        className="w-20"
+                                                    />
+                                                ) : (
+
+                                                    element["model"] ? element["model"] : "------"
+                                                )}
+                                            </div>
+
+                                        </td>
+                                        {/* ))} */}
+                                        <td className=" justify-center space-x-1    *:*:p-1  flex    flex-wrap items-center    *:*:rounded *:text-white">
+                                            {editableItem === index ? (
+                                                <div className="flex gap-1 *:rounded  *:p-1 text-[10px]">
+                                                    <button
+                                                        className="hover:opacity-80  bg-[#184892]"
+                                                        onClick={(e) => handleSaveClick(e, index)}
+                                                    >
+                                                        Save
+                                                    </button>
+
+                                                    <button
+                                                        className="hover:opacity-80 bg-[#184892]"
+                                                        onClick={handleCancelClick}
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                // <button
+                                                //     className="hover:opacity-80 bg-[#184892]"
+                                                //     onClick={(e) => handleHidden(e, index)}
+                                                // >
+                                                //     <CiEdit />
+                                                // </button>
+                                                <div className="relative *:p-1 *:rounded">
+                                                    <div className={`absolute -top-6 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
+                                                        <h1 className="text-white text-[10px]">Edit</h1>
+                                                    </div>
+
+
+                                                    <button
+                                                        className="hover:opacity-80 bg-[#184892]"
+                                                        onClick={(e) => handleHidden(e, index)}
+                                                        onMouseEnter={(e) => handletooltip1(e, index)}
+                                                        onMouseLeave={() => setTooltip1(null)}
+                                                    >
+                                                        <CiEdit />
+
+                                                    </button>
+                                                </div>
+                                            )}
+                                            <div className="relative ">
+                                                <div className={`absolute -top-7 overflow-hidden bg-[green] !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white text-[10px]">View</h1>
+                                                </div>
+                                                <button className="hover:opacity-80 bg-[green] "
+                                                    onClick={(e) => handleHiddenView(e, index)}
+                                                    onMouseEnter={(e) => handletooltip2(e, index)}
+                                                    onMouseLeave={() => setTooltip2(null)}
+
                                                 >
-                                                    Cancel
+                                                    <MdOutlineRemoveRedEye />
                                                 </button>
                                             </div>
-                                        ) : (
-                                            // <button
-                                            //     className="hover:opacity-80 bg-[#184892]"
-                                            //     onClick={(e) => handleHidden(e, index)}
-                                            // >
-                                            //     <CiEdit />
-                                            // </button>
-                                            <div className="relative *:p-1 *:rounded">
-                                                <div className={`absolute -top-6 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
-                                                    <h1 className="text-white text-[10px]">Edit</h1>
+                                            <div className="relative">
+                                                <div className={`absolute -top-7 overflow-hidden bg-[red] !px-2 -left-[50%] ${tooltip3 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white text-[10px]">Delete</h1>
                                                 </div>
 
-
-                                                <button
-                                                    className="hover:opacity-80 bg-[#184892]"
-                                                    onClick={(e) => handleHidden(e, index)}
-                                                    onMouseEnter={(e) => handletooltip1(e, index)}
-                                                    onMouseLeave={() => setTooltip1(null)}
+                                                <button className="hover:opacity-80 bg-[red]"
+                                                    onClick={(e) => handleDeletefun(e, index)}
+                                                    onMouseEnter={(e) => handletooltip3(e, index)}
+                                                    onMouseLeave={() => setTooltip3(null)}
                                                 >
-                                                    <CiEdit />
-
+                                                    <MdDelete />
                                                 </button>
                                             </div>
-                                        )}
-                                        <div className="relative ">
-                                            <div className={`absolute -top-7 overflow-hidden bg-[green] !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
-                                                <h1 className="text-white text-[10px]">View</h1>
-                                            </div>
-                                            <button className="hover:opacity-80 bg-[green] "
-                                                onClick={(e) => handleHiddenView(e, index)}
-                                                onMouseEnter={(e) => handletooltip2(e, index)}
-                                                onMouseLeave={() => setTooltip2(null)}
-
-                                            >
-                                                <MdOutlineRemoveRedEye />
-                                            </button>
-                                        </div>
-                                        <div className="relative">
-                                            <div className={`absolute -top-7 overflow-hidden bg-[red] !px-2 -left-[50%] ${tooltip3 === index ? '' : 'hidden'}`}>
-                                                <h1 className="text-white text-[10px]">Delete</h1>
-                                            </div>
-
-                                            <button className="hover:opacity-80 bg-[red]"
-                                                onClick={(e) => handleDeletefun(e, index)}
-                                                onMouseEnter={(e) => handletooltip3(e, index)}
-                                                onMouseLeave={() => setTooltip3(null)}
-                                            >
-                                                <MdDelete />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
+                                        </td>
+                                    </tr>
+                                ))}
                         </tbody>
                     </table>
                 </div>
@@ -725,21 +858,66 @@ const Page = () => {
 
                     <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
                         <form action="" className="   rounded p-8    bg-white">
-                            <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
+                            {/* <h1 className="text-4xl text-red-400 font-semibold">Edit</h1> */}
+                            <div className=" flex justify-between items-center">
+
+
+                                <h1 className="text-3xl text-red-400 font-semibold">Edit</h1>
+                                <RxCross2 size={30} onClick={handleCancelEditForm} className="cursor-pointer" />
+                            </div>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
 
 
 
-                                {Object.entries(formData1).map(([key, value], index) => (
+                                {/* {Object.entries(formData1).map(([key, value], index) => (
                                     <div className="" key={index}>
-                                        <span className="">{key}</span>
-                                        <input
-                                            type="text"
-                                            value={value} // Use the value corresponding to the key
-                                            onChange={(e) => handleInputChangeForm(e, key)} // Optionally handle change
-                                            name={key} // Use the key as the input name
-                                            className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
-                                        />
+                                        <span className="">{key.split('_')
+                                            .map(word =>
+                                                word.charAt(0).toUpperCase() + word.slice(1)
+                                            )
+                                            .join(' ')}</span>
+
+                                        
+                                        {key === "product_id" ? (
+                                            <input
+                                                type="text"
+                                                value={value}
+                                                readOnly // Make the input field read-only
+                                                name={key}
+                                                className="border-2 outline-red-500  cursor-not-allowed border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
+                                            />
+                                        ) : (
+                                            <input
+                                                type="text"
+                                                value={value}
+                                                onChange={(e) => handleInputChangeForm(e, key)}
+                                                name={key}
+                                                className="border-2 outline-red-500  border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
+                                            />
+                                        )}
+                                    </div>
+                                ))} */}
+                                 {Object.entries(formData1)
+                                 .filter(([key,index])=>key != "product_id" )
+                                 .map(([key, value], index) => (
+                                    <div className="" key={index}>
+
+                                        
+                                        {/* {&&  (<> */}
+                                            <span className="">{key.split('_')
+                                                .map(word =>
+                                                    word.charAt(0).toUpperCase() + word.slice(1)
+                                                )
+                                                .join(' ')}</span>
+                                            <input
+                                                type="text"
+                                                value={value}
+                                                onChange={(e) => handleInputChangeForm(e, key)}
+                                                name={key}
+                                                className="border-2 outline-red-500  border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
+                                                />
+                                                {/* </> */}
+                                        {/* // )} */}
                                     </div>
                                 ))}
 
@@ -771,30 +949,36 @@ const Page = () => {
 
                 {/* for view Data */}
                 <div
-                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${Hiddenview ? "hidden" : "flex"
+                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24   pb-20  ${Hiddenview ? "hidden" : "flex"
                         } bg-black/30 backdrop-blur-[2px] overflow-auto `}
                 >
 
                     <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
                         <form action="" className="   rounded p-8    bg-white">
-                            <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
+                            {/* <h1 className="text-4xl text-red-400 font-semibold">View</h1> */}
+                            <div className=" flex justify-between items-center">
+
+
+                                <h1 className="text-3xl text-red-400 font-semibold">View</h1>
+                                <RxCross2 size={30} onClick={handleCancelViewForm} className="cursor-pointer" />
+                            </div>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
 
 
 
                                 {Object.entries(formData1).map(([key, value], index) => (
                                     <div className="" key={index}>
-                                        <span className="">{key}</span>
-                                        <div className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl">
+                                        {/* <span className="">{key}</span> */}
+                                        <span className="">{key
+                                            .split('_')
+                                            .map(word =>
+                                                word.charAt(0).toUpperCase() + word.slice(1)
+                                            )
+                                            .join(' ')}</span>
+                                        <div className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 cursor-not-allowed rounded-xl">
                                             {value}
                                         </div>
-                                        {/* <input
-                                            type="text"
-                                            value={value} // Use the value corresponding to the key
-                                            // onChange={(e) => handleInputChangeForm(e, key)} // Optionally handle change
-                                            name={key} // Use the key as the input name
-                                            className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
-                                        /> */}
+
                                     </div>
                                 ))}
 
@@ -868,7 +1052,7 @@ const Page = () => {
                                             // .filter((ele, index) => productid === ele.subcategory_id)
                                             // console.log(formfield[0].brand)
                                             options={formfield[0]?.brand
-                                                .map(ele => ({ value: ele.name, label: ele.name }))}
+                                                .map(ele => ({ value: ele.name, label: ele.name, id: ele.id }))}
 
                                             value={selectedProductBrand}
 
@@ -879,26 +1063,53 @@ const Page = () => {
 
                                         />
 
-                                        {/* <AddProductNew data={allfildes} /> */}
+
                                     </div>
-                                    {/* {
-                                        selectedProductDatafornewproduct.length === 0 ? ("Hello") : (selectedProductDatafornewproduct.length)
-                                    } */}
-                                    {/* <AddProductNew data={allfildes}/> */}
+
                                 </div>
+                                {/* <div className={`space-y-2 ${handleformhidden ? "block" : "hidden"} `}>
+                                    <h2>Product Serial Number</h2>
+
+                                    <div className="flex w-full justify-center  items-center gap-3">
+                                        <input type="text" className="border-2  outline-[#1D4ED8]   w-full  p-1 rounded" />
+
+
+
+                                    </div>
+
+                                </div> */}
                             </div>
                             {/* <form className=" " hidden={false}> */}
                             <form className=" space-y-4 ">
                                 <div>
 
 
-                                { formfield.length>0&&formfield
-                                        
+                                    {formfield.length > 0 && formfield
+
                                         // .filter((item, index) => formfield[index].subcategory.id === selectedProductDatabyid && selectedProductBrand != "")
                                         .filter((item, index) => selectedProductBrand != "")
-                                       
+
                                         .map((demoItem, index) => (
                                             <div key={index} className="grid sm:grid-cols-2 gap-4">
+                                                <div className={`space-y-2 mt-4 ${handleformhidden ? "block" : "hidden"} `}>
+                                                    <h2>Product Serial Number</h2>
+
+                                                    <div className="flex w-full justify-center  items-center gap-3">
+                                                        <input
+                                                            type="text"
+                                                            // name={field.name}
+                                                            value={handleproductserialnumber}
+
+                                                            placeholder="Product Serial Number"
+                                                            className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
+                                                            onChange={handleproductserialnumberfun}
+                                                        />
+
+
+
+                                                    </div>
+
+                                                </div>
                                                 {demoItem.form.map((field, fieldIndex) => (
                                                     <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
                                                         <div key={fieldIndex} className="space-y-2">

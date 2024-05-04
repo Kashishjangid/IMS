@@ -15,144 +15,20 @@ import CreatableSelect from 'react-select/creatable';
 // import AddProductNew from "@/Components/AddProductNew";
 import AddOutward from "@/Components/AddOutward";
 
-const options = [
-    { value: "Dell", label: "Dell" },
-    { value: "Asus", label: "Asus" },
-    { value: "4 GB", label: "4 GB" },
-    { value: "8 GB", label: "8 GB" },
-    { value: "12 GB", label: "12 GB" },
-    { value: "16 GB", label: "16 GB" },
-    { value: "i7", label: "i7" },
-];
+
 
 const Page = () => {
 
-    const [outward, setOutward] = useState([
-        {
-            "ID": 1,
-            "Company Name": "ABC Inc.",
-            "Ch. No.": "CH001",
-            "Description": "Business laptop",
-            "Laptop Model": "Dell Latitude",
-            "Laptop Serial No.": ["SN001", "SN002", "SN003"],
-            "GCV No.": "GCV123",
-            "Contact Person": "John Doe",
-            "Contact Number": "(123) 456-7890",
-            "Delivery Address": "123 Main St, Anytown",
-            "Laptop Start Date": "2024-04-01",
-            "EMPLOYEE ID": "E001",
-            "Configuration": "Standard",
-            "RAM": "8GB",
-            "HDD": "512GB SSD",
-            "Qty.": 1,
-            "NEW Req or Against Replace": "New Requirement",
-            "Old laptop serial number If against Replacement": "",
-            "If against Replacement than Return Status": "",
-            "Employee Code If Req.": "EMP001",
-            "DOCKET NO": "DOC001"
-        },
-        {
-            "ID": 2,
-            "Company Name": "XYZ Corporation",
-            "Ch. No.": "CH002",
-            "Description": "Developer laptop",
-            "Laptop Model": "HP Spectre",
-            "Laptop Serial No.": ["SN011", "SN012", "SN013"],
-            "GCV No.": "GCV456",
-            "Contact Person": "Jane Smith",
-            "Contact Number": "(234) 567-8901",
-            "Delivery Address": "456 Elm St, Somewhere",
-            "Laptop Start Date": "2024-04-05",
-            "EMPLOYEE ID": "E002",
-            "Configuration": "Developer Edition",
-            "RAM": "16GB",
-            "HDD": "1TB SSD",
-            "Qty.": 1,
-            "NEW Req or Against Replace": "New Requirement",
-            "Old laptop serial number If against Replacement": "",
-            "If against Replacement than Return Status": "",
-            "Employee Code If Req.": "EMP002",
-            "DOCKET NO": "DOC002"
-        },
-        {
-            "ID": 3,
-            "Company Name": "Tech Solutions Ltd.",
-            "Ch. No.": "CH003",
-            "Description": "Executive laptop",
-            "Laptop Model": "Lenovo ThinkPad",
-            "Laptop Serial No.": ["SN021", "SN022", "SN023"],
-            "GCV No.": "GCV789",
-            "Contact Person": "Michael Johnson",
-            "Contact Number": "(345) 678-9012",
-            "Delivery Address": "789 Oak St, Techville",
-            "Laptop Start Date": "2024-04-10",
-            "EMPLOYEE ID": "E003",
-            "Configuration": "Executive Package",
-            "RAM": "16GB",
-            "HDD": "1TB SSD",
-            "Qty.": 1,
-            "NEW Req or Against Replace": "New Requirement",
-            "Old laptop serial number If against Replacement": "",
-            "If against Replacement than Return Status": "",
-            "Employee Code If Req.": "EMP003",
-            "DOCKET NO": "DOC003"
-        },
-        {
-            "ID": 4,
-            "Company Name": "Global Innovations Inc.",
-            "Ch. No.": "CH004",
-            "Description": "High-performance laptop",
-            "Laptop Model": "Apple MacBook Pro",
-            "Laptop Serial No.": ["SN031", "SN032", "SN033"],
-            "GCV No.": "GCV234",
-            "Contact Person": "Emily Rogers",
-            "Contact Number": "(456) 789-0123",
-            "Delivery Address": "567 Maple Ave, Innovations City",
-            "Laptop Start Date": "2024-04-15",
-            "EMPLOYEE ID": "E004",
-            "Configuration": "High Performance Edition",
-            "RAM": "32GB",
-            "HDD": "2TB SSD",
-            "Qty.": 1,
-            "NEW Req or Against Replace": "New Requirement",
-            "Old laptop serial number If against Replacement": "",
-            "If against Replacement than Return Status": "",
-            "Employee Code If Req.": "EMP004",
-            "DOCKET NO": "DOC004"
-        },
-        {
-            "ID": 5,
-            "Company Name": "Visionary Enterprises",
-            "Ch. No.": "CH005",
-            "Description": "Designer laptop",
-            "Laptop Model": "Microsoft Surface Book",
-            "Laptop Serial No.": ["SN041", "SN042", "SN043"],
-            "GCV No.": "GCV567",
-            "Contact Person": "David Anderson",
-            "Contact Number": "(567) 890-1234",
-            "Delivery Address": "910 Cedar St, Vision City",
-            "Laptop Start Date": "2024-04-20",
-            "EMPLOYEE ID": "E005",
-            "Configuration": "Designer Package",
-            "RAM": "16GB",
-            "HDD": "1TB SSD",
-            "Qty.": 1,
-            "NEW Req or Against Replace": "New Requirement",
-            "Old laptop serial number If against Replacement": "",
-            "If against Replacement than Return Status": "",
-            "Employee Code If Req.": "EMP005",
-            "DOCKET NO": "DOC005"
-        }
-    ])
+   
 
     const fieldSet = new Set();
 
     // Iterate through each object in the data array and collect keys
-    outward.forEach((obj) => {
-        Object.keys(obj).forEach((key) => {
-            fieldSet.add(key); // Add each key to the Set (which automatically ensures uniqueness)
-        });
-    });
+    // outward.forEach((obj) => {
+    //     Object.keys(obj).forEach((key) => {
+    //         fieldSet.add(key); // Add each key to the Set (which automatically ensures uniqueness)
+    //     });
+    // });
 
     // Convert the Set back to an array of field names
     const fieldName = Array.from(fieldSet);
@@ -161,7 +37,7 @@ const Page = () => {
 
 
     const router = useRouter();
-    // const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
     const [updatedata, setUpdateData] = useState([]);
 
     const [editableItem, setEditableItem] = useState(null);
@@ -169,37 +45,47 @@ const Page = () => {
 
     const [selectedValues, setSelectedValues] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const[searchoption,setSearchOption]=useState([]);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch(
+                    `http://localhost/ims/public/outward`,
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
+                        },
 
-    //             const res = await fetch(
-    //                 "http://localhost/ims/public/product",
-    //                 {
-    //                     method: "GET",
-    //                     headers: {
-    //                         "Content-Type": "application/json",
-    //                         "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzEzODQ5MzA3LCJleHAiOjE3MTM5MzU3MDcsIm5iZiI6MTcxMzg0OTMwNywianRpIjoibnpmc05HVWJEWFlEUE9ubCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GeCf0tE9sGkfTKy93b4QfOiOENSFOVR0_-tqM47Wk1s"
-    //                     },
-    //                     cache: "no-store"
-    //                 }
-    //             );
-    //             const jsonData = await res.json();
-
-    //                 setData(jsonData)
-
-
-    //             }    
+                    }
+                );
+                const jsonData = await res.json();
+                if (res.ok) {
+                    
+                    setData(jsonData)
+                    
+                    const dataforsearch=jsonData.map((item)=>({
+                        value:item.company_name.toString(),
+                        label:item.company_name.toString(),
+                    }))
+                    setSearchOption(dataforsearch)
+                    
 
 
-    //          catch (error) {
-    //             console.error("Error fetching data:", error);
-    //         }
-    //     };
+                } else {
 
-    //     fetchData();
-    // }, [Hidden, selectedValues]);
+                    throw new Error("Some Error");
+                }
+            } catch (error) {
+                console.log("Error", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    
 
 
 
@@ -263,9 +149,11 @@ const Page = () => {
     };
 
     const [formData1, setFormData1] = useState({});
-    const handleHidden = (index) => {
-        
-        setFormData1(outward[index]);
+    const handleHidden = (e,index) => {
+        // alert(data[index].id)
+        setFormData1(data[index]);
+        // console.log(index)
+        // console.log(data[index])
         setHidden(false);
         setScrollFun(false);
     };
@@ -283,38 +171,42 @@ const Page = () => {
 
     };
 
-    const dataobjectForm = {
-        brand_id: "1",
-        serial_number: formData1.Product_Serial_Number,
-        model: formData1.Product_Model,
-        configuration: formData1.Product_Configuration,
-        ram: formData1.Product_Ram,
-        hdd: formData1.Product_HDD,
-    };
+    // const dataobjectForm = {
+    //     brand_id: "1",
+    //     serial_number: formData1.Product_Serial_Number,
+    //     model: formData1.Product_Model,
+    //     configuration: formData1.Product_Configuration,
+    //     ram: formData1.Product_Ram,
+    //     hdd: formData1.Product_HDD,
+    // };
 
     const handleSaveEditForm = async (e) => {
         e.preventDefault();
+        // console.log(formData1)
+         alert(`http://localhost/ims/public/outward/${formData1.id}`)
 
-        try {
-            const res = await fetch(
-                `http://192.168.1.82/lumentest/public/product/${formData1.Product_Id}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(dataobjectForm),
-                }
-            );
-            if (res.ok) {
-                router.refresh();
-                setHidden(true);
-            } else {
-                throw new Error("Some Error");
-            }
-        } catch (error) {
-            console.log("Error", error);
-        }
+        // try {
+        //     const res = await fetch(
+        //         `http://localhost/ims/public/outward/${formData1.id}`,
+        //         {
+        //             method: "PUT",
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //                 "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
+        //             },
+        //             body: JSON.stringify(formData1),
+        //         }
+        //     );
+        //     if (res.ok) {
+        //         alert("Updates Successfully")
+                
+        //         setHidden(true);
+        //     } else {
+        //         throw new Error("Some Error");
+        //     }
+        // } catch (error) {
+        //     console.log("Error", error);
+        // }
     };
 
     const handleCancelEditForm = (e) => {
@@ -437,14 +329,15 @@ const Page = () => {
         setScrollFun(true);
     };
     const [formData2, setFormData2] = useState({});
-    const handleViewFun = (e,index) => {
-        
-        setFormData2(outward[index]);
+    const handleViewFun = (e, index) => {
+        // console.log(data[index])
+
+        setFormData2(data[index]);
 
         // console.log(fieldName)   
         // console.log(outward)
 
-        
+
         setHandleview(false);
         setScrollFun(false);
     }
@@ -492,10 +385,10 @@ const Page = () => {
 
                             <Select
                                 className="min-w-[300px] rounded-3xl"
-                                options={options}
+                                options={searchoption}
                                 value={selectedOptions}
                                 onChange={handleChange}
-                                isMulti={true}
+                                // isMulti={true}
                                 placeholder="Search"
                                 styles={{
                                     control: (provided) => ({
@@ -537,13 +430,13 @@ const Page = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {outward.map((element, index) => (
+                            {data.map((element, index) => (
                                 <tr
                                     className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
                                     key={index}
                                 >
                                     {/* Render specific fields: ID, Company Name, Contact Person, Address */}
-                                    <td>{element["ID"]}</td>
+                                    <td>{element["id"]}</td>
                                     <td>
                                         <div onClick={() => handleEditClick(index)}>
                                             {editableItem === index ? (
@@ -555,14 +448,14 @@ const Page = () => {
                                                     className="w-20"
                                                 />
                                             ) : (
-                                                element["Company Name"]
+                                                element["company_name"]
                                             )}
                                         </div>
                                     </td>
-                                    <td>{element["Contact Person"]}</td>
-                                    <td>{element["Contact Number"]}</td>
+                                    <td>{element["challan_number"]}</td>
+                                    <td>{element["contact_number"]}</td>
 
-                                    <td>{element["Delivery Address"]}</td>
+                                    <td>{element["delivery_location"]}</td>
 
                                     {/* Actions column */}
                                     <td className="  justify-center space-x-1    *:*:p-1  flex    flex-wrap items-center    *:*:rounded *:text-white">
@@ -585,10 +478,10 @@ const Page = () => {
                                                 </div>
                                             ) : (
                                                 <div className="relative *:p-1 *:rounded">
-                                                    <div className={`absolute -top-10 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
-                                                        <h1 className="text-white">Edit</h1>
+                                                    <div className={`absolute -top-6 overflow-hidden bg-[green] !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
+                                                        <h1 className="text-white  text-[10px]">View</h1>
                                                     </div>
-                                                    <button className="hover:opacity-80 bg-[#8d2618] "
+                                                    <button className="hover:opacity-80 bg-[green] "
                                                         onClick={(e) => handleViewFun(e, index)}
                                                         onMouseEnter={(e) => handletooltip2(e, index)}
                                                         onMouseLeave={() => setTooltip2(null)}
@@ -600,21 +493,22 @@ const Page = () => {
                                             )}
                                         </div>
 
-                                        <div className="relative ">
-                                            <div className={`absolute -top-10 overflow-hidden bg-green-500 !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
-                                                <h1 className="text-white">View</h1>
+                                        <div className="relative *:p-1 *:rounded">
+                                                <div className={`absolute -top-7 overflow-hidden bg-[#184892] !px-4 -left-[50%] ${tooltip1 === index ? '' : 'hidden'}`}>
+                                                    <h1 className="text-white text-[10px]">Edit</h1>
+                                                </div>
+
+
+                                                <button
+                                                    className="hover:opacity-80 bg-[#184892]"
+                                                    onClick={(e) => handleHidden(e, index)}
+                                                    onMouseEnter={(e) => handletooltip1(e, index)}
+                                                    onMouseLeave={() => setTooltip1(null)}
+                                                >
+                                                    <CiEdit />
+
+                                                </button>
                                             </div>
-                                            <button
-                                                className="hover:opacity-80 bg-[#184892]"
-                                                onClick={(e) => handleHidden(e, index)}
-                                                onMouseEnter={(e) => handletooltip1(e, index)}
-                                                onMouseLeave={() => setTooltip1(null)}
-                                            >
-                                                <CiEdit />
-
-                                            </button>
-
-                                        </div>
 
 
                                     </td>
@@ -633,58 +527,37 @@ const Page = () => {
 
                     <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
                         <form action="" className="   rounded p-8    bg-white">
-                            <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
+                            {/* <h1 className="text-4xl text-red-400 font-semibold">Edit</h1> */}
+                            <div className=" flex justify-between items-center">
+
+
+                                <h1 className="text-3xl text-red-400 font-semibold">Edit</h1>
+                                <RxCross2 size={30} onClick={handleCancelEditForm} className="cursor-pointer" />
+                            </div>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
-                                <div className=" ">
-                                    <span className="  ">Serial Number</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Serial_Number}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Serial_Number"
-                                        className="border-2 outline-red-500  border-[#1D4ED8]   bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Model</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Model}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Model"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Configuration</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Configuration}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Configuration"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Ram</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_Ram}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_Ram"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
-                                <div className=" ">
-                                    <span className=" ">Hdd</span>
-                                    <input
-                                        type="text"
-                                        value={formData1.Product_HDD}
-                                        onChange={(e) => handleInputChangeForm(e)}
-                                        name="Product_HDD"
-                                        className="border-2  outline-red-500  border-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-                                    ></input>
-                                </div>
+
+
+
+                                {Object.entries(formData1).map(([key, value], index) => (
+                                    <div className="" key={index}>
+                                        <span className="">{key.split('_')
+                                            .map(word =>
+                                                word.charAt(0).toUpperCase() + word.slice(1)
+                                            )
+                                            .join(' ')}</span>
+                                        <input
+                                            type="text"
+                                            value={value} // Use the value corresponding to the key
+                                            onChange={(e) => handleInputChangeForm(e, key)} // Optionally handle change
+                                            name={key} // Use the key as the input name
+                                            className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
+                                        />
+                                    </div>
+                                ))}
+
+
+
+
                             </div>
 
                             <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
@@ -715,18 +588,29 @@ const Page = () => {
 
                     <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
                         <form action="" className="   rounded p-8    bg-white">
-                            <h1 className="text-4xl text-red-400 font-semibold">Supplier Details</h1>
+                            {/* <h1 className="text-4xl text-red-400 font-semibold">Supplier Details</h1> */}
+                            <div className=" flex justify-between items-center">
+
+
+                                <h1 className="text-3xl text-red-400 font-semibold">Supplier Details</h1>
+                                <RxCross2 size={30} onClick={handleCancelViewForm} className="cursor-pointer" />
+                            </div>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
 
-                                {fieldName.map((ele, index) => (
-                                    <div key={index}>
-                                        <span>{ele}</span>
-                                        <div className="border-2 bg-white w-full p-2 rounded-xl">
-                                            {formData2[ele]?formData2[ele]:"Default Value"}
-                                            {/* {outward[ele]} */}
-                                            
-                                            
+
+                                {Object.entries(formData2).map(([key, value], index) => (
+                                    <div className="" key={index}>
+                                       
+                                        <span className="">{key
+                                            .split('_')
+                                            .map(word =>
+                                                word.charAt(0).toUpperCase() + word.slice(1)
+                                            )
+                                            .join(' ')}</span>
+                                        <div className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl">
+                                            {value}
                                         </div>
+
                                     </div>
                                 ))}
                             </div>
@@ -743,7 +627,7 @@ const Page = () => {
                     </div>
                 </div>
 
-            <AddOutward hiddenaddoutward={hiddenaddoutward} fieldName={fieldName} sendDataToParent={handleDataFromChild} />
+                <AddOutward hiddenaddoutward={hiddenaddoutward} fieldName={fieldName} sendDataToParent={handleDataFromChild} />
             </div>
 
 
