@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Select from "react-select";
 
-const SearchComponent = ({options, sentproductid}) => {
+const SearchComponent = ({options, sentproductid,title}) => {
     const [selectedOptions, setSelectedOptions] = useState([]);
     
     const handleChange = (selectedOption) => {
@@ -22,7 +22,7 @@ const SearchComponent = ({options, sentproductid}) => {
                 value={selectedOptions}
                 onChange={handleChange}
                 // isMulti={true}
-                placeholder="Search"
+                placeholder={title?title:"Search"}
                 styles={{
                     control: (provided) => ({
                         ...provided,

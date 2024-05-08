@@ -12,6 +12,7 @@ import { RxCross2 } from "react-icons/rx";
 
 import Select from "react-select";
 import AddCustomer from "@/Components/AddCustomer";
+import SearchItems from "@/Components/SearchItems";
 // import CreatableSelect from 'react-select/creatable';
 // import AddProductNew from "@/Components/AddProductNew";
 // import Demo from "@/Components/Demo"
@@ -492,7 +493,7 @@ const Page = () => {
             >
                 <div className="sm:flex sm:space-y-0 space-y-2  justify-between m-4">
                     <h1 className="text-3xl  font-semibold">Customer List </h1>
-                    <div className=" sm:flex sm:space-x-2 space-x-0 sm:space-y-0 space-y-2">
+                    {/* <div className=" sm:flex sm:space-x-2 space-x-0 sm:space-y-0 space-y-2">
 
                         <div className="flex  items-center">
 
@@ -522,7 +523,8 @@ const Page = () => {
 
                             <CiSearch className=" text-[#0E5AFE] border border-[#CCCCCC] border-l-0 hover:cursor-pointer rounded-tr rounded-br p-1 h-[38px]" size={33} onClick={searchHandle} />
                         </div>
-                    </div>
+                    </div> */}
+                    <SearchItems searchElement={options}  selectoptiondata={handleChange}  placeholderValue="Company Name" handlemultiple={true}/>
                     <button
                         className="  duration-700 border sm:py-2 sm:px-5 p-2  rounded bg-[#0E5AFE] text-white"
                         onClick={handleAddProducts}

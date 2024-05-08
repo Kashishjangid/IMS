@@ -490,12 +490,12 @@ const Page = () => {
                 </div>
 
                 <div
-                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${Hidden ? "hidden" : "flex"
-                        } bg-black/30 backdrop-blur-[2px] overflow-auto `}
+                    className={`flex-grow h-full fixed top-0 w-full  justify-center md:pt-0  pb-0  ${Hidden ? "hidden" : "flex"
+                } bg-black/30 backdrop-blur-[2px] overflow-auto `}
                 >
 
-                    <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
-                        <form action="" className="   rounded p-8    bg-white">
+                    <div className=" sm:w-[70%] w-full  sm:p-0   ">
+                        <form action="" className="   absolute top-[50%] -translate-y-[50%] left-[10%] w-[60%]  rounded p-8   bg-white">
                             <h1 className="text-4xl text-red-400 font-semibold">Edit</h1>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
                         
@@ -540,12 +540,12 @@ const Page = () => {
                 </div>
                 {/* for view */}
                 <div
-                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24  pb-20  ${handleview ? "hidden" : "flex"
+                    className={`flex-grow h-full fixed top-0 w-full  justify-center md:pt-0   pb-0  ${handleview ? "hidden" : "flex"
                         } bg-black/30 backdrop-blur-[2px] overflow-auto `}
                 >
 
-                    <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
-                        <form action="" className="   rounded p-8    bg-white">
+                    <div className=" sm:w-[70%] w-full  md:p-0 p-2   ">
+                        <form action="" className=" absolute top-[50%] -translate-y-[50%] md:left-[10%] left-[50%] max-md:-translate-x-[50%] md:w-[60%] w-[95%]  rounded md:p-8 p-4  max-md:mt-32 bg-white">
                             <h1 className="text-4xl text-red-400 font-semibold">Supplier Details</h1>
                             <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
                         

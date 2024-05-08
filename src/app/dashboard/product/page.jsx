@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 import { demo, allfildes } from "./data";
+import ReactPaginate from 'react-paginate';
 // import { useRouter } from "next/navigation";
 
 
@@ -17,6 +18,8 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import Demo from "@/Components/Demo"
 import { Dropdown } from "@mui/base";
 import AddDropDown from "@/Components/AddDropDown";
+import SearchItems from "@/Components/SearchItems";
+import ViewComponent from "@/Components/ViewComponent";
 const options = [
     { value: "Dell", label: "Dell" },
     { value: "Asus", label: "Asus" },
@@ -37,73 +40,168 @@ const Page = () => {
     const [Hiddenview, setHiddenView] = useState(true);
 
     const [selectedValues, setSelectedValues] = useState([]);
-    const [selectedOptions, setSelectedOptions] = useState([]);
+
     const [handleDelete, setHandleDelete] = useState("");
     const [handleproductserialnumber, setHandleproductserialnumber] = useState("");
     const [formData, setFormData] = useState({});
     const [formDataupdateapi, setFormDataupdateapi] = useState(true);
+    const [searchElement, setsearchelemet] = useState([]);
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [pagenumber, setPageNumber] = useState("1");
+    const [totalproduct, setTotalProduct] = useState("");
+    const [totalpages, setTotalpages] = useState("");
+    const totalproductperpage=10;
+
+
+    const totalpro = async () => {
+        try {
+            const res = await fetch(
+                `http://localhost/ims/public/product/paginationinfo/${totalproductperpage}`,
+
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
+                    },
+                    cache: "no-store"
+                }
+            );
+            if (res.ok) {
+                const jsonData = await res.json();
+                console.log(res)
+                setTotalProduct(jsonData.total_product)
+                setTotalpages(jsonData.total_pages)
+                // console.log(jsonData.total_product)
+
+
+
+
+            }
+
+        } catch (error) {
+            console.error("Error fetching data:", error);
+
+        }
+    }
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
+        
+        totalpro();
 
-                const res = await fetch(
-                    "http://localhost/ims/public/product",
-
-                    {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
-                        },
-                        cache: "no-store"
-                    }
-                );
-                const jsonData = await res.json();
+    }, [])
+    // console.log(totalpages)
 
 
-                if (selectedValues.length === 0) {
-                    setData(jsonData)
-                    // router.push("/dashbddoard/product")
-                    
-                    
+    const fetchData = async () => {
+        try {
+
+            const res = await fetch(
+                `http://localhost/ims/public/product/${totalproductperpage}/page/${pagenumber}`,
+
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
+                    },
+                    cache: "no-store"
                 }
-                else {
-                    
-                    
+            );
 
-                    setData(
-                        jsonData.filter(item => {
-                            // For All selected value, check if it exists in the item
-                            // return selectedValues.some(filterItem => {
-                            // For each selected value, check if it exists in the item
-                            return selectedValues.every(filterItem => {
-                                // Check if any of the item properties contain the filter value
-                                return Object.values(item).some(val => {
-                                    // Check if the value is a string before calling .toLowerCase()
-                                    if (typeof val === 'string') {
-                                        return val.toLowerCase().includes(filterItem.toLowerCase());
-                                    }
-                                    return false;
-                                });
-                            });
-                        })
-                    );
+            const jsonData = await res.json();
+
+            // const dataforsearch=jsonData.map((item)=>({
+            //     value:item.company_name.toString(),
+            //     label:item.company_name.toString(),
+            // }))
+            // setSearchOption(dataforsearch)
+
+            const dataele = jsonData.map((ele) =>
+            ({
+                value: ele.product_serial_number.toString(),
+                label: ele.product_serial_number.toString(),
+            })
+            )
+            // const dataele1 = jsonData.map((ele) =>
+            //     ({
+            //         value: ele.product_id.toString(),
+            //         label: ele.product_id.toString(),
+            //     })
+            //     )
+            //     const combinedData = dataele.concat(dataele1);
+
+            setsearchelemet(dataele)
+
+            // console.log(jsonData)
 
 
+            if (selectedValues.length === 0) {
+                setData(jsonData)
+                // router.push("/dashbddoard/product")
 
 
-                }
-
-
-            } catch (error) {
-                // router.push("/dashboard")   
-                console.error("Error fetching data:", error);
             }
-        };
+            else {
+
+
+
+                setData(
+                    jsonData.filter(item => {
+                        // For All selected value, check if it exists in the item
+                        // return selectedValues.some(filterItem => {
+                        // For each selected value, check if it exists in the item
+                        return selectedValues.every(filterItem => {
+                            // Check if any of the item properties contain the filter value
+                            return Object.values(item).some(val => {
+                                // Check if the value is a string before calling .toLowerCase()
+                                if (typeof val === 'string') {
+                                    return val.toLowerCase().includes(filterItem.toLowerCase());
+                                }
+                                return false;
+                            });
+                        });
+                    })
+                );
+
+
+
+
+            }
+
+
+        } catch (error) {
+            // router.push("/dashboard")   
+            console.error("Error fetching data:", error);
+        }
+    };
+
+
+
+
+    const handlePageClick = (data) => {
+        if (data.selected === 0) {
+            
+            setPageNumber("1")
+        }
+        else {
+
+            // console.log(data.selected + 1)
+            setPageNumber(data.selected + 1)
+        }
+        // setPageNumber(data.selected+1)
+    }
+    useEffect(() => {
+        fetchData();
+
+    }, [pagenumber])
+
+    useEffect(() => {
+
 
         fetchData();
-    }, [Hidden, selectedValues, handleDelete,formDataupdateapi]);
+    }, [Hidden, selectedValues, handleDelete, formDataupdateapi]);
+    // console.log(searchElement)
     // for product
     const [dataforproduct, setDataForProduct] = useState([])
     const handleAddProducts = async (e) => {
@@ -178,7 +276,7 @@ const Page = () => {
 
         setEditableItem(null);
 
-        
+
         // console.log(updatedata);
         // console.log(`http://localhost/ims/public/product/${updatedata.product_id}`);
 
@@ -208,7 +306,7 @@ const Page = () => {
 
     const handleCancelClick = () => {
         setEditableItem(null);
-        
+
         // setUpdateData([]);
 
     };
@@ -289,9 +387,16 @@ const Page = () => {
     const handleCancelViewForm = (e) => {
         // alert("J")
         e.preventDefault();
-        setHiddenView(true);
-        setScrollFun(true);
     };
+    const Handleview = (value) => {
+        setHiddenView(value);
+
+
+    }
+    const ScrollFun = (value) => {
+        setScrollFun(value);
+
+    }
 
     //for add product
     const [hiddenforproduct, setHiddenForProduct] = useState(true);
@@ -382,7 +487,9 @@ const Page = () => {
         setCustomfieldsDataActive(true)
     };
 
+    // const selectoptiondata=()=>{
 
+    // }
     const handleChange = (selectedOption) => {
         setSelectedOptions(selectedOption);
     };
@@ -399,7 +506,7 @@ const Page = () => {
 
 
 
-   
+
     const handleInputChange2 = (e) => {
         const { name, value } = e.target;
         // const newValue = e.target.type === 'select-one' ? e.target.value : value;
@@ -474,7 +581,9 @@ const Page = () => {
                 if (res.ok) {
                     // Deletion successful, update your UI or trigger any necessary actions
                     // alert("Product deleted successfully");
+                    totalpro();
                     setHandleDelete(data[index].product_id)
+                   
                     // alert("Product deleted successfully")
                 } else {
                     // Server returned an error status, handle it accordingly
@@ -556,7 +665,7 @@ const Page = () => {
 
 
         // console.log(newdata);
-        // console.log(formData);
+        console.log(formData);
         // setFormData({})
 
         // console.log(handleproductserialnumber);
@@ -575,6 +684,7 @@ const Page = () => {
                 }
             );
             if (res.ok) {
+                // alert(res.status)
                 setFormData({})
                 setHiddenAddProduct(true);
                 setScrollFun(true);
@@ -582,12 +692,22 @@ const Page = () => {
                 setSelectedProduct("");
                 setSelectedProductBrand("");
                 setCustomfieldsDataActive(true)
+                totalpro();
                 // alert("DOne")
                 setFormDataupdateapi(false);
 
             } else {
                 // alert("j")
                 alert("Please Fill The Required filled")
+                setFormData({})
+                // setHiddenAddProduct(true);
+                // setScrollFun(true);
+                // setSelectedProductData("");
+                // setSelectedProduct("");
+                // setSelectedProductBrand("");
+                // setCustomfieldsDataActive(true)
+                // alert("DOne")
+                // setFormDataupdateapi(false);
 
                 throw new Error("Some Error");
             }
@@ -612,38 +732,8 @@ const Page = () => {
             >
                 <div className="sm:flex sm:space-y-0 space-y-2  justify-between m-4">
                     <h1 className="text-3xl  font-semibold">Product List </h1>
-                    <div className=" sm:flex sm:space-x-2 space-x-0 sm:space-y-0 space-y-2">
 
-                        <div className="flex  items-center">
-
-                            <Select
-                                className="min-w-[300px] rounded-3xl"
-                                // options={options}
-                                options={options}
-                                value={selectedOptions}
-                                onChange={handleChange}
-                                isMulti={true}
-                                placeholder="Search"
-                                styles={{
-                                    control: (provided) => ({
-                                        ...provided,
-                                        borderTopLeftRadius: '4px',
-                                        borderBottomLeftRadius: '4px',
-                                        borderTopRightRadius: '0px',
-                                        borderBottomRightRadius: '0px',
-
-                                    }),
-                                    dropdownIndicator: () => ({ display: 'none' }),
-                                    indicatorSeparator: () => ({ display: 'none' }),
-
-
-                                }}
-                            />
-
-
-                            <CiSearch className=" text-[#0E5AFE] border border-[#CCCCCC] border-l-0 hover:cursor-pointer rounded-tr rounded-br p-1 h-[38px]" size={33} onClick={searchHandle} />
-                        </div>
-                    </div>
+                    <SearchItems searchElement={searchElement} selectoptiondata={handleChange} placeholderValue="Serial No" handlemultiple={true} />
                     <button
                         className="  duration-700 border sm:py-2 sm:px-5 p-2  rounded bg-[#0E5AFE] text-white"
                         onClick={handleAddProducts}
@@ -651,6 +741,7 @@ const Page = () => {
                         Add Products
                     </button>
                 </div>
+
                 <div className="w-full overflow-auto md:pb-20">
                     <table className="w-full mt-2">
                         <thead>
@@ -674,16 +765,16 @@ const Page = () => {
                                 // .filter((ele,index)=>index<)
                                 .map((element, index) => (
                                     <tr
-                                        className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
+                                        className="!text-center text-[13px] border-1 *:border-b *:p-1 hover:cursor-pointer hover:bg-gray-100"
                                         key={index}
                                     >
                                         {/* {Object.keys(element).map((key) => ( */}
 
 
-                                        <td>
+                                        <td className="">
 
 
-                                            <div onClick={() => handleEditClick(index)}>
+                                            <div onClick={() => handleEditClick(index)} >
                                                 {editableItem === index ? (
                                                     <input
                                                         type="text"
@@ -821,7 +912,7 @@ const Page = () => {
                                                 <div className={`absolute -top-7 overflow-hidden bg-[green] !px-4 -left-[50%] ${tooltip2 === index ? '' : 'hidden'}`}>
                                                     <h1 className="text-white text-[10px]">View</h1>
                                                 </div>
-                                                <button className="hover:opacity-80 bg-[green] "
+                                                <button className="hover:opacity-80 bg-[green]"
                                                     onClick={(e) => handleHiddenView(e, index)}
                                                     onMouseEnter={(e) => handletooltip2(e, index)}
                                                     onMouseLeave={() => setTooltip2(null)}
@@ -848,7 +939,36 @@ const Page = () => {
                                 ))}
                         </tbody>
                     </table>
+                    {
+                        data.length > 0 && <>
+                            <div className=" mt-2  flex justify-center items-center   ">
+                                <ReactPaginate
+                                    previousLabel={"Previous"}
+                                    nextLabel={"Next"}
+                                    breakLabel={"..."}
+                                    pageCount={totalpages}
+
+
+                                    // marginPagesDisplayed={2}
+                                    // pageRangeDisplayed={2}
+                                    onPageChange={handlePageClick}
+                                    className='flex mx-auto '
+                                    // style={{ width: '50px' }}
+                                    activeClassName='bg-[red] text-blue-500' // Add this line
+
+                                    pageLinkClassName='flex items-center justify-center px-3 h-8 ms-0 leading-tight  text-gray-500  border border-e-0 border-gray-300   hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                                    containerClassName='inline-flex -space-x-px text-sm '
+                                    previousClassName='flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0  border-gray-300  hover:bg-[#184892] hover:text-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                                    nextClassName='flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border  border-gray-300  hover:bg-[#184892] hover:text-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                                />
+                            </div>
+
+                        </>
+                    }
+
                 </div>
+
+
 
                 {/* for Edit section */}
                 <div
@@ -897,13 +1017,13 @@ const Page = () => {
                                         )}
                                     </div>
                                 ))} */}
-                                 {Object.entries(formData1)
-                                 .filter(([key,index])=>key != "product_id" )
-                                 .map(([key, value], index) => (
-                                    <div className="" key={index}>
+                                {Object.entries(formData1)
+                                    .filter(([key, index]) => key != "product_id")
+                                    .map(([key, value], index) => (
+                                        <div className="" key={index}>
 
-                                        
-                                        {/* {&&  (<> */}
+
+                                            {/* {&&  (<> */}
                                             <span className="">{key.split('_')
                                                 .map(word =>
                                                     word.charAt(0).toUpperCase() + word.slice(1)
@@ -915,11 +1035,11 @@ const Page = () => {
                                                 onChange={(e) => handleInputChangeForm(e, key)}
                                                 name={key}
                                                 className="border-2 outline-red-500  border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 rounded-xl"
-                                                />
-                                                {/* </> */}
-                                        {/* // )} */}
-                                    </div>
-                                ))}
+                                            />
+                                            {/* </> */}
+                                            {/* // )} */}
+                                        </div>
+                                    ))}
 
 
 
@@ -948,57 +1068,7 @@ const Page = () => {
 
 
                 {/* for view Data */}
-                <div
-                    className={`flex-grow h-full absolute top-0 left-[50%] w-full -translate-x-[50%]  justify-center md:pt-4 pt-24   pb-20  ${Hiddenview ? "hidden" : "flex"
-                        } bg-black/30 backdrop-blur-[2px] overflow-auto `}
-                >
-
-                    <div className=" sm:w-[70%] w-full  sm:p-0 !h-fit    ">
-                        <form action="" className="   rounded p-8    bg-white">
-                            {/* <h1 className="text-4xl text-red-400 font-semibold">View</h1> */}
-                            <div className=" flex justify-between items-center">
-
-
-                                <h1 className="text-3xl text-red-400 font-semibold">View</h1>
-                                <RxCross2 size={30} onClick={handleCancelViewForm} className="cursor-pointer" />
-                            </div>
-                            <div className="grid md:grid-cols-2 md:gap-8 mt-4 *:space-y-2 space-y-6 md:space-y-0 ">
-
-
-
-                                {Object.entries(formData1).map(([key, value], index) => (
-                                    <div className="" key={index}>
-                                        {/* <span className="">{key}</span> */}
-                                        <span className="">{key
-                                            .split('_')
-                                            .map(word =>
-                                                word.charAt(0).toUpperCase() + word.slice(1)
-                                            )
-                                            .join(' ')}</span>
-                                        <div className="border-2 outline-red-500 border-[#1D4ED8] bg-[#F9FAFB] w-full p-2 cursor-not-allowed rounded-xl">
-                                            {value}
-                                        </div>
-
-                                    </div>
-                                ))}
-
-
-
-
-                            </div>
-
-                            <div className="flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 mt-5">
-
-                                <button
-                                    className="bg-red-400 hover:bg-red-500   text-white"
-                                    onClick={handleCancelViewForm}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <ViewComponent handleview={Hiddenview} formData2={formData1} ScrollFun={ScrollFun} Handleview={Handleview} title="Product Details" />
 
                 {/* for add product */}
                 <div
@@ -1110,6 +1180,7 @@ const Page = () => {
                                                     </div>
 
                                                 </div>
+
                                                 {demoItem.form.map((field, fieldIndex) => (
                                                     <div className="  md:gap-4 mt-4 space-y-6 md:space-y-0 overflow-hidden">
                                                         <div key={fieldIndex} className="space-y-2">

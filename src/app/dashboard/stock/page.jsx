@@ -6,8 +6,9 @@ import { RxCross2 } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
-import { demo, allfildes } from "./data";
+// import { demo, allfildes } from "./data";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import SearchComponent from '@/Components/SearchComponent';
 
 
 import Select from "react-select";
@@ -46,7 +47,11 @@ const Page = () => {
 
     const [selectedValues, setSelectedValues] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const[searchoption,setSearchOption]=useState([]);
+    const[searchoption,setSearchOptionid]=useState([]);
+    const[searchoptioncompanyname,setSearchOptioncompanyname]=useState([]);
+    // const[searchoption,setSearchOption]=useState([]);
+    // const[searchoption,setSearchOption]=useState([]);
+    // const[searchoption,setSearchOption]=useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -379,7 +384,7 @@ const Page = () => {
                     }  w-full`}
             >
                 <div className="sm:flex sm:space-y-0 space-y-2  justify-between m-4">
-                    <h1 className="text-3xl  font-semibold">Outward List</h1>
+                    <h1 className="text-3xl  font-semibold">Stock List</h1>
                    
                     <SearchItems searchElement={searchoption}  selectoptiondata={handleChange}  placeholderValue="Company Name" handlemultiple={false}/>
                     <button
@@ -388,6 +393,18 @@ const Page = () => {
                     >
                         Add Outward
                     </button>
+                </div>
+                {/* <div className="sm:flex sm:space-y-0 space-y-2  justify-between m-4"> */}
+                <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-2  m-4">
+                    
+
+                    <SearchComponent  options={searchoption} title="Id"/>
+                    <SearchComponent  options={searchoption} title="Company Name"/>
+                    <SearchComponent  options={searchoption} title="Address"/>
+                    <SearchComponent  options={searchoption} title="Employee Code"/>
+                    <SearchComponent  options={searchoption} title="Docket Number"/>
+                    
+                    
                 </div>
                 <div className="w-full overflow-auto md:pb-20">
                     <table className="w-full mt-2">
@@ -407,23 +424,10 @@ const Page = () => {
                                     className="!text-center border-1 *:border-b *:p-4 hover:cursor-pointer hover:bg-gray-100"
                                     key={index}
                                 >
-                                    {/* Render specific fields: ID, Company Name, Contact Person, Address */}
+                                   
                                     <td>{element["id"]}</td>
-                                    <td>
-                                        <div onClick={() => handleEditClick(index)}>
-                                            {editableItem === index ? (
-                                                <input
-                                                    type="text"
-                                                    name="Company Name"
-                                                    value={element["Company Name"]}
-                                                    onChange={(e) => handleInputChange(e, index)}
-                                                    className="w-20"
-                                                />
-                                            ) : (
-                                                element["company_name"]
-                                            )}
-                                        </div>
-                                    </td>
+                                    
+                                    <td>{element["company_name"]}</td>
                                     <td>{element["challan_number"]}</td>
                                     <td>{element["contact_number"]}</td>
 

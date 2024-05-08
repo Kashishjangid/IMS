@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { RxCross2 } from "react-icons/rx";
 import Select from "react-select";
 import SearchComponent from './SearchComponent';
+import { outwardfields } from "./datas";
+
 
 const AddOutward = ({ hiddenaddoutward, sendDataToParent, fieldName }) => {
 
@@ -10,15 +12,12 @@ const AddOutward = ({ hiddenaddoutward, sendDataToParent, fieldName }) => {
     const [data, setData] = useState([])
     const [options, setOptions] = useState([])
 
-    const[productidfromchild,setProductidfromchild]=useState("")
+    const [productidfromchild, setProductidfromchild] = useState("")
 
-    const handlesentproductid=(data)=>{
+    const handlesentproductid = (data) => {
         setProductidfromchild(data);
     }
-    useEffect(()=>{
-        console.log(productidfromchild)
 
-    },[productidfromchild])
 
 
 
@@ -70,7 +69,7 @@ const AddOutward = ({ hiddenaddoutward, sendDataToParent, fieldName }) => {
         // alert(productIds)
         // alert(`http://localhost/ims/public/product/${productIds[0]}`)
         e.preventDefault();
-       
+
     };
 
     // fetchData();
@@ -84,7 +83,7 @@ const AddOutward = ({ hiddenaddoutward, sendDataToParent, fieldName }) => {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const handleChange = (selectedOption) => {
         setSelectedOptions(selectedOption);
-        alert(selectedOption.value)
+        // alert(selectedOption.value)
     };
     // const options = [
     //     { value: "Dell", label: "Dell" },
@@ -114,73 +113,80 @@ const AddOutward = ({ hiddenaddoutward, sendDataToParent, fieldName }) => {
                     }
                 );
                 const jsonData = await res.json();
-                if(res.ok){
+                // console.log(jsonData)
+                if (res.ok) {
                     // setData(jsonData)
                     const productIds = jsonData.map(item => ({
-                        value:item.product_id.toString(),
-                        label:item.product_id.toString(),
+                        value: item.product_serial_number.toString(),
+                        label: item.product_serial_number.toString(),
                     }));
                     setOptions(productIds);
-                    
+
                 }
-                
-                
-                
+
+
+
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
-        
+
         fetchData();
     }, []);
 
+    const serialNumber = { "serial_number": productidfromchild }
 
-    useEffect(()=>{
-        const productdata=async()=>{
+    useEffect(() => {
+
+        const productdata = async () => {
             try {
+                // console.log(serialNumber)
                 const res = await fetch(
-                    `http://localhost/ims/public/product/${productidfromchild}`,
+                    `http://localhost/ims/public/product/search`,
                     {
-                        method: "GET",
+                        method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                             "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2ltcy9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNzE0NDc1MTI4LCJleHAiOjE3MTUzMzkxMjgsIm5iZiI6MTcxNDQ3NTEyOCwianRpIjoiamlZQkZWcnUxNE9EM3hFcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kqPSTt2UKDW7AnY58zx7oYsOEHEslACAKMfxBL9dJ-A"
                         },
-    
+                        body: JSON.stringify(serialNumber),
+
                     }
                 );
                 const jsonData = await res.json();
+
                 if (res.ok) {
                     if (jsonData.status === 204) {
-    
+
                         setData([])
-                        alert(jsonData.fail)
+                        // alert(jsonData.fail)
                     }
                     // console.log(jsonData.status)
                     else {
-    
+
                         setData(jsonData)
                     }
                     // console.log(res.status)
-    
-    
+
+
                 } else {
-    
+
                     // console.log("sjsj")
                     // console.log(res.status)
                     // console.log("Response not OK:", res.status);
                     throw new Error("Some Error");
                 }
             } catch (error) {
-    
+
                 // console.log("sjsj")
                 console.log("Error", error);
             }
         }
         productdata();
-    },[productidfromchild])
+    }, [productidfromchild])
 
     
+
 
 
 
@@ -195,6 +201,8 @@ const AddOutward = ({ hiddenaddoutward, sendDataToParent, fieldName }) => {
                         <div className="space-y-2">
                             <div className="flex justify-between text-2xl">
                                 <h1>Add Outward Details</h1>
+                                
+                                <h1>{process.env.NEXT_PUBLIC_a}</h1>
                                 <RxCross2 size={30}
                                     onClick={handleAddOutwardDetailstoggle}
                                     className="cursor-pointer" />
@@ -210,45 +218,10 @@ const AddOutward = ({ hiddenaddoutward, sendDataToParent, fieldName }) => {
                                     {/* {fieldName */}
                                     <div className="  md:gap-2 mt-4 space-y-6 md:space-y-0 ">
                                         <div className="space-y-2">
-                                            <span>Product Id</span>
-                                            {/* <div className='flex gap-2'> */}
+                                            <span>Product Serial Number</span>
 
+                                            <SearchComponent options={options} sentproductid={handlesentproductid} />
 
-                                            {/* <input
-                                                        type="number"
-                                                        value={productIds.length > 0 ? productIds[index] : ""}
-                                                        onChange={(event) => handleProductIdChange(index, event.target.value)}
-
-
-                                                        className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-
-
-                                                    /> */}
-                                                    <SearchComponent  options={options} sentproductid={handlesentproductid}/>
-                                            {/* <Select
-                                                className="rounded"
-                                                options={optionss}
-                                                value={selectedOptions}
-                                                onChange={handleChange}
-                                                // isMulti={true}
-                                                placeholder="Search"
-                                                styles={{
-                                                    control: (provided) => ({
-                                                        ...provided,
-                                                        borderTopLeftRadius: '4px',
-                                                        borderBottomLeftRadius: '4px',
-                                                        borderTopRightRadius: '0px',
-                                                        borderBottomRightRadius: '0px',
-
-                                                    }),
-                                                    dropdownIndicator: () => ({ display: 'none' }),
-                                                    indicatorSeparator: () => ({ display: 'none' }),
-
-
-                                                }}
-                                            /> */}
-
-                                            {/* </div> */}
 
 
                                         </div>
@@ -256,64 +229,53 @@ const AddOutward = ({ hiddenaddoutward, sendDataToParent, fieldName }) => {
                                     <div className="  md:gap-2 mt-4 space-y-6 md:space-y-0 ">
                                         <div className="space-y-2">
                                             <span>Customer Name</span>
-                                            {/* <div className='flex gap-2'> */}
 
+                                            <SearchComponent options={options} sentproductid={handlesentproductid} />
 
-                                            {/* <input
-                                                        type="number"
-                                                        value={productIds.length > 0 ? productIds[index] : ""}
-                                                        onChange={(event) => handleProductIdChange(index, event.target.value)}
-
-
-                                                        className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
-
-
-                                                    /> */}
-                                                    <SearchComponent  options={options} sentproductid={handlesentproductid}/>
-                                            {/* <Select
-                                                className="rounded"
-                                                options={optionss}
-                                                value={selectedOptions}
-                                                onChange={handleChange}
-                                                // isMulti={true}
-                                                placeholder="Search"
-                                                styles={{
-                                                    control: (provided) => ({
-                                                        ...provided,
-                                                        borderTopLeftRadius: '4px',
-                                                        borderBottomLeftRadius: '4px',
-                                                        borderTopRightRadius: '0px',
-                                                        borderBottomRightRadius: '0px',
-
-                                                    }),
-                                                    dropdownIndicator: () => ({ display: 'none' }),
-                                                    indicatorSeparator: () => ({ display: 'none' }),
-
-
-                                                }}
-                                            /> */}
-
-                                            {/* </div> */}
 
 
                                         </div>
                                     </div>
-                                    {/* {fieldName2
-
-                                        // .filter((ele,index)=>index<fieldName.length-1)
-                                        .map((ele, index) => (
-
-                                            
 
 
+                                </div>
+                                
 
-                                        ))} */}
-                                    {/* <div className={`flex  *:rounded-xl gap-4 *:py-2 *:px-5  `}>
-                                        <button className="bg-[#1D4ED8] hover:bg-blue-600   text-white" onClick={handleproductidfun}>
-                                            Add
-                                        </button>
+                                <div className="grid sm:grid-cols-2 gap-4">
+                                    {outwardfields.map((ele, index) => (
+                                        <div className="" key={index}>
+                                            <span>{ele.name}</span>
+                                            {ele.type != "select" ? (
+                                                <input
+                                                    type={ele.type}
+                                                    name={ele.name}
 
-                                    </div> */}
+                                                    placeholder={ele.label}
+                                                    className="border-2  outline-[#1D4ED8]  bg-[#F9FAFB] w-full  p-2 rounded-xl"
+                                                // onChange={handleInputChange2}
+                                                />
+
+                                            ) : (
+                                                <div>
+                                                    <select
+                                                        className="border-2 outline-[#1D4ED8] bg-[#F9FAFB]  p-2 w-full rounded-xl cursor-pointer"
+                                                        name={ele.label}
+                                                    // onChange={handleInputChange2}
+                                                    >
+                                                        {ele.option.map((option, optionIndex) => (
+                                                            <option key={optionIndex} value={option.value}>
+                                                                {option.label}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+
+                                            )}
+
+
+                                        </div>
+                                    ))}
+
 
                                 </div>
                                 <div className="grid sm:grid-cols-2 gap-4">
@@ -334,17 +296,17 @@ const AddOutward = ({ hiddenaddoutward, sendDataToParent, fieldName }) => {
                                     ))}
                                 </div>
 
-                            <div className={`flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 `}>
-                                <button className="bg-[#1D4ED8] hover:bg-blue-600   text-white" onClick={(e) => fun(e)}>
-                                    Add Outward
-                                </button>
-                                <button
-                                    className="bg-red-400 hover:bg-red-500   text-white"
-                                    onClick={handleAddOutwardDetailstoggle}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
+                                <div className={`flex  *:rounded-xl justify-end gap-4 *:py-2 *:px-5 `}>
+                                    <button className="bg-[#1D4ED8] hover:bg-blue-600   text-white" onClick={(e) => fun(e)}>
+                                        Add Outward
+                                    </button>
+                                    <button
+                                        className="bg-red-400 hover:bg-red-500   text-white"
+                                        onClick={handleAddOutwardDetailstoggle}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
                             </div>
 
                         </form>
